@@ -29,7 +29,7 @@ fn main() {
     println!("PictureU8: {pic_u8}"); // :? führt hier dazu, dass data AUCH ausgegeben wird, das passt aber meist nicht in die Console
 
     let pic_f32: PictureF32 = pic_u8.to_picture_f32();
-    println!("PictureF32: {pic_f32:?}");
+    println!("PictureF32: {pic_f32}");
 }
 
 #[derive(Debug)]
@@ -37,7 +37,7 @@ struct PictureU8 {
     lines: u32,   //height
     columns: u32, //width
     color_channel_count: usize,
-    data: Vec<u8>,
+    data: Vec<u8>, // values from 0 to 255 (both included)
 }
 
 impl PictureU8 {
@@ -45,8 +45,11 @@ impl PictureU8 {
         let mut new_data = Vec::<f32>::new();
         println!("self.data.len(): {}", self.data.len());
 
+        //convert each value from [0, 255] to [0.0, 1.0]
         for element in self.data {
-            new_data.push(f32::from(element));
+            let raw_f32_value = f32::from(element);
+
+            new_data.push(raw_f32_value / 255.0);
         }
 
         PictureF32 {
@@ -73,7 +76,7 @@ struct PictureF32 {
     lines: u32,   //height
     columns: u32, //width
     color_channel_count: usize,
-    data: Vec<f32>,
+    data: Vec<f32>, // values from 0.0 to 1.0 (both included)
 }
 
 impl Display for PictureF32 {
