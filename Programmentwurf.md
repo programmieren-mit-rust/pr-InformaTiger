@@ -1,1 +1,1 @@
-Die Beschreibung der Aufgabenstellung ist im Ursprungsrepo unter https://github.com/programmieren-mit-rust/programmentwurf/blob/main/Programmentwurf.md zu finden. Diese Readme.md ist durch etwas Sinnvolles zu ersetzen.
+Die Beschreibung der Aufgabenstellung ist im Ursprungsrepo unter https://github.com/programmieren-mit-rust/programmentwurf/blob/main/Programmentwurf.md zu finden. 
