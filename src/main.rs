@@ -25,17 +25,25 @@ fn read_picture(path: &str) -> PictureU8 {
 }
 
 fn main() {
-    let pic_u8: PictureU8 = read_picture("src/gelbeOberleitung.png");
-    println!("PictureU8: {pic_u8}"); // :? führt hier dazu, dass data AUCH ausgegeben wird, das passt aber meist nicht in die Console
+    let pic_u8: PictureU8 = read_picture("src/Bilder Programmentwurf-20230521/backlit_flower.png");
+    //println!("PictureU8: {pic_u8}"); // :? führt hier dazu, dass data AUCH ausgegeben wird, das passt aber meist nicht in die Console
 
     let pic_f32: PictureF32 = pic_u8.to_picture_f32();
-    println!("PictureF32: {pic_f32}");
+    //println!("PictureF32: {pic_f32}");
+
+    println!("{:?}", pic_f32.data[0]);
+    println!("{}", pic_f32.data[1]);
+    println!("{}", pic_f32.data[2]);
+    println!("{}", pic_f32.data[3]);
+    println!("{}", pic_f32.color_channel_count);
 }
 
 #[derive(Debug)]
 struct PictureU8 {
-    lines: u32,   //height
-    columns: u32, //width
+    lines: u32,
+    //height
+    columns: u32,
+    //width
     color_channel_count: usize,
     data: Vec<u8>, // values from 0 to 255 (both included)
 }
@@ -61,6 +69,7 @@ impl PictureU8 {
     }
 }
 
+
 impl Display for PictureU8 {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(
@@ -73,8 +82,10 @@ impl Display for PictureU8 {
 
 #[derive(Debug)]
 struct PictureF32 {
-    lines: u32,   //height
-    columns: u32, //width
+    lines: u32,
+    //height
+    columns: u32,
+    //width
     color_channel_count: usize,
     data: Vec<f32>, // values from 0.0 to 1.0 (both included)
 }
@@ -87,4 +98,57 @@ impl Display for PictureF32 {
             self.lines, self.columns, self.color_channel_count,
         )
     }
+}
+
+trait AverageBrightness {
+    //trait der Helligkeit
+    fn grayintensity(&self, pic_f32) -> Box<Self> {
+        Self { grayvec: vec }
+    }
+    fn averagebrightness(&self, grayvec) -> f32;
+}
+
+impl AverageBrightness for PictureF32 {
+    fn grayintensity(&self, _: pic_f32) -> grayvec {
+        count_columns = 0f32;
+        count_lines = 0f32;
+        count_colour = 0f32;
+
+
+        if pic_f32.color_channel_count = 3 {
+            for count_lines in PictureF32.lines {
+                for count_columns in PictureF32.columns {
+                    r: pic_f32.data[count_colour];//wert1 ->Rot
+                    g: pic_f32.data[count_colour + 1]; //wer2 -> Gruen
+                    b: pic_f32.data[count_colour + 2]; //wert3 ->Blau
+                    count_colour = count_colour + 3;
+                    grayvec[count_lines][count_columns] = (((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255);
+                }
+            }
+        } else
+        if pic_f32.color_channel_count = 4 {
+            for count_lines in PictureF32.lines {
+                for count_columns in PictureF32.columns {
+                    r: pic_f32.data[count_colour];//wert1 ->Rot
+                    g: pic_f32.data[count_colour + 1]; //wer2 -> Gruen
+                    b: pic_f32.data[count_colour + 2]; //wert3 ->Blau
+                    count_colour = count_colour + 4;
+                    grayvec[count_lines][count_columns] = (((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255);
+                }
+            }
+        }
+    }
+    fn averagebrightness(&self, _: grayvec) -> f32 {
+        ;
+        for count_lines in PictureF32.lines {
+            for count_columns in PictureF32.columns {
+
+            }
+        }
+    }
+
+
+// hier eventuell noch was mit transparenz??
+}
+}
 }
