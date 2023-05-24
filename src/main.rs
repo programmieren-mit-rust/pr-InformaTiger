@@ -13,9 +13,6 @@ fn read_picture(path: &str) -> PictureU8 {
     // Grab the bytes of the image.
     let picture_data = &buf[..info.buffer_size()];
 
-    // Inspect more details of the last read frame.
-    let is_in_animation = reader.info().frame_control.is_some();
-
     PictureU8 {
         lines: info.height,
         columns: info.width,
