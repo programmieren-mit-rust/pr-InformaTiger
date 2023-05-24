@@ -43,8 +43,8 @@ impl PictureU8 {
         println!("self.data.len(): {}", self.data.len());
 
         //convert each value from [0, 255] to [0.0, 1.0]
-        for element in self.data {
-            let raw_f32_value = f32::from(element);
+        for i in 0..self.data.len() {
+            let raw_f32_value = f32::from(self.data[i]);
 
             new_data.push(raw_f32_value / 255.0);
         }
