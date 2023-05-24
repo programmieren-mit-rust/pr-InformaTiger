@@ -38,7 +38,7 @@ struct PictureU8 {
 }
 
 impl PictureU8 {
-    fn to_picture_f32(self) -> PictureF32 {
+    fn to_picture_f32(&self) -> PictureF32 {
         let mut new_data = Vec::<f32>::new();
         println!("self.data.len(): {}", self.data.len());
 
