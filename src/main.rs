@@ -11,23 +11,31 @@ where
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let mut reader = decoder.read_info().unwrap();
     // Allocate the output buffer.
-    let mut picture_data = vec![0; reader.output_buffer_size()]; //der Type-hint sagt "Vec<u8>", also nicht wirklich generisch
+    let mut buf = vec![0; reader.output_buffer_size()]; //der Type-hint sagt "Vec<u8>", also nicht wirklich generisch
 
     // Read the next frame. An APNG might contain multiple frames.
     // OutputInfo { width: 1078, height: 1830, color_type: Rgba, bit_depth: Eight, line_size: 4312 }
-    let info = reader.next_frame(&mut picture_data).unwrap();
+    let info = reader.next_frame(&mut buf).unwrap();
 
     // Grab the bytes of the image.
-    let picture_data = &picture_data[..info.buffer_size()];
+    /*let picture_data: Vec<T> = */
+    buf.truncate(info.buffer_size());
+    //let picture_data = &buf[..info.buffer_size()];
 
     // Inspect more details of the last read frame.
     let is_in_animation = reader.info().frame_control.is_some();
+
+    println!("info.buffer_size(): {}", info.buffer_size());
+    println!(
+        "reader.output_buffer_size(): {}",
+        reader.output_buffer_size()
+    );
 
     Picture {
         lines: info.height,
         columns: info.width,
         color_channel_count: info.color_type.samples(),
-        data: picture_data,
+        data: buf,
     }
 }
 
@@ -58,6 +66,7 @@ where
     lines: u32,   //height
     columns: u32, //width
     color_channel_count: usize,
+    //data: &'a [T],
     data: Vec<T>,
 }
 
@@ -71,6 +80,7 @@ where
             columns: 0,
             color_channel_count: 0,
             data: Vec::<T>::new(),
+            //data: &[],
         }
     }
 
@@ -81,13 +91,15 @@ where
             lines: self.lines,
             columns: self.columns,
             color_channel_count: self.color_channel_count,
-            data: new_data,
+            //data: new_data,
+            data: Vec::<T>::new(),
         }
     }
 
+    /*
     fn add_to_vector(&mut self, item: T) {
         self.data.push(item);
-    }
+    }*/
 
     fn simulate_features(&self) {
         // Beispiel für die Verwendung von Add, Sub und Div auf den Elementen im Vector
