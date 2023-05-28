@@ -76,6 +76,25 @@ struct PictureF32 {
     data: Vec<f32>, // values from 0.0 to 1.0 (both included)
 }
 
+impl PictureF32 {
+    fn to_picture_u8(&self) -> PictureU8 {
+        let mut new_data = Vec::<u8>::new();
+        println!("self.data.len(): {}", self.data.len());
+
+        //convert each value from [0.0, 1.0] to [0, 255]
+        for i in 0..self.data.len() {
+            new_data.push(u8::from(self.data[i] * 255));
+        }
+
+        PictureU8 {
+            lines: self.lines,
+            columns: self.columns,
+            color_channel_count: self.color_channel_count,
+            data: new_data,
+        }
+    }
+}
+
 impl Display for PictureF32 {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(
