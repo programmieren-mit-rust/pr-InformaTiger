@@ -27,6 +27,69 @@ fn main() {
 
     let pic_f32: PictureF32 = pic_u8.to_picture_f32();
     println!("PictureF32: {pic_f32}");
+
+    println!("Histogramme: {:?}", get_histogram(&pic_f32.to_picture_u8()));
+}
+
+// Histogramm: Den Wertebereich (0-255 bzw. 0.0 bis 1.0) in n=5 bins unterteilen: je 51 (255/5) Werte (bei u8)
+#[derive(Debug)]
+struct Bin {
+    bin_index: u8,
+    pixel_count: u32,
+}
+
+#[derive(Debug)]
+struct Histogram {
+    bins: Vec<Bin>,
+}
+
+impl Histogram {
+    fn new() -> Histogram {
+        Histogram {
+            bins: Vec::<Bin>::new(),
+        }
+    }
+}
+
+const BIN_COUNT: u8 = 5;
+
+fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
+    // self.data nach den color channels durchgehen
+    // pro color_channel je eine "Liste" an Bins
+    let mut histograms: Vec<Histogram> = Vec::new();
+
+    // fill Vector with BIN_COUNT bins for each color channel:
+    for channel_counter in 0..pic.color_channel_count {
+        // neues Histogramm für diesen Farbkanal anlegen
+        histograms.push(Histogram::new());
+
+        // für dieses Histogramm eine entsprechende Anzahl an Bins anlegen
+        for bin_counter in 0..BIN_COUNT {
+            histograms[channel_counter].bins.push(Bin {
+                bin_index: bin_counter,
+                pixel_count: 0,
+            });
+        }
+    }
+
+    // komplette Daten durchiterieren, je nach color_channel_count
+    let mut current_index: usize = 0;
+    while current_index < pic.data.len() {
+        //FIXME: von pic.color_channel_count abhängig machen
+        if pic.color_channel_count == 3 {
+        } else if pic.color_channel_count == 4 {
+        } else if pic.color_channel_count == 2 {
+        }
+
+        current_index = current_index + pic.color_channel_count;
+    }
+
+    histograms
+}
+
+trait Picture {
+    fn to_picture_u8(&self) -> PictureU8;
+    fn to_picture_f32(&self) -> PictureF32;
 }
 
 #[derive(Debug)]
@@ -37,7 +100,16 @@ struct PictureU8 {
     data: Vec<u8>, // values from 0 to 255 (both included)
 }
 
-impl PictureU8 {
+impl Picture for PictureU8 {
+    fn to_picture_u8(&self) -> PictureU8 {
+        PictureU8 {
+            lines: self.lines,
+            columns: self.columns,
+            color_channel_count: self.color_channel_count,
+            data: self.data.clone(),
+        }
+    }
+
     fn to_picture_f32(&self) -> PictureF32 {
         let mut new_data = Vec::<f32>::new();
         println!("self.data.len(): {}", self.data.len());
@@ -76,14 +148,14 @@ struct PictureF32 {
     data: Vec<f32>, // values from 0.0 to 1.0 (both included)
 }
 
-impl PictureF32 {
+impl Picture for PictureF32 {
     fn to_picture_u8(&self) -> PictureU8 {
         let mut new_data = Vec::<u8>::new();
         println!("self.data.len(): {}", self.data.len());
 
         //convert each value from [0.0, 1.0] to [0, 255]
         for i in 0..self.data.len() {
-            new_data.push(u8::from(self.data[i] * 255));
+            new_data.push((self.data[i] * 255.0) as u8);
         }
 
         PictureU8 {
@@ -91,6 +163,15 @@ impl PictureF32 {
             columns: self.columns,
             color_channel_count: self.color_channel_count,
             data: new_data,
+        }
+    }
+
+    fn to_picture_f32(&self) -> PictureF32 {
+        PictureF32 {
+            lines: self.lines,
+            columns: self.columns,
+            color_channel_count: self.color_channel_count,
+            data: self.data.clone(),
         }
     }
 }
