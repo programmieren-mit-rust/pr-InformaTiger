@@ -105,14 +105,14 @@ trait AverageBrightness {
     fn grayintensity(&self, pic_f32) -> Box<Self> {
         Self { grayvec: vec }
     }
-    fn averagebrightness(&self, grayvec) -> f32;
+    fn averagebrightness(&self, grayvec, pic_f32) -> f32;
 }
 
 impl AverageBrightness for PictureF32 {
     fn grayintensity(&self, _: pic_f32) -> grayvec {
-        count_columns = 0f32;
-        count_lines = 0f32;
-        count_colour = 0f32;
+        let mut count_columns = 0f32;
+        let mut count_lines = 0f32;
+        let mut count_colour = 0f32;
 
 
         if pic_f32.color_channel_count = 3 {
@@ -122,10 +122,10 @@ impl AverageBrightness for PictureF32 {
                     g: pic_f32.data[count_colour + 1]; //wer2 -> Gruen
                     b: pic_f32.data[count_colour + 2]; //wert3 ->Blau
                     count_colour = count_colour + 3;
-                    grayvec[count_lines][count_columns] = (((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255);
+                    grayvec![vec![0;count_lines]][count_columns] = (((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255);
                 }
             }
-        } else
+        }  else
         if pic_f32.color_channel_count = 4 {
             for count_lines in PictureF32.lines {
                 for count_columns in PictureF32.columns {
@@ -133,22 +133,38 @@ impl AverageBrightness for PictureF32 {
                     g: pic_f32.data[count_colour + 1]; //wer2 -> Gruen
                     b: pic_f32.data[count_colour + 2]; //wert3 ->Blau
                     count_colour = count_colour + 4;
-                    grayvec[count_lines][count_columns] = (((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255);
+                    grayvec![vec![0;count_lines]][count_columns] = (((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255);
                 }
             }
         }
     }
-    fn averagebrightness(&self, _: grayvec) -> f32 {
-        ;
-        for count_lines in PictureF32.lines {
-            for count_columns in PictureF32.columns {
+    fn averagebrightness(&self,grayvec: Vec<Vec<f32>>, pic_f32: f32) -> f32 {
+        let mut  ccounter = 0f32;
+        let mut  lines_counter = 0f32;
+        let mut colour_counter = 0f32;
+       let mut sum_grey = 0f32;
+
+        let num_lines = grayvec.len() as f32;
+
+
+
+        let num_columns = grayvec[0].len() as f32 ;
+
+
+
+        while ccounter != num_lines {
+            ccounter += 1;
+            println!("ccounter: {}", ccount);
+        }
+
+
 
             }
         }
-    }
+
 
 
 // hier eventuell noch was mit transparenz??
-}
-}
-}
+
+
+
