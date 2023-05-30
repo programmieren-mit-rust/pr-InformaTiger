@@ -62,7 +62,7 @@ impl Histogram {
     }
 
     fn add_pixel_to_correct_bin(&mut self, color_value: u8) {
-        // Wertebereicht wird in BIN_COUNT=5 Bereiche unterteilt
+        // Wertebereich wird in BIN_COUNT=5 Bereiche unterteilt
         // Bei BIN_COUNT=5: 255/5 = 51 -> 0-51, 52-102, 103-153, 154-204, 205-255
         let v_max: u8 = 255;
         let v_min: u8 = 0;
@@ -175,7 +175,6 @@ impl Picture for PictureU8 {
 
     fn to_picture_f32(&self) -> PictureF32 {
         let mut new_data = Vec::<f32>::new();
-        println!("self.data.len(): {}", self.data.len());
 
         //convert each value from [0, 255] to [0.0, 1.0]
         for i in 0..self.data.len() {
@@ -197,8 +196,11 @@ impl Display for PictureU8 {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(
             f,
-            "( lines: {}, columns: {}, color_channel_count: {} )",
-            self.lines, self.columns, self.color_channel_count,
+            "( lines: {}, columns: {}, color_channel_count: {} , Anzahl Pixel: {})",
+            self.lines,
+            self.columns,
+            self.color_channel_count,
+            (self.data.len() / self.color_channel_count)
         )
     }
 }
@@ -214,7 +216,6 @@ struct PictureF32 {
 impl Picture for PictureF32 {
     fn to_picture_u8(&self) -> PictureU8 {
         let mut new_data = Vec::<u8>::new();
-        println!("self.data.len(): {}", self.data.len());
 
         //convert each value from [0.0, 1.0] to [0, 255]
         for i in 0..self.data.len() {
@@ -243,8 +244,11 @@ impl Display for PictureF32 {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(
             f,
-            "( lines: {}, columns: {}, color_channel_count: {} )",
-            self.lines, self.columns, self.color_channel_count,
+            "( lines: {}, columns: {}, color_channel_count: {} , Anzahl Pixel: {})",
+            self.lines,
+            self.columns,
+            self.color_channel_count,
+            (self.data.len() / self.color_channel_count)
         )
     }
 }
