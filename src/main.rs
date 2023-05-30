@@ -28,7 +28,11 @@ fn main() {
     let pic_f32: PictureF32 = pic_u8.to_picture_f32();
     println!("PictureF32: {pic_f32}");
 
-    println!("Histogramme: {:?}", get_histogram(&pic_f32.to_picture_u8()));
+    let histograms = get_histogram(&pic_f32.to_picture_u8());
+    for i in 0..histograms.len() {
+        println!("Histogramm: {}", i + 1);
+        println!("{}", histograms[i]);
+    }
 }
 
 // Histogramm: Den Wertebereich (0-255 bzw. 0.0 bis 1.0) in n=5 bins unterteilen: je 51 (255/5) Werte (bei u8)
@@ -38,25 +42,86 @@ struct Bin {
     pixel_count: u32,
 }
 
+impl Bin {
+    fn add_pixel(&mut self) {
+        self.pixel_count += 1;
+    }
+}
+
 #[derive(Debug)]
 struct Histogram {
     bins: Vec<Bin>,
 }
 
+const BIN_COUNT: u8 = 5;
 impl Histogram {
     fn new() -> Histogram {
         Histogram {
             bins: Vec::<Bin>::new(),
         }
     }
+
+    fn add_pixel_to_correct_bin(&mut self, color_value: u8) {
+        // Wertebereicht wird in BIN_COUNT=5 Bereiche unterteilt
+        // Bei BIN_COUNT=5: 255/5 = 51 -> 0-51, 52-102, 103-153, 154-204, 205-255
+        let v_max: u8 = 255;
+        let v_min: u8 = 0;
+
+        let mut lower_bound: u8 = 0;
+        let mut upper_bound: u8 = (v_max - v_min) / 5; //51 // FIXME: von BIN_COUNT abhängig machen -> wie sehen die Bins aus?
+
+        let mut bin_index: usize = 0;
+
+        while upper_bound <= 255 {
+            // color_value is in bin
+            if color_value >= lower_bound && color_value <= upper_bound {
+                self.bins[bin_index].add_pixel();
+                // end function
+                return;
+            }
+
+            // next bin:
+            // 2. Bin beginnt bei 52, aber 0 + 51 = 51.
+            if lower_bound == 0 {
+                lower_bound += 1;
+            }
+            lower_bound = lower_bound + 255 / 5;
+            upper_bound = upper_bound + 255 / 5;
+            bin_index += 1;
+        }
+    }
 }
 
-const BIN_COUNT: u8 = 5;
+impl Display for Bin {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "( Bin Index: {}, Pixel Count: {} )",
+            self.bin_index, self.pixel_count,
+        )
+    }
+}
+
+impl Display for Histogram {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        for i in 0..self.bins.len() {
+            write!(
+                f,
+                "\tBin Index: {}, Pixel Count: {}\n",
+                self.bins[i].bin_index, self.bins[i].pixel_count
+            )
+            .expect("Error while writing content of bins");
+        }
+
+        Ok(())
+    }
+}
 
 fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
+    // Initialisierung:
     // self.data nach den color channels durchgehen
     // pro color_channel je eine "Liste" an Bins
-    let mut histograms: Vec<Histogram> = Vec::new();
+    let mut histograms: Vec<Histogram> = Vec::<Histogram>::new();
 
     // fill Vector with BIN_COUNT bins for each color channel:
     for channel_counter in 0..pic.color_channel_count {
@@ -71,16 +136,14 @@ fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
             });
         }
     }
+    //------------
 
-    // komplette Daten durchiterieren, je nach color_channel_count
+    // komplette Daten durchiterieren, immer je Daten zu 1 Pixel ansehen (abhängig von color_channel_count)
     let mut current_index: usize = 0;
     while current_index < pic.data.len() {
-        //FIXME: von pic.color_channel_count abhängig machen
-        if pic.color_channel_count == 3 {
-        } else if pic.color_channel_count == 4 {
-        } else if pic.color_channel_count == 2 {
+        for i in 0..pic.color_channel_count {
+            histograms[i].add_pixel_to_correct_bin(pic.data[current_index + i]);
         }
-
         current_index = current_index + pic.color_channel_count;
     }
 
