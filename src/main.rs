@@ -10,8 +10,10 @@ fn main() {
 
     let histograms = get_histogram(&pic_f32.to_picture_u8());
     for i in 0..histograms.len() {
-        println!("Histogramm: {}", i + 1);
-        println!("{}", histograms[i]);
+        println!("Histogramm zu Farbkanal {i}:");
+        //TODO: welches histogramm ist das?
+        histograms[i].print_diagram();
+        println!();
     }
 }
 
@@ -88,6 +90,29 @@ impl Histogram {
             lower_bound = lower_bound + 255 / 5;
             upper_bound = upper_bound + 255 / 5;
             bin_index += 1;
+        }
+    }
+
+    // make a diagram for each color_channel
+    fn print_diagram(&self) {
+        // find max_value to determine the scale
+        let mut max_value = self.bins[0].pixel_count;
+        for bin_index in 1..self.bins.len() {
+            if self.bins[bin_index].pixel_count > max_value {
+                max_value = self.bins[bin_index].pixel_count;
+            }
+        }
+
+        // build the diagram
+        const MAX_WIDTH: f32 = 40.0;
+        for bin_index in 0..self.bins.len() {
+            let bar_length: usize =
+                ((self.bins[bin_index].pixel_count as f32 / max_value as f32) * MAX_WIDTH) as usize;
+            let bar = "█".repeat(bar_length);
+
+            // print bar
+            //TODO statt (bzw. zusätzlich zu) "Bin 1" noch den Wertebereich angeben (in Klammern oder so)
+            println!("Bin {bin_index:2}|{}", bar);
         }
     }
 }
@@ -240,6 +265,7 @@ impl Picture for PictureF32 {
     }
 }
 
+// FIXME: duplicate code
 impl Display for PictureF32 {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(
