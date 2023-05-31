@@ -9,12 +9,17 @@ fn main() {
     println!("PictureF32: {pic_f32}");
 
     let histograms = get_histogram(&pic_f32.to_picture_u8());
-    for i in 0..histograms.len() {
-        println!("Histogramm zu Farbkanal {i}:");
-        //TODO: welches histogramm ist das?
-        histograms[i].print_diagram();
-        println!();
-    }
+    print_all_diagrams(histograms, pic_f32.color_channel_count); //TODO Werte nach Balken schreiben? (auf gleicher höhe (nach 40 Zeichen) oder direkt hinter Balken?) -> als optionales Feature?
+}
+
+//TODO für Grauwerte und Alphawerte und dann als Parameter einer fn
+//fn gibt dann das Zeichen zurück, das dann (woanders) repeatet wird
+enum Color {
+    RED,
+    BLUE,
+    GREEN,
+    ALPHA,
+    GREY,
 }
 
 fn read_picture(path: &str) -> PictureU8 {
@@ -35,6 +40,74 @@ fn read_picture(path: &str) -> PictureU8 {
         color_channel_count: info.color_type.samples(),
         data: Vec::from(picture_data), //muss von &[u8] gecastet werden
     }
+}
+
+fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize) {
+    //color_channel_count: 1 -> █
+    //color_channel_count: 3 -> R, G, B
+    //color_channel_count: 4 -> R, G, B, ▒
+    for current_color_channel in 0..histograms.len() {
+        let bar_symbol = match color_channel_count {
+            1 => String::from("█"),
+            3 => match current_color_channel {
+                0 => red_escape("█"),
+                1 => green_escape("█"),
+                2 => blue_escape("█"),
+                _ => String::from("█"),
+            },
+            4 => match current_color_channel {
+                0 => red_escape("█"),
+                1 => green_escape("█"),
+                2 => blue_escape("█"),
+                3 => String::from("▒"),
+                _ => String::from("█"),
+            },
+            _ => String::from("█"),
+        };
+
+        println!("Histogramm zu Farbkanal {current_color_channel}:");
+
+        histograms[current_color_channel].print_diagram(bar_symbol);
+
+        println!();
+    }
+}
+
+// TODO: als ausschaltbares Feature implementieren! NIcht alle Konsolen unterstützen das! (z.B. der Rust-Playground nicht)
+fn escape(str_to_be_escaped: &str, color: Color) -> String {
+    let start_escape;
+    let mut end_escape = "\x1b[0m";
+
+    match color {
+        Color::RED => {
+            start_escape = "\x1b[31m";
+        }
+        Color::GREEN => {
+            start_escape = "\x1b[32m";
+        }
+        Color::BLUE => {
+            start_escape = "\x1b[34m";
+        }
+        _ => {
+            // no escaping for AlPHA and GREY
+            start_escape = "";
+            end_escape = "";
+        }
+    }
+
+    format!("{start_escape}{}{end_escape}", str_to_be_escaped,)
+}
+
+fn red_escape(str_to_be_escaped: &str) -> String {
+    escape(str_to_be_escaped, Color::RED)
+}
+
+fn blue_escape(str_to_be_escaped: &str) -> String {
+    escape(str_to_be_escaped, Color::BLUE)
+}
+
+fn green_escape(str_to_be_escaped: &str) -> String {
+    escape(str_to_be_escaped, Color::GREEN)
 }
 
 // Histogramm: Den Wertebereich (0-255 bzw. 0.0 bis 1.0) in n=5 bins unterteilen: je 51 (255/5) Werte (bei u8)
@@ -94,7 +167,7 @@ impl Histogram {
     }
 
     // make a diagram for each color_channel
-    fn print_diagram(&self) {
+    fn print_diagram(&self, bar_symbol: String) {
         // find max_value to determine the scale
         let mut max_value = self.bins[0].pixel_count;
         for bin_index in 1..self.bins.len() {
@@ -105,14 +178,24 @@ impl Histogram {
 
         // build the diagram
         const MAX_WIDTH: f32 = 40.0;
+
+        // Table Header
+        println!("Bins  | Anzahl Pixel");
+        println!("{}|{}", "=".repeat(6), "=".repeat(50));
+
+        // Table Body
         for bin_index in 0..self.bins.len() {
             let bar_length: usize =
                 ((self.bins[bin_index].pixel_count as f32 / max_value as f32) * MAX_WIDTH) as usize;
-            let bar = "█".repeat(bar_length);
+            let bar = bar_symbol.repeat(bar_length);
 
             // print bar
             //TODO statt (bzw. zusätzlich zu) "Bin 1" noch den Wertebereich angeben (in Klammern oder so)
-            println!("Bin {bin_index:2}|{}", bar);
+            println!(
+                "Bin {bin_index:2}|{} {amount}",
+                bar,
+                amount = self.bins[bin_index].pixel_count
+            );
         }
     }
 }
