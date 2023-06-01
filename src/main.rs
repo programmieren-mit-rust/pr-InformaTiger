@@ -139,10 +139,10 @@ impl Histogram {
     fn add_pixel_to_correct_bin(&mut self, color_value: u8) {
         // Wertebereich wird in BIN_COUNT=5 Bereiche unterteilt
         // Bei BIN_COUNT=5: 255/5 = 51 -> 0-51, 52-102, 103-153, 154-204, 205-255
-        let v_max: u8 = 255;
+        let v_max: u8 = u8::MAX;
         let v_min: u8 = 0;
 
-        let mut lower_bound: u8 = 0;
+        let mut lower_bound: u8 = v_min;
         let mut upper_bound: u8 = (v_max - v_min) / 5; //51 // FIXME: von BIN_COUNT abhängig machen -> wie sehen die Bins aus?
 
         let mut bin_index: usize = 0;
@@ -180,8 +180,11 @@ impl Histogram {
         const MAX_WIDTH: f32 = 40.0;
 
         // Table Header
-        println!("Bins  | Anzahl Pixel");
-        println!("{}|{}", "=".repeat(6), "=".repeat(50));
+        println!("Bins   | Anzahl Pixel");
+        println!("{}|{}", "=".repeat(7), "=".repeat(50));
+        // für Wertebereich nötige Hilfsvariablen
+        let mut lower_bound = 0;
+        let mut upper_bound = u8::MAX / self.bins.len() as u8;
 
         // Table Body
         for bin_index in 0..self.bins.len() {
@@ -189,13 +192,25 @@ impl Histogram {
                 ((self.bins[bin_index].pixel_count as f32 / max_value as f32) * MAX_WIDTH) as usize;
             let bar = bar_symbol.repeat(bar_length);
 
-            // print bar
-            //TODO statt (bzw. zusätzlich zu) "Bin 1" noch den Wertebereich angeben (in Klammern oder so)
+            // Balken inkl. jeweiligen Wertebereich printen
             println!(
-                "Bin {bin_index:2}|{} {amount}",
+                "{label:7}|{} {amount}",
                 bar,
+                label = format!("{}-{}", lower_bound, upper_bound),
                 amount = self.bins[bin_index].pixel_count
             );
+
+            //-----------------------
+            // nächster Wertebereich
+            if bin_index < self.bins.len() - 1 {
+                //FIXME: kinda duplicate -> code evtl "coole fn/struct schreiben, die nen Iterator darstellt"
+                // 2. Bin beginnt bei 52, aber 0 + 51 = 51.
+                if lower_bound == 0 {
+                    lower_bound += 1;
+                }
+                lower_bound = lower_bound + 255 / self.bins.len() as u8;
+                upper_bound = upper_bound + 255 / self.bins.len() as u8;
+            }
         }
     }
 }
