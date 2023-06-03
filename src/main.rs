@@ -110,7 +110,7 @@ fn green_escape(str_to_be_escaped: &str) -> String {
     escape(str_to_be_escaped, Color::GREEN)
 }
 
-// Histogramm: Den Wertebereich (0-255 bzw. 0.0 bis 1.0) in n=5 bins unterteilen: je 51 (255/5) Werte (bei u8)
+// Histogramm: Den Wertebereich (0-255 bzw. 0.0 bis 1.0) in z.B. n=5 bins unterteilen: je 51 (255/5) Werte (bei u8)
 #[derive(Debug)]
 struct Bin {
     bin_index: u8,
@@ -128,7 +128,7 @@ struct Histogram {
     bins: Vec<Bin>,
 }
 
-const BIN_COUNT: u8 = 5;
+const BIN_COUNT: u8 = 5; // only dividers of 255 work: 1, 3, 5, 17, 51, 85, 255
 impl Histogram {
     fn new() -> Histogram {
         Histogram {
@@ -137,31 +137,29 @@ impl Histogram {
     }
 
     fn add_pixel_to_correct_bin(&mut self, color_value: u8) {
-        // Wertebereich wird in BIN_COUNT=5 Bereiche unterteilt
+        // Wertebereich wird in BIN_COUNT Bereiche unterteilt
         // Bei BIN_COUNT=5: 255/5 = 51 -> 0-51, 52-102, 103-153, 154-204, 205-255
-        let v_max: u8 = u8::MAX;
-        let v_min: u8 = 0;
-
-        let mut lower_bound: u8 = v_min;
-        let mut upper_bound: u8 = (v_max - v_min) / 5; //51 // FIXME: von BIN_COUNT abhängig machen -> wie sehen die Bins aus?
+        // usize, da bei u8 Overflow-Fehler kommen und self.bins.len() usize zurückgibt
+        let mut lower_bound: usize = 0;
+        let mut upper_bound: usize = 255 / self.bins.len();
 
         let mut bin_index: usize = 0;
 
-        while upper_bound <= 255 {
-            // color_value is in bin
-            if color_value >= lower_bound && color_value <= upper_bound {
+        while upper_bound <= 255 && bin_index < self.bins.len() {
+            // end function if color_value is in bin
+            if color_value >= lower_bound as u8 && color_value <= upper_bound as u8 {
                 self.bins[bin_index].add_pixel();
-                // end function
                 return;
             }
 
             // next bin:
-            // 2. Bin beginnt bei 52, aber 0 + 51 = 51.
+            // Das 1. Bin ist um 1 größer, da es bei 0 beginnt. Daher müssen wir um 1 erhöhen.
+            // FIXME: kinda duplicate code ->  evtl "coole fn/struct schreiben, die nen Iterator darstellt"
             if lower_bound == 0 {
                 lower_bound += 1;
             }
-            lower_bound = lower_bound + 255 / 5;
-            upper_bound = upper_bound + 255 / 5;
+            lower_bound = lower_bound + (255 / self.bins.len());
+            upper_bound = upper_bound + (255 / self.bins.len());
             bin_index += 1;
         }
     }
@@ -177,19 +175,19 @@ impl Histogram {
         }
 
         // build the diagram
-        const MAX_WIDTH: f32 = 40.0;
+        const MAX_BAR_WIDTH: f32 = 40.0;
 
         // Table Header
         println!("Bins   | Anzahl Pixel");
         println!("{}|{}", "=".repeat(7), "=".repeat(50));
         // für Wertebereich nötige Hilfsvariablen
-        let mut lower_bound = 0;
-        let mut upper_bound = u8::MAX / self.bins.len() as u8;
+        let mut lower_bound: usize = 0;
+        let mut upper_bound: usize = 255 / self.bins.len();
 
         // Table Body
         for bin_index in 0..self.bins.len() {
-            let bar_length: usize =
-                ((self.bins[bin_index].pixel_count as f32 / max_value as f32) * MAX_WIDTH) as usize;
+            let bar_length: usize = ((self.bins[bin_index].pixel_count as f32 / max_value as f32)
+                * MAX_BAR_WIDTH) as usize;
             let bar = bar_symbol.repeat(bar_length);
 
             // Balken inkl. jeweiligen Wertebereich printen
@@ -208,8 +206,8 @@ impl Histogram {
                 if lower_bound == 0 {
                     lower_bound += 1;
                 }
-                lower_bound = lower_bound + 255 / self.bins.len() as u8;
-                upper_bound = upper_bound + 255 / self.bins.len() as u8;
+                lower_bound = lower_bound + 255 / self.bins.len();
+                upper_bound = upper_bound + 255 / self.bins.len();
             }
         }
     }
