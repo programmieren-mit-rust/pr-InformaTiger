@@ -43,6 +43,8 @@ fn read_picture(path: &str) -> PictureU8 {
 }
 
 fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize) {
+    println!("Aufteilung der Werte in {BIN_COUNT} Bins.");
+
     //color_channel_count: 1 -> █
     //color_channel_count: 3 -> R, G, B
     //color_channel_count: 4 -> R, G, B, ▒
