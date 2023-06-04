@@ -1,9 +1,10 @@
 use std::fmt::{Display, Formatter};
 use std::fs::File;
+use std::io;
 
 use std::ops::{Add, Div, Sub};
 
-fn read_generic_picture<T>(path: &str) -> Picture<T>
+fn read_generic_picture<T>(path: &str, file_path: &str) -> Picture<T>
 where
     T: Add<Output = T> + Sub<Output = T> + Div<Output = T>,
 {
@@ -45,9 +46,20 @@ fn print_type_of<T>(_: T) {
 }
 
 fn main() {
+    // User Input (Eventuell noch mit GUI)
+    println!("Bitte geben Sie den Datei-Pfad Ihres Bildes ein:");
+
+    // Eingabe lesen
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Fehler beim Lesen der Eingabe");
+
+    // Das eingegebene Wort extrahieren
+    let file_path = input.trim();
+
+
     //TODO: hier u8 oder so angeben!
     let mut pic: Picture<u8> = Picture::<u8>::new();
-    pic = read_generic_picture::<u8>("src/gelbeOberleitung.png");
+    pic = read_generic_picture::<u8>("{}",file_path);
 
     pic.to_float_picture(); //das könnte nicht gehen, weil wir ja <u8> oben gesagt haben, oder?
 
