@@ -98,70 +98,77 @@ impl Display for PictureF32 {
             self.lines, self.columns, self.color_channel_count,
         )
     }
+
 }
 
+
+//let mut my_array: Vec<i32> = Vec::new();
+
 trait AverageBrightness {
-    //trait der Helligkeit
-    fn grayintensity(&self, pic_f32) -> Box<Self> {
-        Self { grayvec: vec }
-    }
-    fn averagebrightness(&self, grayvec, pic_f32) -> f32;
+    // Trait der Helligkeit
+    fn grayintensity(&self, pic_f32: f32) -> Vec<f32>;
+    fn averagebrightness(&self, grayray: &Vec<f32>, pic_f32: f32) -> f32;
 }
 
 impl AverageBrightness for PictureF32 {
-    fn grayintensity(&self, _: pic_f32) -> grayvec {
+    fn grayintensity(&self, pic_f32: f32) -> Vec<f32> {
+        let mut grayray: Vec<f32> = Vec::new();
         let mut count_columns = 0f32;
         let mut count_lines = 0f32;
         let mut count_colour = 0f32;
+        let mut pixel_count = 0f32;
 
-
-        if pic_f32.color_channel_count = 3 {
-            for count_lines in PictureF32.lines {
-                for count_columns in PictureF32.columns {
-                    r: pic_f32.data[count_colour];//wert1 ->Rot
-                    g: pic_f32.data[count_colour + 1]; //wer2 -> Gruen
-                    b: pic_f32.data[count_colour + 2]; //wert3 ->Blau
+        // Anmerkung: Vergleichsoperator in if-Bedingungen ist ==
+        if PictureF32.color_channel_count == 3 {
+            // Anmerkung: Verwendung von self.lines und self.columns statt PictureF32.lines und PictureF32.columns
+            for count_lines in self.lines {
+                for count_columns in self.columns {
+                    // Anmerkung: Variablen r, g und b müssen deklariert werden
+                    let r = pic_f32.data[count_colour]; // (vorher: r = pic_f32.data[count_colour];) wert1 -> Rot
+                    let g = pic_f32.data[count_colour + 1]; // (vorher: g = pic_f32.data[count_colour + 1];) wert2 -> Grün
+                    let b = pic_f32.data[count_colour + 2]; // (vorher: b = pic_f32.data[count_colour + 2];) wert3 -> Blau
                     count_colour = count_colour + 3;
-                    grayvec![vec![0;count_lines]][count_columns] = (((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255);
+                    grayray.push(((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255.0);
+                    pixel_count = pixel_count + 1.0;
                 }
             }
-        }  else
-        if pic_f32.color_channel_count = 4 {
-            for count_lines in PictureF32.lines {
-                for count_columns in PictureF32.columns {
-                    r: pic_f32.data[count_colour];//wert1 ->Rot
-                    g: pic_f32.data[count_colour + 1]; //wer2 -> Gruen
-                    b: pic_f32.data[count_colour + 2]; //wert3 ->Blau
+        } else if pic_f32.color_channel_count == 4 {
+            // Anmerkung: Verwendung von self.lines und self.columns statt PictureF32.lines und PictureF32.columns
+            for count_lines in self.lines {
+                for count_columns in self.columns {
+                    // Anmerkung: Variablen r, g und b müssen deklariert werden
+                    let r = pic_f32.data[count_colour]; // (vorher: r = pic_f32.data[count_colour];) wert1 -> Rot
+                    let g = pic_f32.data[count_colour + 1]; // (vorher: g = pic_f32.data[count_colour + 1];) wert2 -> Grün
+                    let b = pic_f32.data[count_colour + 2]; // (vorher: b = pic_f32.data[count_colour + 2];) wert3 -> Blau
                     count_colour = count_colour + 4;
-                    grayvec![vec![0;count_lines]][count_columns] = (((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255);
+                    grayray.push(((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255.0);
+                    pixel_count = pixel_count + 1.0;
                 }
             }
         }
+
+        self.averagebrightness(&grayray, pic_f32);
     }
-    fn averagebrightness(&self,grayvec: Vec<Vec<f32>>, pic_f32: f32) -> f32 {
-        let mut  ccounter = 0f32;
-        let mut  lines_counter = 0f32;
+
+    fn averagebrightness(&self, grayray: &Vec<f32>, pic_f32: f32) -> f32 {
+        let mut counter = 0f32;
+        let mut lines_counter = 0f32;
         let mut colour_counter = 0f32;
-       let mut sum_grey = 0f32;
+        let mut sum_grey = 0f32;
 
-        let num_lines = grayvec.len() as f32;
+        // Anmerkung
+        let pixels = grayray.len();
 
+        // Anmerkung: Verwende iter() für die Iteration über den Vektor
+        for counter in grayray.iter() {
+            sum_grey = sum_grey + *counter; // Anmerkung: Dereferenzierung des Zeigers
 
-
-        let num_columns = grayvec[0].len() as f32 ;
-
-
-
-        while ccounter != num_lines {
-            ccounter += 1;
-            println!("ccounter: {}", ccount);
         }
 
-
-
-            }
-        }
-
+        let averagebright = sum_grey / pixels;
+        averagebright // Anmerkung: Rückgabe des berechneten Durchschnitts
+    }
+}
 
 
 // hier eventuell noch was mit transparenz??
