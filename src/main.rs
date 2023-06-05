@@ -1,7 +1,5 @@
-mod picture;
-
 use imsearch::{get_histogram, PictureU8, print_all_diagrams, read_picture};
-
+use imsearch::picture::Picture;
 
 fn main() {
     let pic_u8: PictureU8 = read_picture("src/gelbeOberleitung.png");

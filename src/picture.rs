@@ -1,6 +1,6 @@
 use std::fmt::{Display, Formatter};
 
-trait Picture {
+pub trait Picture {
     fn to_picture_u8(&self) -> PictureU8;
     fn to_picture_f32(&self) -> PictureF32;
 }
