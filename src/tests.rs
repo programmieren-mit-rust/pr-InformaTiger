@@ -1,9 +1,12 @@
 #[cfg(test)]
-use super::*;
+use std::error::Error;
+use std::fs;
+use crate::suchindex::extract_filename;
+use crate::suchindex::{append_string, read_data_from_file, SearchIndex, write_data_to_file};
 
 /// This tests the functionality the extract_filename function.
 #[test]
-fn path_to_filename(){
+fn path_to_filename() {
     let result = extract_filename("Bilder Programmentwurf-20230603/bird.png".to_string());
     assert_eq!(result, "bird");
 }
@@ -23,7 +26,6 @@ fn write_to_file() {
     // Assert that the file was successfully written
     assert!(fs::metadata(format!("DataStoreJSON/{}", &search_index.filename)).is_ok());
 }
-
 
 /// This test uses the write_data_to_file() function and then reads the written data.
 /// It tests if the data written and read is the same.
@@ -48,4 +50,3 @@ fn read_from_file() -> Result<(), Box<dyn Error>> {
     assert_eq!(result.histogram, search_index.histogram);
     Ok(())
 }
-
