@@ -1,8 +1,8 @@
 #[cfg(test)]
 use std::error::Error;
 use std::fs;
-use crate::suchindex::extract_filename;
-use crate::suchindex::{append_string, read_data_from_file, SearchIndex, write_data_to_file};
+use crate::suchindex::{append_string, extract_filename, read_data_from_file, SearchIndex, write_data_to_file};
+
 
 /// This tests the functionality the extract_filename function.
 #[test]
