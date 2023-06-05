@@ -12,3 +12,10 @@ mod tests {
         assert_eq!(result, 4);
     }
 }
+struct Images{
+
+}
+trait AverageBrightness{
+    fn brightness(&self) -> f32;
+
+}
