@@ -1,6 +1,8 @@
 #[cfg(test)]
-use crate::AverageBrightness;
+
 use crate::PictureF32;
+use crate::AverageBrightness;
+
 mod tests {
     use super::*;
 

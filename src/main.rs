@@ -1,4 +1,4 @@
-mod test;
+
 
 use std::fmt::{Display, Formatter};
 use std::fs::File;
@@ -130,28 +130,27 @@ impl AverageBrightness for PictureF32 {
 
 
 
-        // Anmerkung: Vergleichsoperator in if-Bedingungen ist ==
+
         if pic_f32.color_channel_count == 3 {
-            // Anmerkung: Verwendung von self.lines und self.columns statt PictureF32.lines und PictureF32.columns
             for count_lines in 1..pic_f32.lines {
                 for count_columns in 1..pic_f32.columns {
-                    // Anmerkung: Variablen r, g und b müssen deklariert werden
+
                     let r = pic_f32.data[count_colour ] ; //  wert1 -> Rot
-                    let g = pic_f32.data[count_colour + 1]; // (vorher: g = pic_f32.data[count_colour + 1];) wert2 -> Grün
-                    let b = pic_f32.data[count_colour + 2]; // (vorher: b = pic_f32.data[count_colour + 2];) wert3 -> Blau
+                    let g = pic_f32.data[count_colour + 1]; // wert2 -> Grün
+                    let b = pic_f32.data[count_colour + 2]; // wert3 -> Blau
                     count_colour = count_colour + 3;
                     grayray.push(((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255.0);
                     pixel_count = pixel_count + 1;
                 }
             }
         } else if pic_f32.color_channel_count == 4 {
-            // Anmerkung: Verwendung von self.lines und self.columns statt PictureF32.lines und PictureF32.columns
+
             for count_lines in 1..pic_f32.lines {
                 for count_columns in 1..pic_f32.columns {
-                    // Anmerkung: Variablen r, g und b müssen deklariert werden
-                    let r = pic_f32.data[count_colour]; // (vorher: r = pic_f32.data[count_colour];) wert1 -> Rot
-                    let g = pic_f32.data[count_colour + 1 as usize]; // (vorher: g = pic_f32.data[count_colour + 1];) wert2 -> Grün
-                    let b = pic_f32.data[count_colour + 2 as usize]; // (vorher: b = pic_f32.data[count_colour + 2];) wert3 -> Blau
+
+                    let r = pic_f32.data[count_colour]; // wert1 -> Rot
+                    let g = pic_f32.data[count_colour + 1 as usize]; //  wert2 -> Grün
+                    let b = pic_f32.data[count_colour + 2 as usize]; //  wert3 -> Blau
                     count_colour = count_colour + 4;
                     grayray.push(((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255.0);
                     pixel_count = pixel_count + 1;
@@ -170,22 +169,21 @@ impl AverageBrightness for PictureF32 {
         let mut colour_counter = 0u32;
         let mut sum_grey = 0f32;
 
-        // Anmerkung
+
         let pixels = grayray.len() as f32;
 
-        // Anmerkung: Verwende iter() für die Iteration über den Vektor
-        for counter in grayray.iter() {
-            sum_grey = sum_grey + *counter; // Anmerkung: Dereferenzierung des Zeigers
 
+        for counter in grayray.iter() {
+            sum_grey = sum_grey + *counter;
         }
 
         let averagebright = sum_grey / pixels;
-        averagebright // Anmerkung: Rückgabe des berechneten Durchschnitts
+        averagebright
     }
 }
 
 
-// hier eventuell noch was mit transparenz??
+
 
 
 
