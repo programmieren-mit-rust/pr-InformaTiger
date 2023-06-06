@@ -1,14 +1,5 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
-
+// Here all of the files of the package tests have to be added.
+// If they are added, they get executed when cargo run is called.
 #[cfg(test)]
-mod tests {
-    use super::*;
+mod suchindex_tests;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}

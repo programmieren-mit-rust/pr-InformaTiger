@@ -1,3 +1,5 @@
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")] // hide console window on Windows in release
+
 use imsearch::{get_histogram, PictureU8, print_all_diagrams, read_picture};
 use imsearch::picture::Picture;
 

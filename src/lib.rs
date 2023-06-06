@@ -1,10 +1,14 @@
-use std::fs::File;
+// Here all of the files for the library have to be added.
+// If they are added, they get executed when cargo run is called.
+mod suchindex;
 
 pub mod escape;
 pub mod histogram;
 pub mod picture;
 mod tests;
 
+use std::fmt::{Display, Formatter};
+use std::fs::File;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::{Bin, Histogram, BIN_COUNT},
@@ -29,11 +33,8 @@ pub fn read_picture(path: &str) -> PictureU8 {
         color_channel_count: info.color_type.samples(),
         data: Vec::from(picture_data), //muss von &[u8] gecastet werden
     }
-}
-
 pub fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize) {
     println!("Aufteilung der Werte in {BIN_COUNT} Bins.");
-
     //color_channel_count: 1 -> █
     //color_channel_count: 3 -> R, G, B
     //color_channel_count: 4 -> R, G, B, ▒
@@ -61,8 +62,6 @@ pub fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize
         histograms[current_color_channel].print_diagram(bar_symbol);
 
         println!();
-    }
-}
 
 pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
     // Initialisierung:
