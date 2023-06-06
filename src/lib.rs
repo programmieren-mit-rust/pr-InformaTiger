@@ -1,10 +1,9 @@
-mod tests;
+// Here all of the files for the library have to be added.
+// If they are added, they get executed when cargo run is called.
 mod suchindex;
+mod tests;
 
-use serde::{Deserialize, Serialize};
-use std::error::Error;
 use std::fmt::{Display, Formatter};
-use std::fs;
 use std::fs::File;
 
 #[derive(Debug)]
@@ -59,6 +58,7 @@ impl Display for PictureF32 {
         )
     }
 }
+
 /// This function receives a filepath to a PNG.
 /// It opens the file specified and reads the information.
 /// The information is converted to the PictureU8-Type.
