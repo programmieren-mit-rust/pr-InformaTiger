@@ -48,8 +48,8 @@ impl Histogram {
             if lower_bound == 0 {
                 lower_bound += 1;
             }
-            lower_bound = lower_bound + (255 / self.bins.len());
-            upper_bound = upper_bound + (255 / self.bins.len());
+            lower_bound += 255 / self.bins.len();
+            upper_bound += 255 / self.bins.len();
             bin_index += 1;
         }
     }
@@ -96,8 +96,8 @@ impl Histogram {
                 if lower_bound == 0 {
                     lower_bound += 1;
                 }
-                lower_bound = lower_bound + 255 / self.bins.len();
-                upper_bound = upper_bound + 255 / self.bins.len();
+                lower_bound += 255 / self.bins.len();
+                upper_bound += 255 / self.bins.len();
             }
         }
     }
