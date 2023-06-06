@@ -33,6 +33,7 @@ pub fn read_picture(path: &str) -> PictureU8 {
         color_channel_count: info.color_type.samples(),
         data: Vec::from(picture_data), //muss von &[u8] gecastet werden
     }
+}
 pub fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize) {
     println!("Aufteilung der Werte in {BIN_COUNT} Bins.");
     //color_channel_count: 1 -> █
@@ -63,35 +64,37 @@ pub fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize
 
         println!();
 
-pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
-    // Initialisierung:
-    // self.data nach den color channels durchgehen
-    // pro color_channel je eine "Liste" an Bins
-    let mut histograms: Vec<Histogram> = Vec::<Histogram>::new();
+        pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
+            // Initialisierung:
+            // self.data nach den color channels durchgehen
+            // pro color_channel je eine "Liste" an Bins
+            let mut histograms: Vec<Histogram> = Vec::<Histogram>::new();
 
-    // fill Vector with BIN_COUNT bins for each color channel:
-    for channel_counter in 0..pic.color_channel_count {
-        // neues Histogramm für diesen Farbkanal anlegen
-        histograms.push(Histogram::new());
+            // fill Vector with BIN_COUNT bins for each color channel:
+            for channel_counter in 0..pic.color_channel_count {
+                // neues Histogramm für diesen Farbkanal anlegen
+                histograms.push(Histogram::new());
 
-        // für dieses Histogramm eine entsprechende Anzahl an Bins anlegen
-        for bin_counter in 0..BIN_COUNT {
-            histograms[channel_counter].bins.push(Bin {
-                bin_index: bin_counter,
-                pixel_count: 0,
-            });
+                // für dieses Histogramm eine entsprechende Anzahl an Bins anlegen
+                for bin_counter in 0..BIN_COUNT {
+                    histograms[channel_counter].bins.push(Bin {
+                        bin_index: bin_counter,
+                        pixel_count: 0,
+                    });
+                }
+            }
+            //------------
+
+            // komplette Daten durchiterieren, immer je Daten zu 1 Pixel ansehen (abhängig von color_channel_count)
+            let mut current_index: usize = 0;
+            while current_index < pic.data.len() {
+                for i in 0..pic.color_channel_count {
+                    histograms[i].add_pixel_to_correct_bin(pic.data[current_index + i]);
+                }
+                current_index = current_index + pic.color_channel_count;
+            }
+
+            histograms
         }
     }
-    //------------
-
-    // komplette Daten durchiterieren, immer je Daten zu 1 Pixel ansehen (abhängig von color_channel_count)
-    let mut current_index: usize = 0;
-    while current_index < pic.data.len() {
-        for i in 0..pic.color_channel_count {
-            histograms[i].add_pixel_to_correct_bin(pic.data[current_index + i]);
-        }
-        current_index = current_index + pic.color_channel_count;
-    }
-
-    histograms
 }
