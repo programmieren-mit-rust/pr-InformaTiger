@@ -9,6 +9,5 @@ edition = "2021"
 png = "0.17.8"
 serde = { version = "*", features = ["derive"] }
 serde_json = "*"
-eframe = "0.22.0"
-egui = "0.22.0"
+
 
