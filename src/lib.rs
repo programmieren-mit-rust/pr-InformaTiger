@@ -7,7 +7,6 @@ pub mod histogram;
 pub mod picture;
 mod tests;
 
-use std::fmt::{Display, Formatter};
 use std::fs::File;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
@@ -15,7 +14,7 @@ pub use {
     crate::picture::PictureU8,
 };
 
-pub fn read_picture(path: &str) -> PictureU8 {
+pub fn read_picture(path: String) -> PictureU8 {
     //load picture
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let mut reader = decoder.read_info().unwrap();
