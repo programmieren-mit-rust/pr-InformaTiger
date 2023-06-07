@@ -139,7 +139,7 @@ impl AverageBrightness for PictureF32 {
                     let g = pic_f32.data[count_colour + 1]; // wert2 -> Grün
                     let b = pic_f32.data[count_colour + 2]; // wert3 -> Blau
                     count_colour = count_colour + 3;
-                    grayray.push(((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255.0);
+                    grayray.push((0.3 * r) + (0.59 * g) + (0.11 * b)) ;
                     pixel_count = pixel_count + 1;
                 }
             }
@@ -152,7 +152,7 @@ impl AverageBrightness for PictureF32 {
                     let g = pic_f32.data[count_colour + 1 as usize]; //  wert2 -> Grün
                     let b = pic_f32.data[count_colour + 2 as usize]; //  wert3 -> Blau
                     count_colour = count_colour + 4;
-                    grayray.push(((0.3 * r) + (0.59 * g) + (0.11 * b)) / 255.0);
+                    grayray.push((0.3 * r) + (0.59 * g) + (0.11 * b)) ;
                     pixel_count = pixel_count + 1;
                 }
             }
