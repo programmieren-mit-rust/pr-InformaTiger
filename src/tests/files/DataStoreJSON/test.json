@@ -1,0 +1,103 @@
+{
+  "filename": "test.json",
+  "filepath": "src/tests/files/bird.png",
+  "average_brightness": 6.9,
+  "histogram": [
+    {
+      "bins": [
+        {
+          "bin_index": 0,
+          "pixel_count": 194506
+        },
+        {
+          "bin_index": 1,
+          "pixel_count": 965746
+        },
+        {
+          "bin_index": 2,
+          "pixel_count": 137158
+        },
+        {
+          "bin_index": 3,
+          "pixel_count": 117213
+        },
+        {
+          "bin_index": 4,
+          "pixel_count": 73377
+        }
+      ]
+    },
+    {
+      "bins": [
+        {
+          "bin_index": 0,
+          "pixel_count": 92964
+        },
+        {
+          "bin_index": 1,
+          "pixel_count": 942925
+        },
+        {
+          "bin_index": 2,
+          "pixel_count": 264111
+        },
+        {
+          "bin_index": 3,
+          "pixel_count": 127887
+        },
+        {
+          "bin_index": 4,
+          "pixel_count": 60113
+        }
+      ]
+    },
+    {
+      "bins": [
+        {
+          "bin_index": 0,
+          "pixel_count": 255263
+        },
+        {
+          "bin_index": 1,
+          "pixel_count": 932676
+        },
+        {
+          "bin_index": 2,
+          "pixel_count": 138444
+        },
+        {
+          "bin_index": 3,
+          "pixel_count": 117699
+        },
+        {
+          "bin_index": 4,
+          "pixel_count": 43918
+        }
+      ]
+    },
+    {
+      "bins": [
+        {
+          "bin_index": 0,
+          "pixel_count": 0
+        },
+        {
+          "bin_index": 1,
+          "pixel_count": 0
+        },
+        {
+          "bin_index": 2,
+          "pixel_count": 0
+        },
+        {
+          "bin_index": 3,
+          "pixel_count": 0
+        },
+        {
+          "bin_index": 4,
+          "pixel_count": 1488000
+        }
+      ]
+    }
+  ]
+}
