@@ -146,7 +146,7 @@ pub fn analyse_pictures(path: &str) {
                 let entry_path = entry.path();
                 if let Some(file_path) = entry_path.to_str() {
                     if is_file(file_path) {
-                        generate_suchindex(file_path.to_string());
+                        generate_suchindex(format_filepath(file_path));
                     }
                 }
             }
@@ -238,4 +238,44 @@ pub fn count_files_in_folder(folder_path: &str) -> usize {
         }
     }
     count
+}
+
+/// Formats the filepath by replacing backslashes with forward slashes.
+///
+/// This function takes a filepath as input and replaces all occurrences of backslashes (`\`) with
+/// forward slashes (`/`). It is useful for converting filepaths between different platform
+/// conventions (e.g., Windows and Unix-like systems).
+///
+/// # Arguments
+///
+/// * `filepath` - A string representing the filepath to be formatted.
+///
+/// # Returns
+///
+/// A formatted filepath with backslashes replaced by forward slashes.
+///
+/// # Examples
+///
+/// ```
+/// let filepath = "aaa\\bbb\\ccc\\ddd.xxx";
+/// let formatted = format_filepath(filepath);
+/// assert_eq!(formatted, "aaa/bbb/ccc/ddd.xxx");
+/// ```
+pub fn format_filepath(filepath: &str) -> String {
+    filepath.replace("\\", "/")
+}
+pub fn delete_files_in_folder(folder_path: &str) -> Result<(), std::io::Error> {
+    let entries = fs::read_dir(folder_path)?;
+
+    for entry in entries {
+        if let Ok(entry) = entry {
+            let file_path = entry.path();
+
+            if file_path.is_file() {
+                fs::remove_file(file_path)?;
+            }
+        }
+    }
+
+    Ok(())
 }

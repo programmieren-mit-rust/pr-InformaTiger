@@ -2,7 +2,7 @@ use std::error::Error;
 use std::fs;
 use crate::{get_histogram, get_datastore_path, PictureU8, read_picture, set_datastore_filepath};
 use crate::picture::Picture;
-use crate::suchindex::{count_files_in_folder, extract_filename, generate_suchindex, read_data_from_datastore, SearchIndex, write_data_to_file};
+use crate::suchindex::{analyse_pictures, count_files_in_folder, delete_files_in_folder, extract_filename, generate_suchindex, read_data_from_datastore, SearchIndex, write_data_to_file};
 
 /// This tests the functionality the extract_filename function.
 #[test]
@@ -91,9 +91,24 @@ fn test_analyse_pictures(){
     // Where should your files be stored/saved.
     let datastore_path = "src/tests/files/DataStoreJSON/";
     set_datastore_filepath(datastore_path);
+    delete_files_in_folder(datastore_path).unwrap();
 
-    let picture_path = "src/tests/files/pictures_for_testing".to_string();
-    generate_suchindex(picture_path);
+    let picture_path = "src/tests/files/pictures_for_testing";
+    analyse_pictures(picture_path);
+
+    let file_count = count_files_in_folder("src/tests/files/DataStoreJSON/");
+    println!("Number of files: {}", file_count);
+    //TODO check if file_count is the amount of files in the folder
+}
+#[test]
+fn test_analyse_one_picture(){
+    // Where should your files be stored/saved.
+    let datastore_path = "src/tests/files/DataStoreJSON/";
+    set_datastore_filepath(datastore_path);
+    delete_files_in_folder(datastore_path).unwrap();
+
+    let picture_path = "src/tests/files/pictures_for_testing/bird.png";
+    analyse_pictures(picture_path);
 
     let file_count = count_files_in_folder("src/tests/files/DataStoreJSON/");
     println!("Number of files: {}", file_count);
