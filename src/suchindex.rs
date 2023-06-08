@@ -1,15 +1,16 @@
 use std::error::Error;
 use std::fs;
+use std::path::Path;
 use serde::{Deserialize, Serialize};
-use crate::{get_histogram, Histogram, PictureU8, read_picture};
+use crate::{get_datastore_path, get_histogram, Histogram, PictureU8, read_picture};
 use crate::picture::Picture;
 
 #[derive(Debug)]
 #[derive(Serialize, Deserialize)]
 /// This struct is for saving information from the functions to the drive.
 pub struct SearchIndex {
-    pub filename: String,
     pub filepath: String,
+    pub filename: String,
     pub average_brightness: f32, // information from average_brightness branch.
     pub histogram: Vec<Histogram>, // information from histogram branch follows.
 }
@@ -17,8 +18,8 @@ pub struct SearchIndex {
 impl SearchIndex {
     pub fn new(filepath: String, average_brightness: f32, histogram: Vec<Histogram>) -> Self {
         Self {
-            filename: append_string(extract_filename(filepath.clone()), ".json".to_string()),
-            filepath,
+            filepath: filepath.clone(),
+            filename: extract_filename(filepath),
             average_brightness,
             histogram
         }
@@ -32,38 +33,57 @@ pub fn write_data_to_file<T>(data: T, filename: &str) -> Result<(), Box<dyn Erro
     where
         T: Serialize,
 {
-    let mut filepath = String::with_capacity(14 + filename.len()); // Assuming "DataStoreJSON/" has 14 characters
-    filepath.push_str("src/tests/files/DataStoreJSON/");
-    filepath.push_str(filename);
+    let datastore_filepath = get_datastore_path()?;
+    let filepath = format!("{}{}.json", datastore_filepath, filename);
     let data_str = serde_json::to_string_pretty(&data)?;
     fs::write(filepath, data_str)?;
     Ok(())
 }
 
+
 /// This function reads data from filepath and converts it into struct T.
 /// It returns an instance of type T.
 /// Data must be deserializable either with a custom function or via #[derive(Deserialize)].
 /// All fields of the deserializable data must also have the Deserialize function.
-pub fn read_data_from_file<T>(filename: &str) -> Result<T, Box<dyn Error>>
+/// The path can be only the filename without '.json' ending or with an ending like '.json' or '.png'.
+pub fn read_data_from_datastore<T>(filename: &str) -> Result<T, Box<dyn Error>>
     where
         T: for<'de> Deserialize<'de>,
 {
-    let filepath = format!("src/tests/files/DataStoreJSON/{}", filename);
+    let datastore_path = get_datastore_path().unwrap();
+    let filepath = format!("{}{}.json", datastore_path, filename);
+    let data_str = fs::read_to_string(filepath)?;
+    let data = serde_json::from_str(&data_str)?;
+    Ok(data)
+}
+/// This function reads data from filepath and converts it into struct T.
+/// It returns an instance of type T.
+/// Data must be deserializable either with a custom function or via #[derive(Deserialize)].
+/// All fields of the deserializable data must also have the Deserialize function.
+/// The path has to be from the root: either 'C://.../xxx.json or src/.../xxx.json
+pub fn read_data_from_file<T>(filepath: &str) -> Result<T, Box<dyn Error>>
+    where
+        T: for<'de> Deserialize<'de>,
+{
     let data_str = fs::read_to_string(filepath)?;
     let data = serde_json::from_str(&data_str)?;
     Ok(data)
 }
 
-/// This function cuts of everything except the filename of the path.
-/// It also removes the filetype ending.
-/// Input: String like 'C://wort1/wort2/filename.xxx
-/// Output: filename
-pub fn extract_filename(filepath: String) -> String{
-    //extract the filename
-    let (_, last_element) = filepath.rsplit_once('/').unwrap();
-    //cut off the file-ending
-    let filename = last_element.split_once(".").unwrap().0;
-    filename.to_string()
+/// Extracts the filename from a given filepath.
+/// If the filepath contains a directory path, it returns the filename without the extension.
+/// If the filepath doesn't contain a directory path, it returns the entire filepath.
+pub fn extract_filename(filepath: String) -> String {
+    let filename = filepath
+        .rsplit_once('/')
+        .map(|(_, last_element)| last_element)
+        .unwrap_or(filepath.as_str());
+
+    if let Some((name, _)) = filename.rsplit_once('.') {
+        name.to_string()
+    } else {
+        filename.to_string()
+    }
 }
 
 /// This function appends two Strings together and returns a String back.
@@ -91,4 +111,131 @@ pub fn generate_suchindex(filepath: String){
     );
 
     write_data_to_file(&search_index, search_index.filename.as_str()).unwrap();
+}
+
+/// Analyzes pictures at the specified path.
+///
+/// If the path points to a directory, this function generates a `SearchIndex` for each picture file
+/// found in the directory and its subdirectories. If the path points to a single picture file, it generates
+/// a `SearchIndex` only for that file.
+///
+/// # Arguments
+///
+/// * `path` - A string slice representing the path to the directory or file.
+///
+/// # Examples
+///
+/// ```rust
+/// // Analyze pictures in a directory
+/// analyse_pictures("/path/to/pictures");
+///
+/// // Analyze a single picture file
+/// analyse_pictures("/path/to/picture.png");
+/// ```
+pub fn analyse_pictures(path: &str) {
+    if is_directory(path) {
+        let entries = match std::fs::read_dir(path) {
+            Ok(entries) => entries,
+            Err(err) => {
+                eprintln!("Error reading directory: {}", err);
+                return;
+            }
+        };
+        for entry in entries {
+            if let Ok(entry) = entry {
+                let entry_path = entry.path();
+                if let Some(file_path) = entry_path.to_str() {
+                    if is_file(file_path) {
+                        generate_suchindex(file_path.to_string());
+                    }
+                }
+            }
+        }
+    } else if is_file(path) {
+        generate_suchindex(path.to_string());
+    } else {
+        eprintln!("Invalid path: {}", path);
+    }
+}
+
+/// Determines if the given filepath points to a directory.
+///
+/// # Arguments
+///
+/// * `filepath` - A string slice representing the filepath to check.
+///
+/// # Returns
+///
+/// Returns `true` if the filepath points to a directory, `false` otherwise.
+///
+/// # Examples
+///
+/// ```rust
+/// let is_dir = is_directory("/path/to/directory");
+/// assert_eq!(is_dir, true);
+/// ```
+fn is_directory(filepath: &str) -> bool {
+    let path = Path::new(filepath);
+    path.is_dir()
+}
+
+/// Determines if the given filepath points to a file.
+///
+/// # Arguments
+///
+/// * `filepath` - A string slice representing the filepath to check.
+///
+/// # Returns
+///
+/// Returns `true` if the filepath points to a file, `false` otherwise.
+///
+/// # Examples
+///
+/// ```rust
+/// let is_file = is_file("src/tests/files/bird.png");
+/// assert_eq!(is_file, true);
+/// ```
+fn is_file(filepath: &str) -> bool {
+    let path = Path::new(filepath);
+    path.is_file()
+}
+
+/// Counts the number of files in a folder.
+///
+/// This function takes a `folder_path` parameter, which is the path to the folder.
+/// It iterates over each entry in the folder and counts the number of files.
+/// The function returns the total count of files found in the folder.
+///
+/// # Arguments
+///
+/// * `folder_path` - The path to the folder.
+///
+/// # Returns
+///
+/// The number of files found in the folder.
+///
+/// # Examples
+///
+/// ```rust
+///let folder_path = "src/tests/files/DataStoreJSON/";
+/// let file_count = count_files_in_folder(folder_path);
+/// println!("Number of files: {}", file_count);
+/// ```
+pub fn count_files_in_folder(folder_path: &str) -> usize {
+    let entries = match fs::read_dir(folder_path) {
+        Ok(entries) => entries,
+        Err(err) => {
+            eprintln!("Error reading directory: {}", err);
+            return 0;
+        }
+    };
+    let mut count = 0;
+    for entry in entries {
+        if let Ok(entry) = entry {
+            if entry.file_type().map(|ft| ft.is_file()).unwrap_or(false) {
+                count += 1;
+            }
+        }
+    }
+    count
 }

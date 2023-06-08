@@ -7,6 +7,8 @@ pub mod histogram;
 pub mod picture;
 mod tests;
 
+use std::env;
+use std::error::Error;
 use std::fs::File;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
@@ -96,6 +98,26 @@ pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
     }
 
     histograms
+}
+
+/// Configures the file path for data storage.
+///
+/// # Environment Variables
+///
+/// - `IMSEARCH_DATA_PATH`: Specifies the custom file path for data storage.
+pub fn set_datastore_filepath(data_path: &str) {
+    std::env::set_var("IMSEARCH_DATA_PATH", data_path);
+}
+/// Returns the file path for data storage or Error because it wasn't set yet.
+///
+/// # Environment Variables
+///
+/// - `IMSEARCH_DATA_PATH`: Specifies the custom file path for data storage.
+pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
+    match env::var("IMSEARCH_DATA_PATH") {
+        Ok(path) => Ok(path),
+        Err(_) => Err("IMSEARCH_DATA_PATH environment variable is not set".into()),
+    }
 }
 
 
