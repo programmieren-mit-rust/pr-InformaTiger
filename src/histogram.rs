@@ -1,7 +1,8 @@
+use serde::{Deserialize, Serialize};
 use std::fmt::{Display, Formatter};
 
 // Histogramm: Den Wertebereich (0-255 bzw. 0.0 bis 1.0) in z.B. n=5 bins unterteilen: je 51 (255/5) Werte (bei u8)
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Bin {
     pub bin_index: u8,
     pub pixel_count: u32,
@@ -13,7 +14,7 @@ impl Bin {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Histogram {
     pub bins: Vec<Bin>,
 }
