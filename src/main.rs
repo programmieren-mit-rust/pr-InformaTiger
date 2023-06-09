@@ -1,6 +1,5 @@
 use imsearch::{get_histogram, PictureU8, print_all_diagrams, read_picture};
 use imsearch::picture::Picture;
-use imsearch::suchindex::{is_directory};
 
 fn main() {
     let pic_u8: PictureU8 = read_picture("pictures_for_testing/bird.png".to_string());

@@ -51,7 +51,7 @@ pub fn read_data_from_datastore<T>(filename: &str) -> Result<T, Box<dyn Error>>
     where
         T: for<'de> Deserialize<'de>,
 {
-    let datastore_path = get_datastore_path().unwrap();
+    let datastore_path = get_datastore_path()?;
     let filepath = format!("{}{}.json", datastore_path, filename);
     let data_str = fs::read_to_string(filepath)?;
     let data = serde_json::from_str(&data_str)?;
@@ -230,7 +230,7 @@ pub fn count_files_in_folder(folder_path: &str) -> usize {
     let entries = match fs::read_dir(folder_path) {
         Ok(entries) => entries,
         Err(err) => {
-            eprintln!("Error reading directory: {}", err);
+            println!("Error reading directory: {}", err);
             return 0;
         }
     };

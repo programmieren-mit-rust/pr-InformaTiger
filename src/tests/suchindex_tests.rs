@@ -4,6 +4,10 @@ use crate::{get_histogram, get_datastore_path, PictureU8, read_picture, set_data
 use crate::picture::Picture;
 use crate::suchindex::{analyse_pictures, count_files_in_folder, delete_files_in_folder, extract_filename, generate_suchindex, read_data_from_datastore, SearchIndex, write_data_to_file};
 
+const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
+const PICTURE_FOLDERPATH: &str = "src/tests/files/pictures_for_testing";
+const DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/";
+
 /// This tests the functionality the extract_filename function.
 #[test]
 fn test_extract_filename() {
@@ -22,11 +26,10 @@ fn test_extract_filename() {
 #[test]
 fn test_generate_suchindex() {
     // Where should your files be stored/saved.
-    let datastore_path = "src/tests/files/DataStoreJSON/";
-    set_datastore_filepath(datastore_path);
+    set_datastore_filepath(DATASTORE_FILEPATH);
 
     // The testfile which should be analysed
-    let picture = "src/tests/files/pictures_for_testing/bird.png".to_string();
+    let picture = PICTURE_FILEPATH.to_string();
 
     // Analyse picture and store the info.
     generate_suchindex(picture.clone());
@@ -42,11 +45,10 @@ fn test_generate_suchindex() {
 #[test]
 fn test_read_data_from_datastore() -> Result<(), Box<dyn Error>> {
     // Where should your files be stored/saved.
-    let datastore_path = "src/tests/files/DataStoreJSON/";
-    set_datastore_filepath(datastore_path);
+    set_datastore_filepath(DATASTORE_FILEPATH);
 
     // The testfile which should be analysed
-    let picture = "src/tests/files/pictures_for_testing/bird.png".to_string();
+    let picture = PICTURE_FILEPATH.to_string();
 
     let pic_u8: PictureU8 = read_picture(picture.clone());
     let pic_f32 = pic_u8.to_picture_f32();
@@ -75,41 +77,35 @@ fn test_read_data_from_datastore() -> Result<(), Box<dyn Error>> {
 }
 #[test]
 fn test_set_datastore_filepath() {
-    let filepath = "src/tests/files/DataStoreJSON/";
-    set_datastore_filepath(filepath);
-    assert_eq!(std::env::var("IMSEARCH_DATA_PATH").unwrap(), filepath);
+    set_datastore_filepath(DATASTORE_FILEPATH);
+    assert_eq!(std::env::var("IMSEARCH_DATA_PATH").unwrap(), DATASTORE_FILEPATH);
 }
 #[test]
 fn test_get_datastore_path() {
-    let filepath = "src/tests/files/DataStoreJSON/";
-    set_datastore_filepath(filepath);
+    set_datastore_filepath(DATASTORE_FILEPATH);
     let get_filepath = get_datastore_path().unwrap();
-    assert_eq!(get_filepath, filepath);
+    assert_eq!(get_filepath, DATASTORE_FILEPATH);
 }
 #[test]
 fn test_analyse_pictures(){
     // Where should your files be stored/saved.
-    let datastore_path = "src/tests/files/DataStoreJSON/";
-    set_datastore_filepath(datastore_path);
-    delete_files_in_folder(datastore_path).unwrap();
+    set_datastore_filepath(DATASTORE_FILEPATH);
+    delete_files_in_folder(DATASTORE_FILEPATH.clone()).unwrap();
 
-    let picture_path = "src/tests/files/pictures_for_testing";
-    analyse_pictures(picture_path);
+    analyse_pictures(PICTURE_FOLDERPATH);
 
-    let file_count = count_files_in_folder("src/tests/files/DataStoreJSON/");
+    let file_count = count_files_in_folder(DATASTORE_FILEPATH);
     println!("Number of files: {}", file_count);
     //TODO check if file_count is the amount of files in the folder
 }
 #[test]
 fn test_analyse_one_picture(){
     // Where should your files be stored/saved.
-    let datastore_path = "src/tests/files/DataStoreJSON/";
-    set_datastore_filepath(datastore_path);
-    delete_files_in_folder(datastore_path).unwrap();
+    set_datastore_filepath(DATASTORE_FILEPATH);
+    delete_files_in_folder(DATASTORE_FILEPATH).unwrap();
 
-    let picture_path = "src/tests/files/pictures_for_testing/bird.png";
-    analyse_pictures(picture_path);
+    analyse_pictures(PICTURE_FILEPATH);
 
-    let file_count = count_files_in_folder("src/tests/files/DataStoreJSON/");
+    let file_count = count_files_in_folder(DATASTORE_FILEPATH);
     println!("Number of files: {}", file_count);
 }
