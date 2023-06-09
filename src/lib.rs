@@ -1,6 +1,6 @@
 // Here all of the files for the library have to be added.
 // If they are added, they get executed when cargo run is called.
-mod suchindex;
+pub mod suchindex;
 
 pub mod escape;
 pub mod histogram;
@@ -106,7 +106,7 @@ pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
 ///
 /// - `IMSEARCH_DATA_PATH`: Specifies the custom file path for data storage.
 pub fn set_datastore_filepath(data_path: &str) {
-    std::env::set_var("IMSEARCH_DATA_PATH", data_path);
+    env::set_var("IMSEARCH_DATA_PATH", data_path);
 }
 /// Returns the file path for data storage or Error because it wasn't set yet.
 ///

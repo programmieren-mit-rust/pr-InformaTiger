@@ -5,6 +5,7 @@ use serde::{Deserialize, Serialize};
 use crate::{get_datastore_path, get_histogram, Histogram, PictureU8, read_picture};
 use crate::picture::Picture;
 
+
 #[derive(Debug)]
 #[derive(Serialize, Deserialize)]
 /// This struct is for saving information from the functions to the drive.
@@ -127,6 +128,7 @@ pub fn generate_suchindex(filepath: String){
 ///
 /// ```rust
 /// // Analyze pictures in a directory
+/// use imsearch::suchindex::analyse_pictures;
 /// analyse_pictures("/path/to/pictures");
 ///
 /// // Analyze a single picture file
@@ -134,7 +136,7 @@ pub fn generate_suchindex(filepath: String){
 /// ```
 pub fn analyse_pictures(path: &str) {
     if is_directory(path) {
-        let entries = match std::fs::read_dir(path) {
+        let entries = match fs::read_dir(path) {
             Ok(entries) => entries,
             Err(err) => {
                 eprintln!("Error reading directory: {}", err);
@@ -170,11 +172,12 @@ pub fn analyse_pictures(path: &str) {
 ///
 /// # Examples
 ///
-/// ```rust
-/// let is_dir = is_directory("/path/to/directory");
+/// ```
+/// use imsearch::suchindex::is_directory;
+/// let is_dir = is_directory("src/tests/files/DataStoreJSON");
 /// assert_eq!(is_dir, true);
 /// ```
-fn is_directory(filepath: &str) -> bool {
+pub fn is_directory(filepath: &str) -> bool {
     let path = Path::new(filepath);
     path.is_dir()
 }
@@ -192,10 +195,11 @@ fn is_directory(filepath: &str) -> bool {
 /// # Examples
 ///
 /// ```rust
-/// let is_file = is_file("src/tests/files/bird.png");
+/// use imsearch::suchindex::is_file;
+/// let is_file = is_file("src/tests/files/pictures_for_testing/bird.png");
 /// assert_eq!(is_file, true);
 /// ```
-fn is_file(filepath: &str) -> bool {
+pub fn is_file(filepath: &str) -> bool {
     let path = Path::new(filepath);
     path.is_file()
 }
@@ -217,7 +221,8 @@ fn is_file(filepath: &str) -> bool {
 /// # Examples
 ///
 /// ```rust
-///let folder_path = "src/tests/files/DataStoreJSON/";
+///use imsearch::suchindex::count_files_in_folder;
+/// let folder_path = "src/tests/files/DataStoreJSON/";
 /// let file_count = count_files_in_folder(folder_path);
 /// println!("Number of files: {}", file_count);
 /// ```
@@ -257,6 +262,7 @@ pub fn count_files_in_folder(folder_path: &str) -> usize {
 /// # Examples
 ///
 /// ```
+/// use imsearch::suchindex::format_filepath;
 /// let filepath = "aaa\\bbb\\ccc\\ddd.xxx";
 /// let formatted = format_filepath(filepath);
 /// assert_eq!(formatted, "aaa/bbb/ccc/ddd.xxx");

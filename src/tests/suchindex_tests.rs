@@ -26,7 +26,7 @@ fn test_generate_suchindex() {
     set_datastore_filepath(datastore_path);
 
     // The testfile which should be analysed
-    let picture = "src/tests/files/bird.png".to_string();
+    let picture = "src/tests/files/pictures_for_testing/bird.png".to_string();
 
     // Analyse picture and store the info.
     generate_suchindex(picture.clone());
@@ -46,7 +46,7 @@ fn test_read_data_from_datastore() -> Result<(), Box<dyn Error>> {
     set_datastore_filepath(datastore_path);
 
     // The testfile which should be analysed
-    let picture = "src/tests/files/bird.png".to_string();
+    let picture = "src/tests/files/pictures_for_testing/bird.png".to_string();
 
     let pic_u8: PictureU8 = read_picture(picture.clone());
     let pic_f32 = pic_u8.to_picture_f32();
