@@ -1,8 +1,12 @@
+use crate::histogram::compare_histogram_vectors;
+use crate::picture::Picture;
+use crate::suchindex::{
+    analyse_pictures, count_files_in_folder, delete_files_in_folder, extract_filename,
+    generate_suchindex, read_data_from_datastore, write_data_to_file, SearchIndex,
+};
+use crate::{get_datastore_path, get_histogram, read_picture, set_datastore_filepath, PictureU8};
 use std::error::Error;
 use std::fs;
-use crate::{get_histogram, get_datastore_path, PictureU8, read_picture, set_datastore_filepath};
-use crate::picture::Picture;
-use crate::suchindex::{analyse_pictures, count_files_in_folder, delete_files_in_folder, extract_filename, generate_suchindex, read_data_from_datastore, SearchIndex, write_data_to_file};
 
 const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 const PICTURE_FOLDERPATH: &str = "src/tests/files/pictures_for_testing";
@@ -54,12 +58,9 @@ fn test_read_data_from_datastore() -> Result<(), Box<dyn Error>> {
     let pic_f32 = pic_u8.to_picture_f32();
     let histograms = get_histogram(&pic_f32.to_picture_u8());
 
-    let search_index = SearchIndex::new(
-        picture.clone(),
-        6.9,
-        histograms
-    );
-    write_data_to_file(&search_index, search_index.filename.as_str()).expect("Error while trying to write data to the DataStore.");
+    let search_index = SearchIndex::new(picture.clone(), 6.9, histograms);
+    write_data_to_file(&search_index, search_index.filename.as_str())
+        .expect("Error while trying to write data to the DataStore.");
 
     // Read the data from the file
     let result: SearchIndex = read_data_from_datastore(extract_filename(picture).as_str())?;
@@ -68,17 +69,16 @@ fn test_read_data_from_datastore() -> Result<(), Box<dyn Error>> {
     assert_eq!(result.filename, search_index.filename);
     assert_eq!(result.filepath, search_index.filepath);
     assert_eq!(result.average_brightness, search_index.average_brightness);
-    //TODO compare two Vec of Histograms
-    // fn do_vecs_match<T: PartialEq>(a: &Vec<T>, b: &Vec<T>) -> bool {
-    //     let matching = a.iter().zip(b.iter()).filter(|&(a, b)| a == b).count();
-    //     matching == a.len() && matching == b.len()
-    // }
+    assert_eq!(result.histogram, search_index.histogram);
     Ok(())
 }
 #[test]
 fn test_set_datastore_filepath() {
     set_datastore_filepath(DATASTORE_FILEPATH);
-    assert_eq!(std::env::var("IMSEARCH_DATA_PATH").unwrap(), DATASTORE_FILEPATH);
+    assert_eq!(
+        std::env::var("IMSEARCH_DATA_PATH").unwrap(),
+        DATASTORE_FILEPATH
+    );
 }
 #[test]
 fn test_get_datastore_path() {
@@ -87,7 +87,7 @@ fn test_get_datastore_path() {
     assert_eq!(get_filepath, DATASTORE_FILEPATH);
 }
 #[test]
-fn test_analyse_pictures(){
+fn test_analyse_pictures() {
     // Where should your files be stored/saved.
     set_datastore_filepath(DATASTORE_FILEPATH);
     delete_files_in_folder(DATASTORE_FILEPATH.clone()).unwrap();
@@ -99,7 +99,7 @@ fn test_analyse_pictures(){
     //TODO check if file_count is the amount of files in the folder
 }
 #[test]
-fn test_analyse_one_picture(){
+fn test_analyse_one_picture() {
     // Where should your files be stored/saved.
     set_datastore_filepath(DATASTORE_FILEPATH);
     delete_files_in_folder(DATASTORE_FILEPATH).unwrap();

@@ -1,13 +1,11 @@
+use crate::picture::Picture;
+use crate::{get_datastore_path, get_histogram, read_picture, Histogram, PictureU8};
+use serde::{Deserialize, Serialize};
 use std::error::Error;
 use std::fs;
 use std::path::Path;
-use serde::{Deserialize, Serialize};
-use crate::{get_datastore_path, get_histogram, Histogram, PictureU8, read_picture};
-use crate::picture::Picture;
 
-
-#[derive(Debug)]
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
 /// This struct is for saving information from the functions to the drive.
 pub struct SearchIndex {
     pub filepath: String,
@@ -22,7 +20,7 @@ impl SearchIndex {
             filepath: filepath.clone(),
             filename: extract_filename(filepath),
             average_brightness,
-            histogram
+            histogram,
         }
     }
 }
@@ -31,8 +29,8 @@ impl SearchIndex {
 /// Data must be serializable either with a custom function or via #[derive(Serialize)].
 /// All fields of the serializable data must also have the Serialize function.
 pub fn write_data_to_file<T>(data: T, filename: &str) -> Result<(), Box<dyn Error>>
-    where
-        T: Serialize,
+where
+    T: Serialize,
 {
     let datastore_filepath = get_datastore_path()?;
     let filepath = format!("{}{}.json", datastore_filepath, filename);
@@ -41,15 +39,14 @@ pub fn write_data_to_file<T>(data: T, filename: &str) -> Result<(), Box<dyn Erro
     Ok(())
 }
 
-
 /// This function reads data from filepath and converts it into struct T.
 /// It returns an instance of type T.
 /// Data must be deserializable either with a custom function or via #[derive(Deserialize)].
 /// All fields of the deserializable data must also have the Deserialize function.
 /// The path can be only the filename without '.json' ending or with an ending like '.json' or '.png'.
 pub fn read_data_from_datastore<T>(filename: &str) -> Result<T, Box<dyn Error>>
-    where
-        T: for<'de> Deserialize<'de>,
+where
+    T: for<'de> Deserialize<'de>,
 {
     let datastore_path = get_datastore_path()?;
     let filepath = format!("{}{}.json", datastore_path, filename);
@@ -63,8 +60,8 @@ pub fn read_data_from_datastore<T>(filename: &str) -> Result<T, Box<dyn Error>>
 /// All fields of the deserializable data must also have the Deserialize function.
 /// The path has to be from the root: either 'C://.../xxx.json or src/.../xxx.json
 pub fn read_data_from_file<T>(filepath: &str) -> Result<T, Box<dyn Error>>
-    where
-        T: for<'de> Deserialize<'de>,
+where
+    T: for<'de> Deserialize<'de>,
 {
     let data_str = fs::read_to_string(filepath)?;
     let data = serde_json::from_str(&data_str)?;
@@ -99,17 +96,12 @@ pub fn append_string(string1: String, string2: String) -> String {
 ///This function prepares all the values of the functions and writes it to the DataStore.
 /// Input: Filepath.
 /// Output: no return but a file with data was created.
-pub fn generate_suchindex(filepath: String){
-
+pub fn generate_suchindex(filepath: String) {
     let pic_u8: PictureU8 = read_picture(filepath.clone());
     let pic_f32 = pic_u8.to_picture_f32();
     let histograms = get_histogram(&pic_f32.to_picture_u8());
 
-    let search_index = SearchIndex::new(
-        filepath,
-        6.9,
-        histograms
-    );
+    let search_index = SearchIndex::new(filepath, 6.9, histograms);
 
     write_data_to_file(&search_index, search_index.filename.as_str()).unwrap();
 }
