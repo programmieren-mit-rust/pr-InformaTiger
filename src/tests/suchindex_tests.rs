@@ -1,4 +1,3 @@
-use crate::histogram::compare_histogram_vectors;
 use crate::picture::Picture;
 use crate::suchindex::{
     analyse_pictures, count_files_in_folder, delete_files_in_folder, extract_filename,
