@@ -1,17 +1,22 @@
-use std::fs::File;
+// Here all of the files for the library have to be added.
+// If they are added, they get executed when cargo run is called.
+pub mod suchindex;
 
 pub mod escape;
 pub mod histogram;
 pub mod picture;
 mod tests;
 
+use std::env;
+use std::error::Error;
+use std::fs::File;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::{Bin, Histogram, BIN_COUNT},
     crate::picture::PictureU8,
 };
 
-pub fn read_picture(path: &str) -> PictureU8 {
+pub fn read_picture(path: String) -> PictureU8 {
     //load picture
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let mut reader = decoder.read_info().unwrap();
@@ -30,10 +35,8 @@ pub fn read_picture(path: &str) -> PictureU8 {
         data: Vec::from(picture_data), //muss von &[u8] gecastet werden
     }
 }
-
 pub fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize) {
     println!("Aufteilung der Werte in {BIN_COUNT} Bins.");
-
     //color_channel_count: 1 -> █
     //color_channel_count: 3 -> R, G, B
     //color_channel_count: 4 -> R, G, B, ▒
@@ -96,3 +99,25 @@ pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
 
     histograms
 }
+
+/// Configures the file path for data storage.
+///
+/// # Environment Variables
+///
+/// - `IMSEARCH_DATA_PATH`: Specifies the custom file path for data storage.
+pub fn set_datastore_filepath(data_path: &str) {
+    env::set_var("IMSEARCH_DATA_PATH", data_path);
+}
+/// Returns the file path for data storage or Error because it wasn't set yet.
+///
+/// # Environment Variables
+///
+/// - `IMSEARCH_DATA_PATH`: Specifies the custom file path for data storage.
+pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
+    match env::var("IMSEARCH_DATA_PATH") {
+        Ok(path) => Ok(path),
+        Err(_) => Err("IMSEARCH_DATA_PATH environment variable is not set".into()),
+    }
+}
+
+
