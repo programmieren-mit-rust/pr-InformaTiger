@@ -76,7 +76,7 @@ impl Histogram {
     /// let mut histogram = Histogram::new();
     ///
     /// // Add a pixel with color value 100 to the correct bin
-    /// histogram.add_pixel_to_correct_bin(100);
+    /// histogram.add_pixel_to_correct_bin(0);
     ///
     /// // Verify that the pixel count in the corresponding bin has increased
     /// assert_eq!(histogram.bins[0].pixel_count, 1);
