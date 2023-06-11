@@ -5,7 +5,7 @@ use std::fmt::{Display, Formatter};
 ///
 /// A bin represents a range of values in the histogram.
 /// It contains the bin index and the number of pixels that fall into that bin.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Bin {
     pub bin_index: u8,
     pub pixel_count: u32,
@@ -22,7 +22,7 @@ impl Bin {
 ///
 /// A histogram divides the value range (0-255 or 0.0 to 1.0) into a specified number of bins.
 /// This depends on the constant BIN_COUNT.
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Histogram {
     pub bins: Vec<Bin>,
 }
