@@ -8,3 +8,6 @@ mod suchindex_tests;
 
 #[cfg(test)]
 mod picture_tests;
+
+#[cfg(test)]
+mod escape_tests;
