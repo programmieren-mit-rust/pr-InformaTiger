@@ -12,7 +12,7 @@ use std::error::Error;
 use std::fs::File;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
-    crate::histogram::{Bin, Histogram, BIN_COUNT},
+    crate::histogram::{Bin, Histogram},
     crate::picture::PictureU8,
 };
 
@@ -36,7 +36,7 @@ pub fn read_picture(path: String) -> PictureU8 {
     }
 }
 pub fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize) {
-    println!("Aufteilung der Werte in {BIN_COUNT} Bins.");
+    println!("Aufteilung der Werte in {} Bins.", histograms[0].bins.len());
     //color_channel_count: 1 -> █
     //color_channel_count: 3 -> R, G, B
     //color_channel_count: 4 -> R, G, B, ▒
@@ -67,26 +67,43 @@ pub fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize
     }
 }
 
+/// Calculates the histogram for each color channel in the given picture.
+/// Returns a vector of histograms, where each histogram represents a color channel.
+///
+/// # Arguments
+///
+/// * `pic` - A reference to a `PictureU8` object containing the image data.
+///
+/// # Examples
+///
+/// ```
+/// use imsearch::get_histogram;
+/// use imsearch::picture::PictureU8;
+///
+/// // Create a sample picture
+/// let picture = PictureU8 {
+///     lines: 1,
+///     columns: 3,
+///     data: vec![0, 255, 25, 99], // Sample image data
+///     color_channel_count: 2,
+/// };
+///
+/// let histograms = get_histogram(&picture);
+///
+/// assert_eq!(histograms.len(), picture.color_channel_count);
+///
+/// // Assert the expected pixel counts in the histograms
+/// assert_eq!(histograms[0].bins[0].pixel_count, 2);
+/// assert_eq!(histograms[1].bins[1].pixel_count, 1);
+/// assert_eq!(histograms[1].bins[4].pixel_count, 1);
+/// ```
 pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
-    // Initialisierung:
-    // self.data nach den color channels durchgehen
-    // pro color_channel je eine "Liste" an Bins
     let mut histograms: Vec<Histogram> = Vec::<Histogram>::new();
 
-    // fill Vector with BIN_COUNT bins for each color channel:
+    // fill Vector with a histogram for each color channel:
     for channel_counter in 0..pic.color_channel_count {
-        // neues Histogramm für diesen Farbkanal anlegen
         histograms.push(Histogram::new());
-
-        // für dieses Histogramm eine entsprechende Anzahl an Bins anlegen
-        for bin_counter in 0..BIN_COUNT {
-            histograms[channel_counter].bins.push(Bin {
-                bin_index: bin_counter,
-                pixel_count: 0,
-            });
-        }
     }
-    //------------
 
     // komplette Daten durchiterieren, immer je Daten zu 1 Pixel ansehen (abhängig von color_channel_count)
     let mut current_index: usize = 0;
@@ -94,7 +111,7 @@ pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
         for i in 0..pic.color_channel_count {
             histograms[i].add_pixel_to_correct_bin(pic.data[current_index + i]);
         }
-        current_index = current_index + pic.color_channel_count;
+        current_index += pic.color_channel_count;
     }
 
     histograms
@@ -119,5 +136,3 @@ pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
         Err(_) => Err("IMSEARCH_DATA_PATH environment variable is not set".into()),
     }
 }
-
-
