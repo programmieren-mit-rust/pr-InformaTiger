@@ -34,7 +34,6 @@ impl Histogram {
     /// # Examples
     ///
     /// ```
-    /// use imsearch::BIN_COUNT;
     /// use imsearch::histogram::{BIN_COUNT, Histogram};
     ///
     /// let histogram = Histogram::new();
