@@ -1,10 +1,15 @@
 use std::fmt::{Display, Formatter};
 
+/// The `Picture` trait represents a picture.
 pub trait Picture {
+    /// Converts the picture to `PictureU8`, which stores pixel values as `u8`.
     fn to_picture_u8(&self) -> PictureU8;
+
+    /// Converts the picture to `PictureF32`, which stores pixel values as `f32`.
     fn to_picture_f32(&self) -> PictureF32;
 }
 
+/// Represents a picture with pixel values stored as `u8`.
 #[derive(Debug)]
 pub struct PictureU8 {
     pub lines: u32,   //height
@@ -54,6 +59,7 @@ impl Display for PictureU8 {
     }
 }
 
+/// Represents a picture with pixel values stored as `f32`.
 #[derive(Debug)]
 pub struct PictureF32 {
     pub lines: u32,   //height

@@ -5,3 +5,6 @@ mod histogram_tests;
 
 #[cfg(test)]
 mod suchindex_tests;
+
+#[cfg(test)]
+mod picture_tests;
