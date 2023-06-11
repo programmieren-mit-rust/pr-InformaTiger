@@ -55,3 +55,23 @@ fn test_get_histogram() {
     assert_eq!(histograms[1].bins[1].pixel_count, 1);
     assert_eq!(histograms[1].bins[4].pixel_count, 1);
 }
+
+#[test]
+fn test_add_pixel_to_correct_bin() {
+    // Create a histogram with 5 bins
+    let mut histogram = Histogram::new();
+
+    // Add pixels to the correct bins
+    histogram.add_pixel_to_correct_bin(25);
+    histogram.add_pixel_to_correct_bin(100);
+    histogram.add_pixel_to_correct_bin(150);
+    histogram.add_pixel_to_correct_bin(200);
+    histogram.add_pixel_to_correct_bin(255);
+
+    // Assert the pixel counts in the bins
+    assert_eq!(histogram.bins[0].pixel_count, 1);
+    assert_eq!(histogram.bins[1].pixel_count, 1);
+    assert_eq!(histogram.bins[2].pixel_count, 1);
+    assert_eq!(histogram.bins[3].pixel_count, 1);
+    assert_eq!(histogram.bins[4].pixel_count, 1);
+}

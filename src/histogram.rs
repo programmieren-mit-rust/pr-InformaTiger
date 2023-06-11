@@ -106,7 +106,44 @@ impl Histogram {
         }
     }
 
-    // make a diagram for each color_channel
+    /// Make a diagram for each color channel.
+    ///
+    /// This function prints a histogram diagram for each color channel in the `Histogram` object.
+    /// The diagram consists of bars representing the pixel counts in each bin, along with the range
+    /// of values covered by each bin.
+    ///
+    /// # Arguments
+    ///
+    /// * `self` - The `Histogram` object to generate the diagram for.
+    /// * `bar_symbol` - The symbol used to represent the bars in the diagram.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use imsearch::histogram::{Histogram, Bin};
+    ///
+    /// let histogram = Histogram {
+    ///     bins: vec![
+    ///         Bin { bin_index: 0, pixel_count: 5 },
+    ///         Bin { bin_index: 1, pixel_count: 10 },
+    ///         Bin { bin_index: 2, pixel_count: 8 },
+    ///         Bin { bin_index: 3, pixel_count: 3 },
+    ///         Bin { bin_index: 4, pixel_count: 6 },
+    ///     ],
+    /// };
+    ///
+    /// histogram.print_diagram("#".to_string());
+    /// ```
+    /// Output:
+    /// ```text
+    /// Bins   | Pixel Count
+    /// =======|==================================================
+    /// 0-51   | ##### 5
+    /// 52-102 | ########## 10
+    /// 103-153| ######## 8
+    /// 154-204| ### 3
+    /// 205-255| ###### 6
+    /// ```
     pub fn print_diagram(&self, bar_symbol: String) {
         // find max_value to determine the scale
         let mut max_value = self.bins[0].pixel_count;
@@ -120,9 +157,9 @@ impl Histogram {
         const MAX_BAR_WIDTH: f32 = 40.0;
 
         // Table Header
-        println!("Bins   | Anzahl Pixel");
+        println!("Bins   | Pixel Count");
         println!("{}|{}", "=".repeat(7), "=".repeat(50));
-        // für Wertebereich nötige Hilfsvariablen
+        // helper vars needed for value range
         let mut lower_bound: usize = 0;
         let mut upper_bound: usize = 255 / self.bins.len();
 
@@ -132,7 +169,7 @@ impl Histogram {
                 * MAX_BAR_WIDTH) as usize;
             let bar = bar_symbol.repeat(bar_length);
 
-            // Balken inkl. jeweiligen Wertebereich printen
+            // print value range and bar
             println!(
                 "{label:7}|{} {amount}",
                 bar,
@@ -141,10 +178,11 @@ impl Histogram {
             );
 
             //-----------------------
-            // nächster Wertebereich
+            // next value range
             if bin_index < self.bins.len() - 1 {
                 //FIXME: kinda duplicate -> code evtl "coole fn/struct schreiben, die nen Iterator darstellt"
-                // 2. Bin beginnt bei 52, aber 0 + 51 = 51.
+                // Calculate the range for the next bin
+                // first bin starts at 0 so it's bigger by 1. We get to the next bin by adding 1.
                 if lower_bound == 0 {
                     lower_bound += 1;
                 }
