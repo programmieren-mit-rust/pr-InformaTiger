@@ -135,13 +135,11 @@ pub fn analyse_pictures(path: &str) {
                 return;
             }
         };
-        for entry in entries {
-            if let Ok(entry) = entry {
-                let entry_path = entry.path();
-                if let Some(file_path) = entry_path.to_str() {
-                    if is_file(file_path) {
-                        generate_suchindex(format_filepath(file_path));
-                    }
+        for entry in entries.filter_map(|entry| entry.ok()) {
+            let entry_path = entry.path();
+            if let Some(file_path) = entry_path.to_str() {
+                if is_file(file_path) {
+                    generate_suchindex(format_filepath(file_path));
                 }
             }
         }
@@ -151,6 +149,7 @@ pub fn analyse_pictures(path: &str) {
         eprintln!("Invalid path: {}", path);
     }
 }
+
 
 /// Determines if the given filepath points to a directory.
 ///
@@ -226,16 +225,13 @@ pub fn count_files_in_folder(folder_path: &str) -> usize {
             return 0;
         }
     };
-    let mut count = 0;
-    for entry in entries {
-        if let Ok(entry) = entry {
-            if entry.file_type().map(|ft| ft.is_file()).unwrap_or(false) {
-                count += 1;
-            }
-        }
-    }
-    count
+
+    entries
+        .filter_map(|entry| entry.ok())
+        .filter(|entry| entry.file_type().map(|ft| ft.is_file()).unwrap_or(false)) // Filter for files
+        .count()
 }
+
 
 /// Formats the filepath by replacing backslashes with forward slashes.
 ///
@@ -260,20 +256,19 @@ pub fn count_files_in_folder(folder_path: &str) -> usize {
 /// assert_eq!(formatted, "aaa/bbb/ccc/ddd.xxx");
 /// ```
 pub fn format_filepath(filepath: &str) -> String {
-    filepath.replace("\\", "/")
+    filepath.replace('\\', "/")
 }
 pub fn delete_files_in_folder(folder_path: &str) -> Result<(), std::io::Error> {
     let entries = fs::read_dir(folder_path)?;
 
-    for entry in entries {
-        if let Ok(entry) = entry {
-            let file_path = entry.path();
+    for entry in entries.filter_map(|entry| entry.ok()) {
+        let file_path = entry.path();
 
-            if file_path.is_file() {
-                fs::remove_file(file_path)?;
-            }
+        if file_path.is_file() {
+            fs::remove_file(file_path)?;
         }
     }
 
     Ok(())
 }
+

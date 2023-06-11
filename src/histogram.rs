@@ -45,7 +45,7 @@ impl Histogram {
 
             // next bin:
             // Das 1. Bin ist um 1 größer, da es bei 0 beginnt. Daher müssen wir um 1 erhöhen.
-            // FIXME: kinda duplicate code ->  evtl "coole fn/struct schreiben, die nen Iterator darstellt"
+            // FIXME: kinda duplicate code ->  evtl. "coole fn/struct schreiben, die nen Iterator darstellt"
             if lower_bound == 0 {
                 lower_bound += 1;
             }
@@ -117,9 +117,9 @@ impl Display for Bin {
 impl Display for Histogram {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         for i in 0..self.bins.len() {
-            write!(
+            writeln!(
                 f,
-                "\tBin Index: {}, Pixel Count: {}\n",
+                "\tBin Index: {}, Pixel Count: {}",
                 self.bins[i].bin_index, self.bins[i].pixel_count
             )
             .expect("Error while writing content of bins");

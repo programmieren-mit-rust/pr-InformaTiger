@@ -89,7 +89,7 @@ fn test_get_datastore_path() {
 fn test_analyse_pictures() {
     // Where should your files be stored/saved.
     set_datastore_filepath(DATASTORE_FILEPATH);
-    delete_files_in_folder(DATASTORE_FILEPATH.clone()).unwrap();
+    delete_files_in_folder(DATASTORE_FILEPATH).unwrap();
 
     analyse_pictures(PICTURE_FOLDERPATH);
 

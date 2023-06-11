@@ -1,5 +1,9 @@
 //TODO für Grauwerte und Alphawerte und dann als Parameter einer fn
 //fn gibt dann das Zeichen zurück, das dann (woanders) repeatet wird
+
+//allow dead_code because ALPHA and GREY are never used yet //TODO
+#[allow(clippy::upper_case_acronyms)]
+#[allow(dead_code)]
 enum Color {
     RED,
     BLUE,
