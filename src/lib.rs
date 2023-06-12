@@ -1,11 +1,11 @@
 // Here all of the files for the library have to be added.
 // If they are added, they get executed when cargo run is called.
 pub mod suchindex;
-
 pub mod escape;
 pub mod histogram;
 pub mod picture;
 mod tests;
+mod file_handler;
 
 use std::env;
 use std::error::Error;
@@ -15,6 +15,7 @@ pub use {
     crate::histogram::{Bin, Histogram, BIN_COUNT},
     crate::picture::PictureU8,
 };
+
 
 pub fn read_picture(path: String) -> PictureU8 {
     //load picture

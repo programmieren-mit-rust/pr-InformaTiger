@@ -40,7 +40,6 @@ impl Picture for PictureU8 {
         }
     }
 }
-
 impl Display for PictureU8 {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(
@@ -53,6 +52,7 @@ impl Display for PictureU8 {
         )
     }
 }
+
 
 #[derive(Debug)]
 pub struct PictureF32 {
