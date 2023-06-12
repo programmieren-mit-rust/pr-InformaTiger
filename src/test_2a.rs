@@ -1,5 +1,6 @@
 #[cfg(test)]
-
+use imsearch::{get_histogram, PictureU8, print_all_diagrams, read_picture};
+use imsearch::picture::{Picture, PictureF32};
 use crate::PictureF32;
 use crate::AverageBrightness;
 
@@ -14,7 +15,7 @@ mod tests {
     }
 
     impl AverageBrightness for MockPicture {
-        fn grayintensity(&self, _pic_f32: PictureF32) -> Vec<f32> {
+        fn grayintensity(&self,to_picture_f32: PictureF32) -> Vec<f32> {
             // Return a fixed grayray for testing purposes
             vec![0.5, 0.3, 0.7, 0.9]
         }

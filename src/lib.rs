@@ -1,9 +1,10 @@
 use std::fs::File;
-
+pub mod averagebrightness;
 pub mod escape;
 pub mod histogram;
 pub mod picture;
 mod tests;
+
 
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},

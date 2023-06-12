@@ -32,6 +32,8 @@ impl Picture for PictureU8 {
             new_data.push(raw_f32_value / 255.0);
         }
 
+
+
         PictureF32 {
             lines: self.lines,
             columns: self.columns,
@@ -55,6 +57,7 @@ impl Display for PictureU8 {
 }
 
 #[derive(Debug)]
+#[derive(Clone)]
 pub struct PictureF32 {
     pub lines: u32,   //height
     pub columns: u32, //width
