@@ -4,7 +4,7 @@ pub mod escape;
 pub mod histogram;
 pub mod picture;
 mod tests;
-
+mod test_2a;
 
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
