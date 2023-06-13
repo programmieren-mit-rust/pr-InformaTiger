@@ -17,7 +17,7 @@ mod tests {
     impl AverageBrightness for MockPicture {
         fn grayintensity(&self,to_picture_f32: PictureF32) -> Vec<f32> {
             // Return a fixed grayray for testing purposes
-            vec![0.5, 0.3, 0.7, 0.9]
+            vec![0.5, 0.3, 0.7, 0.8]
         }
 
         fn averagebrightness(&self, grayray: &Vec<f32>) -> f32 {

@@ -13,8 +13,8 @@ fn main() {
     print_all_diagrams(histograms, to_picture_f32.color_channel_count); //TODO Werte nach Balken schreiben? (auf gleicher höhe (nach 40 Zeichen) oder direkt hinter Balken?) -> als optionales Feature?
 
     //Aufruf +Ausgabe Averagebrightness
-    let grayray = to_picture_f32.grayintensity(to_picture_f32.clone());
-    let average_brightness = to_picture_f32.averagebrightness(&grayray); // Aufruf von averagebrightness
+    let grayray = to_picture_f32.gray_intensity(to_picture_f32.clone());
+    let average_brightness = to_picture_f32.average_brightness(&grayray); // Aufruf von averagebrightness
     println!("Average Brightness: {}\n", average_brightness);
 
 
