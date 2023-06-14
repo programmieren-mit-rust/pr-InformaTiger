@@ -1,4 +1,4 @@
-use imsearch::with_threads::get_histograms_with_threads;
+use imsearch::with_threads::another_get_histogram_with_threads;
 use imsearch::{get_histogram, read_picture, PictureU8};
 use std::time::Instant;
 
@@ -19,7 +19,7 @@ fn main() {
 
     // Measure the execution time of get_histogram_with_threads
     let start_time = Instant::now();
-    let histograms_with_threads = get_histograms_with_threads(&pic_u8);
+    let histograms_with_threads = another_get_histogram_with_threads(&pic_u8);
     let elapsed_time = start_time.elapsed();
 
     // Print the execution time
