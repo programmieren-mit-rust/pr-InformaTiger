@@ -1,6 +1,5 @@
 use imsearch::{get_histogram, PictureU8, print_all_diagrams, read_picture};
-use imsearch::averagebrightness::AverageBrightness;
-use imsearch::picture::{Picture, PictureF32};
+use imsearch::picture::{AverageBrightness, Picture, PictureF32};
 
 fn main() {
     let pic_u8: PictureU8 = read_picture("src/Bilder Programmentwurf-20230521/bird.png");

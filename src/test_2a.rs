@@ -1,5 +1,5 @@
-use crate::averagebrightness::AverageBrightness;
-use crate::picture::PictureF32;
+
+use crate::picture::{AverageBrightness, PictureF32};
 
 
 
@@ -8,7 +8,7 @@ use crate::picture::PictureF32;
 fn test_gray_intensity_single_val() {
     let picture = PictureF32 {
         lines: 0,
-        data: vec![0.1, 0.2, 0.12],//Wertfür Rot:0.1 ; Grün:0.2 Blau:0.12
+        data: vec![0.1, 0.2, 0.12],//Wertfür Rot:0.1 ; Grün:0.2 Blau: 0.12
         color_channel_count: 3,
         columns: 0,
     };

@@ -1,5 +1,5 @@
 
-use crate::picture::PictureF32;
+/*use crate::picture::PictureF32;
 
 
 pub trait AverageBrightness {
@@ -11,7 +11,8 @@ pub trait AverageBrightness {
 
 
 
-
+// hier noch für picture (eventuell auch nur in file picture.rs schreiben
+// refactoring damit man, des noch abänder könnte.
 
 impl AverageBrightness for PictureF32 {
 
@@ -70,6 +71,5 @@ impl AverageBrightness for PictureF32 {
 
 
 
-
-
+*/
 
