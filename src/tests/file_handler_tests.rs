@@ -1,4 +1,3 @@
-#[cfg(test)]
 use crate::file_handler::extract_filename;
 
 /// This tests the functionality the extract_filename function.
