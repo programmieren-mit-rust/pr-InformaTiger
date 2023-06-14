@@ -17,27 +17,25 @@ use std::thread;
 /// use imsearch::PictureU8;
 /// use imsearch::with_threads::another_get_histogram_with_threads;
 ///
-/// // Create a sample PictureU8 instance
 /// let pic = PictureU8 {
-///     lines: 10,
-///     columns: 10,
-///     color_channel_count: 3,
-///     data: vec![255, 0, 0, 0, 255, 0, 0, 0, 255], // Sample pixel data
+///     lines: 1,
+///     columns: 2,
+///     color_channel_count: 2,
+///     data: vec![255, 0, 255, 0], // Sample pixel data
 /// };
 ///
 /// // Calculate histograms using multiple threads
 /// let histograms = another_get_histogram_with_threads(&pic);
 ///
-/// // Assert the expected histogram values
-/// assert_eq!(histograms.len(), 3);
-/// assert_eq!(histograms[0].bins[0].pixel_count, 3); // Red channel
-/// assert_eq!(histograms[1].bins[0].pixel_count, 3); // Green channel
-/// assert_eq!(histograms[2].bins[0].pixel_count, 3); // Blue channel
+/// assert_eq!(histograms.len(), 2);
+/// assert_eq!(histograms[0].bins[4].pixel_count, 2);
+/// assert_eq!(histograms[1].bins[0].pixel_count, 2);
 /// ```
 pub fn another_get_histogram_with_threads(pic: &PictureU8) -> Vec<Histogram> {
     let mut histograms: Vec<Histogram> = Vec::<Histogram>::new();
 
     // --- preparation for threads ---
+    // data needs to be split with care: color channels must not be mixed!
     let mut divided_data = Vec::new();
     for start_index in 0..pic.color_channel_count {
         divided_data.push(take_every_nth_value(
@@ -77,7 +75,6 @@ pub fn another_get_histogram_with_threads(pic: &PictureU8) -> Vec<Histogram> {
         histograms.push(histogram_of_thread);
     }
     // --- end of data collection ---
-
     histograms
 }
 
@@ -159,4 +156,116 @@ pub fn divide_data(data: &Vec<u8>, into_n_parts: usize) -> Vec<Vec<u8>> {
     }
 
     divided_data
+}
+
+pub fn convert_data_to_u8(data: &[f32]) -> Vec<u8> {
+    let mut new_data = Vec::<u8>::new();
+
+    for i in 0..data.len() {
+        new_data.push((data[i] * 255.0) as u8);
+    }
+    new_data
+}
+
+pub fn convert_data_to_f32(data: &[u8]) -> Vec<f32> {
+    let mut new_data = Vec::<f32>::new();
+
+    //convert each value from [0, 255] to [0.0, 1.0]
+    for i in 0..data.len() {
+        new_data.push(f32::from(data[i]) / 255.0);
+    }
+    new_data
+}
+
+const THREAD_COUNT: usize = 4;
+pub fn convert_data_to_u8_with_threads(data: &[f32]) -> Vec<u8> {
+    let mut new_data = Vec::<u8>::new();
+
+    // --- preparation for threads ---
+    let mut start_index = 0;
+    let mut divided_data = Vec::new();
+    let size_of_each_divided_data = data.len() / THREAD_COUNT;
+
+    for _ in 0..THREAD_COUNT {
+        let end_index = start_index + size_of_each_divided_data.min(data.len() - start_index);
+
+        let slice = data[start_index..end_index].to_vec();
+        divided_data.push(slice);
+
+        start_index = end_index;
+    }
+
+    let mut handles = Vec::new();
+
+    // --- end of preparation ---
+
+    // --- parallel processing of color values in each div_datum ---
+    for div_datum in divided_data {
+        // spawn a thread for each color_channel
+        let handle = thread::spawn(move || {
+            let mut converted_data: Vec<u8> = Vec::new();
+
+            for i in 0..div_datum.len() {
+                converted_data.push((div_datum[i] * 255.0) as u8);
+            }
+
+            converted_data
+        });
+        handles.push(handle);
+    }
+    // --- end of parallel processing --
+
+    // --- collect data from all threads ---
+    for handle in handles {
+        let converted_data_of_thread: Vec<u8> = handle.join().unwrap();
+        new_data.extend(converted_data_of_thread);
+    }
+    // --- end of data collection ---
+    new_data
+}
+
+pub fn convert_data_to_f32_with_threads(data: &[u8]) -> Vec<f32> {
+    let mut new_data = Vec::<f32>::new();
+
+    // --- preparation for threads ---
+    let mut start_index = 0;
+    let mut divided_data = Vec::new();
+    let size_of_each_divided_data = data.len() / THREAD_COUNT;
+
+    for _ in 0..THREAD_COUNT {
+        let end_index = start_index + size_of_each_divided_data.min(data.len() - start_index);
+
+        let slice = data[start_index..end_index].to_vec();
+        divided_data.push(slice);
+
+        start_index = end_index;
+    }
+
+    let mut handles = Vec::new();
+
+    // --- end of preparation ---
+
+    // --- parallel processing of color values in each div_datum ---
+    for div_datum in divided_data {
+        // spawn a thread for each color_channel
+        let handle = thread::spawn(move || {
+            let mut converted_data: Vec<f32> = Vec::new();
+
+            for i in 0..div_datum.len() {
+                converted_data.push(f32::from(div_datum[i]) / 255.0);
+            }
+
+            converted_data
+        });
+        handles.push(handle);
+    }
+    // --- end of parallel processing --
+
+    // --- collect data from all threads ---
+    for handle in handles {
+        let converted_data_of_thread: Vec<f32> = handle.join().unwrap();
+        new_data.extend(converted_data_of_thread);
+    }
+    // --- end of data collection ---
+    new_data
 }
