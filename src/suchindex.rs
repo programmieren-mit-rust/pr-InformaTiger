@@ -1,9 +1,9 @@
+use crate::file_handler::{extract_filename, format_filepath, is_directory, is_file};
 use crate::picture::Picture;
 use crate::{get_datastore_path, get_histogram, read_picture, Histogram, PictureU8};
 use serde::{Deserialize, Serialize};
 use std::error::Error;
 use std::fs;
-use crate::file_handler::{extract_filename, format_filepath, is_directory, is_file};
 
 /// Represents a search index containing information about a file.
 ///
@@ -159,8 +159,8 @@ impl IntoIterator for SearchIndex {
 /// }
 /// ```
 pub fn write_data_to_file<T>(data: T) -> Result<(), Box<dyn Error>>
-    where
-        T: IntoIterator<Item = SearchIndex>,
+where
+    T: IntoIterator<Item = SearchIndex>,
 {
     let datastore_filepath = get_datastore_path()?;
 
@@ -293,8 +293,8 @@ where
 /// # Errors
 ///
 /// Returns an error if there was any problem reading the picture file or writing the search index to the data file.
-pub fn generate_suchindex(filepath: String) -> Result<(),Box<dyn Error>>{
-    let pic_u8: PictureU8 = read_picture(filepath.clone());
+pub fn generate_suchindex(filepath: String) -> Result<(), Box<dyn Error>> {
+    let pic_u8: PictureU8 = read_picture(&filepath.clone());
     let histograms = get_histogram(&pic_u8);
     //TODO helligkeit
 

@@ -1,24 +1,27 @@
 // Here all of the files for the library have to be added.
 // If they are added, they get executed when cargo run is called.
+
 pub mod escape;
 pub mod file_handler;
 pub mod histogram;
 pub mod picture;
 pub mod suchindex;
+pub mod test_2a;
 mod tests;
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
-
 use std::env;
 use std::error::Error;
 use std::fs::File;
+
+use crate::picture::PictureF32;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::{Bin, Histogram},
     crate::picture::PictureU8,
 };
 
-pub fn read_picture(path: String) -> PictureU8 {
+pub fn read_picture(path: &str) -> PictureU8 {
     //load picture
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let mut reader = decoder.read_info().unwrap();

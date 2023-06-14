@@ -1452,5 +1452,629 @@
     "filename": "",
     "average_brightness": 0.0,
     "histogram": []
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 194506
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 965746
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 137158
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 117213
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 73377
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 92964
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 942925
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 264111
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 127887
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 60113
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 255263
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 932676
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 138444
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 117699
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 43918
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 1488000
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 194506
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 965746
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 137158
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 117213
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 73377
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 92964
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 942925
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 264111
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 127887
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 60113
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 255263
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 932676
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 138444
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 117699
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 43918
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 1488000
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 194506
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 965746
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 137158
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 117213
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 73377
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 92964
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 942925
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 264111
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 127887
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 60113
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 255263
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 932676
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 138444
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 117699
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 43918
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 1488000
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/flower_purple_1.png",
+    "filename": "flower_purple_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 244574
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 963199
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 236339
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 73338
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 11662
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 457295
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 727239
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 300954
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 34463
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 9161
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 80439
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 1065995
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 243604
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 93546
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 45528
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 1529112
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/flower_purple_2.png",
+    "filename": "flower_purple_2",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 852226
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 439657
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 151792
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 86637
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 1856
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 749170
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 604820
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 130689
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 46962
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 527
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 912288
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 206896
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 126327
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 194824
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 91833
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 1532168
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "",
+    "filename": "",
+    "average_brightness": 0.0,
+    "histogram": []
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 194506
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 965746
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 137158
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 117213
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 73377
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 92964
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 942925
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 264111
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 127887
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 60113
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 255263
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 932676
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 138444
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 117699
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 43918
+          }
+        ]
+      },
+      {
+        "bins": [
+          {
+            "bin_index": 0,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 1,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 2,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 3,
+            "pixel_count": 0
+          },
+          {
+            "bin_index": 4,
+            "pixel_count": 1488000
+          }
+        ]
+      }
+    ]
   }
 ]
