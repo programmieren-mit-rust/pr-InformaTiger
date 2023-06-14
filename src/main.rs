@@ -1,7 +1,8 @@
 use imsearch::picture::{AverageBrightness, Picture, PictureF32};
 use imsearch::{get_datastore_path, suchindex};
 use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
-use imsearch::suchindex::SearchIndex;
+use imsearch::compare_pictures::ComparePicture;
+use imsearch::suchindex::{analyse_pictures, generate_suchindex, generate_suchindex_to_file, read_data_from_datastore, SearchIndex};
 
 const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 
@@ -55,14 +56,16 @@ fn main() {
     /// }
     /// ```
     // Annahme: Du hast bereits eine Instanz von SearchIndex erstellt
-    let search_index = SearchIndex::new(PICTURE_FILEPATH);
+
+    let search_index = generate_suchindex(PICTURE_FILEPATH.to_string()).expect("Oh no the table is broken!");
 
     // Aufruf der Funktion difference_brightnesses
-    let diff_brightness = difference_brightnesses(&search_index);
+    let diff_brightness = search_index.difference_brightnesses(&search_index);
+
 
     // Ausgabe der Werte in diff_brightness
     for diff in diff_brightness {
         println!("{}", diff);
     }
 }
-}
+
