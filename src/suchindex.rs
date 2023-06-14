@@ -1,5 +1,4 @@
 use crate::file_handler::{extract_filename, format_filepath, is_directory, is_file};
-use crate::picture::Picture;
 use crate::{get_datastore_path, get_histogram, read_picture, Histogram, PictureU8};
 use serde::{Deserialize, Serialize};
 use std::error::Error;
@@ -53,7 +52,7 @@ pub struct SearchIndex {
     pub filepath: String,
     pub filename: String,
     pub average_brightness: f32, // information from average_brightness branch.
-    pub histogram: Vec<Histogram>, // information from histogram branch follows.
+    pub histogram: Vec<Histogram>,
 }
 
 impl SearchIndex {
