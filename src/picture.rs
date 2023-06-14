@@ -108,7 +108,6 @@ impl Display for PictureF32 {
     }
 }
 
-//In picture.rs statt in averagebrightness.rs
 pub trait AverageBrightness {
     // Trait der Helligkeit
     fn gray_intensity_single_val(
@@ -139,6 +138,7 @@ impl AverageBrightness for PictureF32 {
         let mut count_colour: usize = 0;
 
         if to_picture_f32.color_channel_count >= 3 {
+            //Colour_count muss 3 oder 4 sein, also größer als 2.
             while count_colour < to_picture_f32.data.len() {
                 let r = to_picture_f32.data[count_colour]; //  Wert1 -> Rot
                 let g = to_picture_f32.data[count_colour + 1]; // Wert2 -> Grün
@@ -149,7 +149,6 @@ impl AverageBrightness for PictureF32 {
             }
         }
 
-        self.average_brightness(&grayray);
         return grayray;
     }
 

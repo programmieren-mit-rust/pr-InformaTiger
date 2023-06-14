@@ -1,6 +1,6 @@
 use imsearch::picture::{AverageBrightness, Picture, PictureF32};
+use imsearch::{get_datastore_path, suchindex};
 use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
-use imsearch::{suchindex, get_datastore_path};
 
 const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 
@@ -19,5 +19,4 @@ fn main() {
     let grayray = to_picture_f32.gray_intensity_array(to_picture_f32.clone());
     let average_brightness = to_picture_f32.average_brightness(&grayray); // Aufruf von averagebrightness
     println!("Averagebrightness: {average_brightness}");
-
 }

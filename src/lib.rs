@@ -1,19 +1,21 @@
-use std::fs::File;
+
 // Here all of the files for the library have to be added.
 // If they are added, they get executed when cargo run is called.
+
 pub mod escape;
 pub mod file_handler;
 pub mod histogram;
 pub mod picture;
-mod test_2a;
 pub mod suchindex;
+pub mod test_2a;
 mod tests;
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
-
+use std::fs::File;
 use std::env;
 use std::error::Error;
 
+use crate::picture::PictureF32;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::{Bin, Histogram},

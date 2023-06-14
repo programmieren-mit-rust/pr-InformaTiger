@@ -1,7 +1,6 @@
 use crate::picture::Picture;
 use crate::suchindex::{
-    analyse_pictures,
-    generate_suchindex, read_data_from_datastore, write_data_to_file, SearchIndex,
+    analyse_pictures, generate_suchindex, read_data_from_datastore, write_data_to_file, SearchIndex,
 };
 use crate::{get_datastore_path, get_histogram, read_picture, set_datastore_filepath, PictureU8};
 
@@ -9,11 +8,9 @@ const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 const PICTURE_FOLDERPATH: &str = "src/tests/files/pictures_for_testing";
 const DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 
-
 /// This Test declares an instance of type SearchIndex and writes it to a file.
 #[test]
-fn test_generate_suchindex(){
-
+fn test_generate_suchindex() {
     // The testfile which should be analysed
     let picture = PICTURE_FILEPATH.to_string();
 
@@ -27,20 +24,18 @@ fn test_generate_suchindex(){
 /// This test uses the write_data_to_file() function and then reads the written data.
 /// It tests if the data written and read is the same.
 #[test]
-fn test_read_data_from_datastore(){
+fn test_read_data_from_datastore() {
     let pic_u8: PictureU8 = read_picture(PICTURE_FILEPATH);
     let pic_f32 = pic_u8.to_picture_f32();
     let histograms = get_histogram(&pic_f32.to_picture_u8());
 
     let search_index = SearchIndex::new(PICTURE_FILEPATH.to_string(), 6.9, histograms);
     if let Err(err) = write_data_to_file(search_index) {
-            eprintln!("Error writing data to file: {}", err);
-        }
+        eprintln!("Error writing data to file: {}", err);
+    }
 
     // Read the data from the file
     let result: Vec<SearchIndex> = read_data_from_datastore().unwrap();
-
-
 
     // Assert that the read data matches the original data
     //TODO
@@ -65,11 +60,9 @@ fn test_get_datastore_path() {
 }
 #[test]
 fn test_analyse_pictures() {
-
     analyse_pictures(PICTURE_FOLDERPATH);
 
     //TODO compare idk
-
 }
 #[test]
 fn test_analyse_one_picture() {
