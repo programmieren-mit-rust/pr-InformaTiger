@@ -1,5 +1,4 @@
 use std::fs::File;
-pub mod averagebrightness;
 pub mod escape;
 pub mod histogram;
 pub mod picture;
