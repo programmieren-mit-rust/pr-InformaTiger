@@ -6,7 +6,6 @@ pub mod file_handler;
 pub mod histogram;
 pub mod picture;
 pub mod suchindex;
-pub mod test_2a;
 mod tests;
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
@@ -14,7 +13,6 @@ use std::env;
 use std::error::Error;
 use std::fs::File;
 
-use crate::picture::PictureF32;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::Histogram,

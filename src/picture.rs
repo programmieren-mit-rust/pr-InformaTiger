@@ -128,7 +128,7 @@ impl AverageBrightness for PictureF32 {
         blue_colour_val: f32,
     ) -> f32 {
         let singel_pixel_gray =
-            ((0.3 * red_colour_val) + (0.59 * green_colour_val) + (0.11 * blue_colour_val)); //Berechnung der Werte mit der Formel aus der Aufgabenstellung
+            (0.3 * red_colour_val) + (0.59 * green_colour_val) + (0.11 * blue_colour_val); //Berechnung der Werte mit der Formel aus der Aufgabenstellung
 
         return singel_pixel_gray;
     }
