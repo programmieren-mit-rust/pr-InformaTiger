@@ -1,6 +1,7 @@
 // Here all of the files for the library have to be added.
 // If they are added, they get executed when cargo run is called.
 
+mod comparepictures;
 pub mod escape;
 pub mod file_handler;
 pub mod histogram;

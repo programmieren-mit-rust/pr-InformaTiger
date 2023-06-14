@@ -1,69 +1,42 @@
+use crate::suchindex::read_data_from_datastore;
+use crate::suchindex::SearchIndex;
+use crate::{get_datastore_path, get_histogram, read_picture, Histogram, PictureU8};
 use std::error::Error;
-use crate::{get_datastore_path, get_histogram, Histogram, PictureU8, read_picture, SearchIndex};
-use crate::suchindex::{Searchindex, SearchIndex};
 
-
-
-
-impl compare_picture{
-    pub fn get_values_of_new_pictures(&self, search_index: &SearchIndex){
-        // Lade das Bild vom gegebenen Dateipfad
-        // Hier musst du den Code zum Laden des Bildes implementieren
-        println!("Filepath:{}", search_index.filepath);
-        //Evas Funktion
-       //Aufruf Histoogramme,
-        //Aufruf AverageBrighness
-        // Berechne den average_brightness des neuen Bildes
-        // Hier rufst du die entsprechende Methode auf, die den average_brightness berechnet
-
-        //Lotte und Jessi Funktion
-
-        // Berechne das Histogramm des neuen Bildes
-        // Hier rufst du die entsprechende Methode auf, die das Histogramm berechnet
-        //let histogramm = get_histogramm(&pic_f32.to_picture_u8);
-        //Thomas Funktion
-
-    }
-    pub fn find_similar_images(file_path: &str, images: &[SearchIndex]) -> Vec<String> {
-        //Werte vergleichen mit denen aus json
-        // Erstelle eine leere Liste, um die Ergebnisse zu speichern
-        let mut similar_images: Vec<(f32, &SearchIndex)> = Vec::new();
-
-        // Iteriere über alle bereits eingelesenen Bilder
-        for image in images {
-            // Vergleiche den average_brightness mit dem neuen Bild
-            let brightness_diff = (image.average_brightness - new_average_brightness).abs();t
-
-            // Vergleiche das Histogramm mit dem neuen Bild
-            let histogram_diff = image.histogram.calculate_similarity(&new_histogram); // Hier rufst du die entsprechende Methode auf, die die Ähnlichkeit der Histogramme berechnet
-
-            // Berechne eine Gesamtähnlichkeitswertung basierend auf den Vergleichskriterien
-            let similarity_score = calculate_similarity_score(brightness_diff, histogram_diff); // Hier musst du eine Funktion implementieren, die die Gesamtähnlichkeitswertung berechnet
-
-            // Füge das Bild und die Ähnlichkeitswertung zur Liste hinzu
-            similar_images.push((similarity_score, image));
-        }
-
-        // Sortiere die Bilder basierend auf der Ähnlichkeitswertung in absteigender Reihenfolge
-        similar_images.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap());
-
-        // Extrahiere die Dateipfade der 5 ähnlichsten Bilder
-        let result: Vec<String> = similar_images.iter()
-            .take(5)
-            .map(|(_, image)| image.filepath.clone())
-            .collect();
-
-        // Gib die Dateipfade der 5 ähnlichsten Bilder zurück
-        result
-    }
+pub trait compare_picture {
+    fn difference_brightnesses(&self, search_index: &SearchIndex) -> Vec<f32>;
 }
 
-fn calculate_similarity_score(brightness_diff: f32, histogram_diff: f32) -> f32 {
-    // Hier kannst du deine eigene Logik implementieren, um die Gesamtähnlichkeitswertung zu berechnen
-    // Du kannst die Gewichtung der einzelnen Kriterien anpassen oder andere Berechnungen durchführen
-    // In diesem Beispiel wird eine einfache lineare Kombination der Differenzen verwendet
-    const BRIGHTNESS_WEIGHT: f32 = 0.5;
-    const HISTOGRAM_WEIGHT: f32 = 0.5;
+impl ComparePicture {
+    /// Sorts the difference in brightness values in descending order.
+    ///
+    /// This function sorts the provided `diff_brightness` vector in descending order using
+    /// the `sort_by` method with a closure. It compares two values `a` and `b` and returns
+    /// `Ordering::Greater` if `b` should be placed before `a` in the sorted order.
+    ///
+    /// # Arguments
+    ///
+    /// * `diff_brightness` - A mutable reference to the vector of difference in brightness values.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let mut diff_brightness = vec![3.5, 2.0, 1.2];
+    /// sort_diff_brightness(&mut diff_brightness);
+    /// assert_eq!(diff_brightness, vec![1.2, 2.0, 3.5]);
+    /// ```
+    fn difference_brightnesses(&self, search_index: &SearchIndex) -> Vec<f32> {
+        let data: Vec<SearchIndex> =
+            read_data_from_datastore().expect("Fehler beim Lesen der Daten aus dem Datastore");
+        let mut diff_brightness = Vec::<f32>::new();
+        let mut count: usize = 0;
 
-    (brightness_diff * BRIGHTNESS_WEIGHT) + (histogram_diff * HISTOGRAM_WEIGHT)
+        while count < data.len() {
+            let diff = (data[data.len()].average_brightness - data[count].average_brightness).abs();
+            diff_brightness.push(diff);
+            count += 1;
+        }
+
+        diff_brightness
+    }
 }

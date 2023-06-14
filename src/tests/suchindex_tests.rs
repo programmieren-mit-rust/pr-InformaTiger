@@ -29,7 +29,7 @@ fn test_read_data_from_datastore() {
     let pic_f32 = pic_u8.to_picture_f32();
     let histograms = get_histogram(&pic_f32.to_picture_u8());
 
-    let search_index = SearchIndex::new(PICTURE_FILEPATH.to_string(), 6.9, histograms);
+    let search_index = SearchIndex::new();
     if let Err(err) = write_data_to_file(search_index) {
         eprintln!("Error writing data to file: {}", err);
     }

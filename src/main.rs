@@ -1,6 +1,7 @@
 use imsearch::picture::{AverageBrightness, Picture, PictureF32};
 use imsearch::{get_datastore_path, suchindex};
 use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
+use imsearch::suchindex::SearchIndex;
 
 const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 
@@ -19,4 +20,49 @@ fn main() {
     let grayray = to_picture_f32.gray_intensity_array(to_picture_f32.clone());
     let average_brightness = to_picture_f32.average_brightness(&grayray); // Aufruf von averagebrightness
     println!("Averagebrightness: {average_brightness}");
+
+
+    ///
+    /// This function performs the following steps:
+    /// 1. Creates a new `SearchIndex` instance as the search index for comparison.
+    /// 2. Creates a new `ComparePicture` instance for performing the comparison.
+    /// 3. Calls the `difference_brightnesses` method on the `compare_picture` instance,
+    ///    passing the `search_index` as an argument. This calculates the difference in
+    ///    brightness between the search image and the images in the data pool.
+    /// 4. Sorts the `diff_brightness` vector in descending order using the `sort_diff_brightness` function.
+    /// 5. Prints the sorted difference in brightness values using a `while` loop.
+    ///
+    /// # Arguments
+    ///
+    /// This function takes no arguments.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// // Create necessary instances
+    /// let search_index = SearchIndex::new(/* ... */);
+    /// let compare_picture = ComparePicture {};
+    ///
+    /// // Calculate and print sorted difference in brightness values
+    /// let mut diff_brightness = compare_picture.difference_brightnesses(&search_index);
+    /// sort_diff_brightness(&mut diff_brightness);
+    ///
+    /// let mut count = 0;
+    /// while count < diff_brightness.len() {
+    ///     let diff = diff_brightness[count];
+    ///     println!("{}", diff);
+    ///     count += 1;
+    /// }
+    /// ```
+    // Annahme: Du hast bereits eine Instanz von SearchIndex erstellt
+    let search_index = SearchIndex::new(PICTURE_FILEPATH);
+
+    // Aufruf der Funktion difference_brightnesses
+    let diff_brightness = difference_brightnesses(&search_index);
+
+    // Ausgabe der Werte in diff_brightness
+    for diff in diff_brightness {
+        println!("{}", diff);
+    }
+}
 }

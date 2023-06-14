@@ -28,7 +28,7 @@ use std::fs;
 /// let average_brightness = 6.9;
 /// let histogram = vec![/* Histogram data */];
 ///
-/// let search_index = SearchIndex::new(filepath, average_brightness, histogram);
+/// let search_index = SearchIndex::new();
 ///
 /// assert_eq!(search_index.filepath, "/path/to/file.png");
 /// assert_eq!(search_index.filename, "file");
@@ -41,7 +41,7 @@ use std::fs;
 /// ```rust
 /// # use imsearch::suchindex::SearchIndex;
 ///
-/// let search_index = SearchIndex::new("/path/to/file.png".to_string(), 6.9, vec![/* Histogram data */]);
+/// let search_index = SearchIndex::new();
 ///
 /// // Iterate over the search index as a collection with a single element
 /// for item in search_index {
@@ -74,16 +74,16 @@ impl SearchIndex {
     /// let average_brightness = 6.9;
     /// let histogram = vec![/* Histogram data */];
     ///
-    /// let search_index = SearchIndex::new(filepath, average_brightness, histogram);
+    /// let search_index = SearchIndex::new();
     ///
     /// assert_eq!(search_index.filepath, "/path/to/file.png");
     /// assert_eq!(search_index.filename, "file");
     /// assert_eq!(search_index.average_brightness, 6.9);
     /// assert_eq!(search_index.histogram, vec![/* Histogram data */]);
     /// ```
-    pub fn new(filepath: String, average_brightness: f32, histogram: Vec<Histogram>) -> Self {
+    pub fn new(x: &str) -> Self {
         Self {
-            filepath: filepath.clone(),
+            filepath: filepath,
             filename: extract_filename(filepath),
             average_brightness,
             histogram,
@@ -103,7 +103,7 @@ impl IntoIterator for SearchIndex {
     /// ```rust
     /// use imsearch::suchindex::SearchIndex;
     ///
-    /// let search_index = SearchIndex::new("/path/to/file.png".to_string(), 6.9, vec![/* Histogram data */]);
+    /// let search_index = SearchIndex::new();
     ///
     /// // Iterate over the search index as a collection with a single element
     /// for item in search_index {
@@ -298,7 +298,7 @@ pub fn generate_suchindex(filepath: String) -> Result<(), Box<dyn Error>> {
     let histograms = get_histogram(&pic_u8);
     //TODO helligkeit
 
-    let search_index = SearchIndex::new(filepath, 6.9, histograms);
+    let search_index = SearchIndex::new();
     write_data_to_file(search_index)?;
     Ok(())
 }
