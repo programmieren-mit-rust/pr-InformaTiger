@@ -1,5 +1,5 @@
-use imsearch::{get_histogram, PictureU8, print_all_diagrams, read_picture};
 use imsearch::picture::{AverageBrightness, Picture, PictureF32};
+use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
 
 fn main() {
     let pic_u8: PictureU8 = read_picture("src/Bilder Programmentwurf-20230521/bird.png");
@@ -15,10 +15,4 @@ fn main() {
     let grayray = to_picture_f32.gray_intensity_array(to_picture_f32.clone());
     let average_brightness = to_picture_f32.average_brightness(&grayray); // Aufruf von averagebrightness
     println!("Average Brightness: {}\n", average_brightness);
-
-
-
 }
-
-
-
