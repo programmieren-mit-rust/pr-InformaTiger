@@ -8,7 +8,7 @@ use crate::picture::PictureF32;
 fn test_gray_intensity_single_val() {
     let picture = PictureF32 {
         lines: 0,
-        data: vec![0.1, 0.2, 0.12], // Rot: 255, Grün: 128, Blau: 64
+        data: vec![0.1, 0.2, 0.12],
         color_channel_count: 3,
         columns: 0,
     };
@@ -24,7 +24,7 @@ fn test_gray_intensity_single_val() {
 fn test_gray_intensity_array() {
     let picture = PictureF32 {
         lines: 0,
-        data: vec![0.1, 0.2, 0.25, 0.12, 0.22, 0.1], // Zwei Pixel: Rot: 255, Grün: 128, Blau: 64 und Rot: 200, Grün: 100, Blau: 50
+        data: vec![0.1, 0.2, 0.25, 0.12, 0.22, 0.1],
         color_channel_count: 3,
         columns: 0,
     };
@@ -40,7 +40,7 @@ fn test_gray_intensity_array() {
 fn test_average_brightness() {
     let picture = PictureF32 {
         lines: 0,
-        data: vec![0.23, 0.188, 0.256, 0.2, 0.1, 0.1], // Zwei Pixel: Rot: 255, Grün: 128, Blau: 64 und Rot: 200, Grün: 100, Blau: 50
+        data: vec![0.23, 0.188, 0.256, 0.2, 0.1, 0.1],
         color_channel_count: 3,
         columns: 0,
     };
