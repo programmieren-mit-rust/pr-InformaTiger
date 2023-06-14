@@ -11,3 +11,6 @@ mod picture_tests;
 
 #[cfg(test)]
 mod escape_tests;
+
+#[cfg(test)]
+mod with_threads_tests;

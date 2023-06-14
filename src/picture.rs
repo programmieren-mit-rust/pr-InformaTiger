@@ -46,33 +46,6 @@ impl Picture for PictureU8 {
     }
 }
 
-impl PictureU8 {
-    /// Returns a slice containing every Xth value out of the data field, starting at index Y.
-    ///
-    /// # Arguments
-    ///
-    /// * `x` - The step size or the gap between each selected value.
-    /// * `y` - The starting index in the data field from where the extraction should begin.
-    ///
-    /// # Panics
-    ///
-    /// The function will panic if the starting index `y` is greater than or equal to the length of the data field.
-    ///
-    fn take_every_nth_value<'a>(&'a self, n: usize, starting_index: usize) -> Vec<&'a u8> {
-        // Calculate the end index ensuring it does not exceed the length of the data field.
-        let end_index = std::cmp::min(
-            self.data.len(),
-            starting_index + ((self.data.len() - starting_index) / n) * n,
-        );
-        // If the step size `n` is not a factor of the remaining length of the data field starting from the start index,
-        // it adjusts the end index to the last multiple of `n` within the remaining range.
-
-        // Return a slice of the data field, starting from start_index and incrementing by n each step
-        let iterator = self.data[starting_index..end_index].iter().step_by(n);
-        iterator.collect::<Vec<&'a u8>>()
-    }
-}
-
 impl Display for PictureU8 {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(
