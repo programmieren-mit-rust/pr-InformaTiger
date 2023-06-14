@@ -1,4 +1,5 @@
-use crate::with_threads::{divide_data, take_every_nth_value};
+use crate::with_threads::{another_get_histogram_with_threads, divide_data, take_every_nth_value};
+use crate::PictureU8;
 
 #[test]
 fn test_divide_data() {
@@ -41,4 +42,23 @@ fn test_take_every_nth_value() {
     assert_eq!(nth_from1, vec![2, 6, 10]);
     assert_eq!(nth_from2, vec![3, 7, 11]);
     assert_eq!(nth_from3, vec![4, 8, 12]);
+}
+
+#[test]
+fn test_another_get_histogram_with_threads() {
+    // Create a sample PictureU8 instance
+    let pic = PictureU8 {
+        lines: 1,
+        columns: 2,
+        color_channel_count: 2,
+        data: vec![255, 0, 255, 0], // Sample pixel data
+    };
+
+    // Calculate histograms using multiple threads
+    let histograms = another_get_histogram_with_threads(&pic);
+
+    // Assert the expected histogram values
+    assert_eq!(histograms.len(), 2);
+    assert_eq!(histograms[0].bins[4].pixel_count, 2);
+    assert_eq!(histograms[1].bins[0].pixel_count, 2);
 }
