@@ -6,6 +6,7 @@ pub mod histogram;
 pub mod picture;
 mod tests;
 pub mod file_handler;
+mod comparepictures;
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 

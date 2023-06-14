@@ -1,6 +1,6 @@
 use std::error::Error;
 use crate::{get_datastore_path, get_histogram, Histogram, PictureU8, read_picture, SearchIndex};
-use crate::suchindex::Searchindex;
+use crate::suchindex::{Searchindex, SearchIndex};
 
 
 
