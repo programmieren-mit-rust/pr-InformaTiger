@@ -17,7 +17,7 @@ use std::fs::File;
 use crate::picture::PictureF32;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
-    crate::histogram::{Bin, Histogram},
+    crate::histogram::Histogram,
     crate::picture::PictureU8,
 };
 
@@ -98,17 +98,12 @@ pub fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize
 /// assert_eq!(histograms.len(), picture.color_channel_count);
 ///
 /// // Assert the expected pixel counts in the histograms
-/// assert_eq!(histograms[0].bins[0].pixel_count, 2);
-/// assert_eq!(histograms[1].bins[1].pixel_count, 1);
-/// assert_eq!(histograms[1].bins[4].pixel_count, 1);
+/// assert_eq!(histograms[0].bins[0], 2);
+/// assert_eq!(histograms[1].bins[1], 1);
+/// assert_eq!(histograms[1].bins[4], 1);
 /// ```
 pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
-    let mut histograms: Vec<Histogram> = Vec::<Histogram>::new();
-
-    // fill Vector with a histogram for each color channel:
-    for channel_counter in 0..pic.color_channel_count {
-        histograms.push(Histogram::new());
-    }
+    let mut histograms: Vec<Histogram> = vec![Histogram::new(); pic.color_channel_count];
 
     // komplette Daten durchiterieren, immer je Daten zu 1 Pixel ansehen (abhängig von color_channel_count)
     let mut current_index: usize = 0;
