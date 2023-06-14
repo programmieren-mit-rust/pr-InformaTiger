@@ -1,5 +1,7 @@
 //TODO für Grauwerte und Alphawerte und dann als Parameter einer fn
 /// Represents different colors for escaping text.
+/// allow dead_code because ALPHA and GREY are never used yet //TODO
+#[allow(dead_code)]
 pub enum Color {
     Red,
     Blue,

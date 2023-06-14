@@ -1,30 +1,35 @@
 // Here all of the files for the library have to be added.
 // If they are added, they get executed when cargo run is called.
-pub mod suchindex;
 
 pub mod escape;
+pub mod file_handler;
 pub mod histogram;
 pub mod picture;
+pub mod suchindex;
+pub mod test_2a;
 mod tests;
 pub mod with_threads;
 
+const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 use std::env;
 use std::error::Error;
 use std::fs::File;
+
+use crate::picture::PictureF32;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::{Bin, Histogram},
     crate::picture::PictureU8,
 };
 
-pub fn read_picture(path: String) -> PictureU8 {
+pub fn read_picture(path: &str) -> PictureU8 {
     //load picture
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let mut reader = decoder.read_info().unwrap();
     // Allocate the output buffer.
     let mut buf = vec![0; reader.output_buffer_size()];
     // Read the next frame. An APNG might contain multiple frames.
-    let info = reader.next_frame(&mut buf).unwrap(); // OutputInfo { width: 1078, height: 1830, color_type: Rgba, bit_depth: Eight, line_size: 4312 }
+    let info = reader.next_frame(&mut buf).unwrap(); // Example OutputInfo { width: 1078, height: 1830, color_type: Rgba, bit_depth: Eight, line_size: 4312 }
 
     // Grab the bytes of the image.
     let picture_data = &buf[..info.buffer_size()];
@@ -126,7 +131,7 @@ pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
 pub fn set_datastore_filepath(data_path: &str) {
     env::set_var("IMSEARCH_DATA_PATH", data_path);
 }
-/// Returns the file path for data storage or Error because it wasn't set yet.
+/// Returns the file path for data storage or Default.
 ///
 /// # Environment Variables
 ///
@@ -134,6 +139,9 @@ pub fn set_datastore_filepath(data_path: &str) {
 pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
     match env::var("IMSEARCH_DATA_PATH") {
         Ok(path) => Ok(path),
-        Err(_) => Err("IMSEARCH_DATA_PATH environment variable is not set".into()),
+        Err(_) => {
+            //eprintln!("datastore_filepath was not set. Using default filepath. Error: {}", err);
+            Ok(DEFAULT_DATASTORE_FILEPATH.to_string())
+        }
     }
 }
