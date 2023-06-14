@@ -282,7 +282,6 @@ where
 ///
 /// ```
 /// # use std::error::Error;
-/// # use imsearch::set_datastore_filepath;
 /// # use imsearch::suchindex::generate_suchindex;
 /// # const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 ///
@@ -296,8 +295,7 @@ where
 /// Returns an error if there was any problem reading the picture file or writing the search index to the data file.
 pub fn generate_suchindex(filepath: String) -> Result<(),Box<dyn Error>>{
     let pic_u8: PictureU8 = read_picture(filepath.clone());
-    let pic_f32 = pic_u8.to_picture_f32();
-    let histograms = get_histogram(&pic_f32.to_picture_u8());
+    let histograms = get_histogram(&pic_u8);
     //TODO helligkeit
 
     let search_index = SearchIndex::new(filepath, 6.9, histograms);

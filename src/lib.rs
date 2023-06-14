@@ -111,7 +111,7 @@ pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
 pub fn set_datastore_filepath(data_path: &str) {
     env::set_var("IMSEARCH_DATA_PATH", data_path);
 }
-/// Returns the file path for data storage or Error because it wasn't set yet.
+/// Returns the file path for data storage or Default.
 ///
 /// # Environment Variables
 ///
@@ -119,8 +119,8 @@ pub fn set_datastore_filepath(data_path: &str) {
 pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
     match env::var("IMSEARCH_DATA_PATH") {
         Ok(path) => Ok(path),
-        Err(err) => {
-            eprintln!("datastore_filepath was not set. Using default filepath. Error: {}", err);
+        Err(_) => {
+            //eprintln!("datastore_filepath was not set. Using default filepath. Error: {}", err);
             Ok(DEFAULT_DATASTORE_FILEPATH.to_string())
         }
     }
