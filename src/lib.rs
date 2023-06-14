@@ -5,7 +5,9 @@ pub mod escape;
 pub mod histogram;
 pub mod picture;
 mod tests;
-mod file_handler;
+pub mod file_handler;
+
+const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 
 use std::env;
 use std::error::Error;
@@ -117,7 +119,10 @@ pub fn set_datastore_filepath(data_path: &str) {
 pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
     match env::var("IMSEARCH_DATA_PATH") {
         Ok(path) => Ok(path),
-        Err(_) => Err("IMSEARCH_DATA_PATH environment variable is not set".into()),
+        Err(err) => {
+            eprintln!("datastore_filepath was not set. Using default filepath. Error: {}", err);
+            Ok(DEFAULT_DATASTORE_FILEPATH.to_string())
+        }
     }
 }
 

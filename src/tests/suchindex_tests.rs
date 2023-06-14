@@ -1,4 +1,3 @@
-use std::alloc::handle_alloc_error;
 use crate::picture::Picture;
 use crate::suchindex::{
     analyse_pictures,
@@ -28,8 +27,6 @@ fn test_extract_filename() {
 /// This Test declares an instance of type SearchIndex and writes it to a file.
 #[test]
 fn test_generate_suchindex(){
-    // Where should your files be stored/saved.
-    set_datastore_filepath(DATASTORE_FILEPATH);
 
     // The testfile which should be analysed
     let picture = PICTURE_FILEPATH.to_string();
@@ -45,8 +42,6 @@ fn test_generate_suchindex(){
 /// It tests if the data written and read is the same.
 #[test]
 fn test_read_data_from_datastore(){
-    // Where should your files be stored/saved.
-    set_datastore_filepath(DATASTORE_FILEPATH);
 
     // The testfile which should be analysed
     let picture = PICTURE_FILEPATH.to_string();
@@ -62,6 +57,8 @@ fn test_read_data_from_datastore(){
 
     // Read the data from the file
     let result: Vec<SearchIndex> = read_data_from_datastore().unwrap();
+
+
 
     // Assert that the read data matches the original data
     //TODO
@@ -86,18 +83,14 @@ fn test_get_datastore_path() {
 }
 #[test]
 fn test_analyse_pictures() {
-    // Where should your files be stored/saved.
-    set_datastore_filepath(DATASTORE_FILEPATH);
-    //TODO clear the file
 
     analyse_pictures(PICTURE_FOLDERPATH);
 
-    //TODO check if it worked
+    //TODO compare idk
+
 }
 #[test]
 fn test_analyse_one_picture() {
-    // Where should your files be stored/saved.
-    set_datastore_filepath(DATASTORE_FILEPATH);
     //TODO clear the file
 
     analyse_pictures(PICTURE_FILEPATH);

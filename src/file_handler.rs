@@ -14,7 +14,7 @@ use std::path::Path;
 /// # Examples
 ///
 /// ```
-/// use imsearch::suchindex::is_directory;
+/// # use imsearch::file_handler::is_directory;
 /// let is_dir = is_directory("src/tests/files/DataStoreJSON");
 /// assert_eq!(is_dir, true);
 /// ```
@@ -36,7 +36,7 @@ pub fn is_directory(filepath: &str) -> bool {
 /// # Examples
 ///
 /// ```rust
-/// use imsearch::suchindex::is_file;
+/// # use imsearch::file_handler::is_file;
 /// let is_file = is_file("src/tests/files/pictures_for_testing/bird.png");
 /// assert_eq!(is_file, true);
 /// ```
@@ -62,6 +62,7 @@ pub fn is_file(filepath: &str) -> bool {
 /// # Examples
 ///
 /// ```rust
+/// # use imsearch::file_handler::count_files_in_folder;
 /// let folder_path = "src/tests/files/DataStoreJSON/";
 /// let file_count = count_files_in_folder(folder_path);
 /// println!("Number of files: {}", file_count);
@@ -99,7 +100,7 @@ pub fn count_files_in_folder(folder_path: &str) -> usize {
 /// # Examples
 ///
 /// ```
-/// use imsearch::suchindex::format_filepath;
+/// # use imsearch::file_handler::format_filepath;
 /// let filepath = "aaa\\bbb\\ccc\\ddd.xxx";
 /// let formatted = format_filepath(filepath);
 /// assert_eq!(formatted, "aaa/bbb/ccc/ddd.xxx");
@@ -121,8 +122,27 @@ pub fn delete_files_in_folder(folder_path: &str) -> Result<(), std::io::Error> {
     Ok(())
 }
 
-/// This function appends two Strings together and returns a String back.
-/// string1 is first, string2 is second.
+/// Appends two strings together and returns a new string.
+///
+/// The `append_string` function takes two `String` values, `string1` and `string2`, and appends them
+/// together to create a new `String`. The resulting string is returned.
+///
+/// # Arguments
+///
+/// * `string1` - The first string to be appended.
+/// * `string2` - The second string to be appended.
+///
+/// # Returns
+///
+/// The function returns a new `String` that is the result of appending `string1` and `string2` together.
+///
+/// # Example
+///
+/// ```rust
+/// # use imsearch::file_handler::append_string;
+/// let result = append_string("Hello, ".to_string(), "world!".to_string());
+/// assert_eq!(result, "Hello, world!");
+/// ```
 pub fn append_string(string1: String, string2: String) -> String {
     let mut result = String::new();
     result.push_str(&string1);
@@ -131,8 +151,30 @@ pub fn append_string(string1: String, string2: String) -> String {
 }
 
 /// Extracts the filename from a given filepath.
-/// If the filepath contains a directory path, it returns the filename without the extension.
+///
+/// If the filepath contains a directory path, the function returns the filename without the extension.
 /// If the filepath doesn't contain a directory path, it returns the entire filepath.
+///
+/// # Arguments
+///
+/// * `filepath` - The filepath from which to extract the filename.
+///
+/// # Returns
+///
+/// The function returns a `String` representing the extracted filename.
+///
+/// # Example
+///
+/// ```rust
+/// # use imsearch::file_handler::extract_filename;
+/// let filepath = "/path/to/file.txt".to_string();
+/// let filename = extract_filename(filepath);
+/// assert_eq!(filename, "file");
+///
+/// let filepath = "file.txt".to_string();
+/// let filename = extract_filename(filepath);
+/// assert_eq!(filename, "file");
+/// ```
 pub fn extract_filename(filepath: String) -> String {
     let filename = filepath
         .rsplit_once('/')
