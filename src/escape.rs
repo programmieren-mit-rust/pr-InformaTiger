@@ -2,7 +2,7 @@
 /// Represents different colors for escaping text.
 /// allow dead_code because ALPHA and GREY are never used yet //TODO
 #[allow(dead_code)]
-enum Color {
+pub enum Color {
     Red,
     Blue,
     Green,

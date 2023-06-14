@@ -1,11 +1,11 @@
 // Here all of the files for the library have to be added.
 // If they are added, they get executed when cargo run is called.
-pub mod suchindex;
 pub mod escape;
+pub mod file_handler;
 pub mod histogram;
 pub mod picture;
+pub mod suchindex;
 mod tests;
-pub mod file_handler;
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 
@@ -18,7 +18,6 @@ pub use {
     crate::picture::PictureU8,
 };
 
-
 pub fn read_picture(path: String) -> PictureU8 {
     //load picture
     let decoder = png::Decoder::new(File::open(path).unwrap());
@@ -26,7 +25,7 @@ pub fn read_picture(path: String) -> PictureU8 {
     // Allocate the output buffer.
     let mut buf = vec![0; reader.output_buffer_size()];
     // Read the next frame. An APNG might contain multiple frames.
-    let info = reader.next_frame(&mut buf).unwrap(); // OutputInfo { width: 1078, height: 1830, color_type: Rgba, bit_depth: Eight, line_size: 4312 }
+    let info = reader.next_frame(&mut buf).unwrap(); // Example OutputInfo { width: 1078, height: 1830, color_type: Rgba, bit_depth: Eight, line_size: 4312 }
 
     // Grab the bytes of the image.
     let picture_data = &buf[..info.buffer_size()];
