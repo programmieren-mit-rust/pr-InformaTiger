@@ -1,7 +1,8 @@
+use serde::{Deserialize, Serialize};
 use std::fmt::{Display, Formatter};
 
 // Histogramm: Den Wertebereich (0-255 bzw. 0.0 bis 1.0) in z.B. n=5 bins unterteilen: je 51 (255/5) Werte (bei u8)
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Bin {
     pub bin_index: u8,
     pub pixel_count: u32,
@@ -13,7 +14,7 @@ impl Bin {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Histogram {
     pub bins: Vec<Bin>,
 }
@@ -44,12 +45,12 @@ impl Histogram {
 
             // next bin:
             // Das 1. Bin ist um 1 größer, da es bei 0 beginnt. Daher müssen wir um 1 erhöhen.
-            // FIXME: kinda duplicate code ->  evtl "coole fn/struct schreiben, die nen Iterator darstellt"
+            // FIXME: kinda duplicate code ->  evtl. "coole fn/struct schreiben, die nen Iterator darstellt"
             if lower_bound == 0 {
                 lower_bound += 1;
             }
-            lower_bound = lower_bound + (255 / self.bins.len());
-            upper_bound = upper_bound + (255 / self.bins.len());
+            lower_bound += 255 / self.bins.len();
+            upper_bound += 255 / self.bins.len();
             bin_index += 1;
         }
     }
@@ -96,8 +97,8 @@ impl Histogram {
                 if lower_bound == 0 {
                     lower_bound += 1;
                 }
-                lower_bound = lower_bound + 255 / self.bins.len();
-                upper_bound = upper_bound + 255 / self.bins.len();
+                lower_bound += 255 / self.bins.len();
+                upper_bound += 255 / self.bins.len();
             }
         }
     }
@@ -116,9 +117,9 @@ impl Display for Bin {
 impl Display for Histogram {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         for i in 0..self.bins.len() {
-            write!(
+            writeln!(
                 f,
-                "\tBin Index: {}, Pixel Count: {}\n",
+                "\tBin Index: {}, Pixel Count: {}",
                 self.bins[i].bin_index, self.bins[i].pixel_count
             )
             .expect("Error while writing content of bins");
