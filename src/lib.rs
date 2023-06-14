@@ -1,11 +1,13 @@
 // Here all of the files for the library have to be added.
 // If they are added, they get executed when cargo run is called.
 pub mod suchindex;
-
 pub mod escape;
 pub mod histogram;
 pub mod picture;
 mod tests;
+pub mod file_handler;
+
+const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 
 use std::env;
 use std::error::Error;
@@ -15,6 +17,7 @@ pub use {
     crate::histogram::{Bin, Histogram},
     crate::picture::PictureU8,
 };
+
 
 pub fn read_picture(path: String) -> PictureU8 {
     //load picture
@@ -125,7 +128,7 @@ pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
 pub fn set_datastore_filepath(data_path: &str) {
     env::set_var("IMSEARCH_DATA_PATH", data_path);
 }
-/// Returns the file path for data storage or Error because it wasn't set yet.
+/// Returns the file path for data storage or Default.
 ///
 /// # Environment Variables
 ///
@@ -133,6 +136,9 @@ pub fn set_datastore_filepath(data_path: &str) {
 pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
     match env::var("IMSEARCH_DATA_PATH") {
         Ok(path) => Ok(path),
-        Err(_) => Err("IMSEARCH_DATA_PATH environment variable is not set".into()),
+        Err(_) => {
+            //eprintln!("datastore_filepath was not set. Using default filepath. Error: {}", err);
+            Ok(DEFAULT_DATASTORE_FILEPATH.to_string())
+        }
     }
 }

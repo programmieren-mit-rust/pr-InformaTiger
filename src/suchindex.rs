@@ -3,10 +3,52 @@ use crate::{get_datastore_path, get_histogram, read_picture, Histogram, PictureU
 use serde::{Deserialize, Serialize};
 use std::error::Error;
 use std::fs;
-use std::path::Path;
+use crate::file_handler::{extract_filename, format_filepath, is_directory, is_file};
 
+/// Represents a search index containing information about a file.
+///
+/// The `SearchIndex` struct is used to save information from various functions to the drive.
+/// It includes fields for the filepath, filename, average brightness, and histogram.
+///
+/// # Fields
+///
+/// * `filepath`: The filepath of the indexed file.
+/// * `filename`: The filename of the indexed file.
+/// * `average_brightness`: The average brightness value of the indexed file.
+/// * `histogram`: The histogram data of the indexed file.
+///
+/// # Examples
+///
+/// Creating a new `SearchIndex` instance:
+///
+/// ```rust
+/// # use imsearch::suchindex::SearchIndex;
+///
+/// let filepath = "/path/to/file.png".to_string();
+/// let average_brightness = 6.9;
+/// let histogram = vec![/* Histogram data */];
+///
+/// let search_index = SearchIndex::new(filepath, average_brightness, histogram);
+///
+/// assert_eq!(search_index.filepath, "/path/to/file.png");
+/// assert_eq!(search_index.filename, "file");
+/// assert_eq!(search_index.average_brightness, 6.9);
+/// assert_eq!(search_index.histogram, vec![/* Histogram data */]);
+/// ```
+///
+/// Implementing the `IntoIterator` trait for `SearchIndex`:
+///
+/// ```rust
+/// # use imsearch::suchindex::SearchIndex;
+///
+/// let search_index = SearchIndex::new("/path/to/file.png".to_string(), 6.9, vec![/* Histogram data */]);
+///
+/// // Iterate over the search index as a collection with a single element
+/// for item in search_index {
+///     println!("Item: {:?}", item);
+/// }
+/// ```
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
-/// This struct is for saving information from the functions to the drive.
 pub struct SearchIndex {
     pub filepath: String,
     pub filename: String,
@@ -15,6 +57,30 @@ pub struct SearchIndex {
 }
 
 impl SearchIndex {
+    /// Creates a new `SearchIndex` instance.
+    ///
+    /// The `filepath` argument represents the filepath of the indexed file.
+    /// The `average_brightness` argument represents the average brightness value of the indexed file.
+    /// The `histogram` argument represents the histogram data of the indexed file.
+    ///
+    /// The `filename` field is automatically extracted from the `filepath`.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use imsearch::suchindex::SearchIndex;
+    ///
+    /// let filepath = "/path/to/file.png".to_string();
+    /// let average_brightness = 6.9;
+    /// let histogram = vec![/* Histogram data */];
+    ///
+    /// let search_index = SearchIndex::new(filepath, average_brightness, histogram);
+    ///
+    /// assert_eq!(search_index.filepath, "/path/to/file.png");
+    /// assert_eq!(search_index.filename, "file");
+    /// assert_eq!(search_index.average_brightness, 6.9);
+    /// assert_eq!(search_index.histogram, vec![/* Histogram data */]);
+    /// ```
     pub fn new(filepath: String, average_brightness: f32, histogram: Vec<Histogram>) -> Self {
         Self {
             filepath: filepath.clone(),
@@ -24,86 +90,217 @@ impl SearchIndex {
         }
     }
 }
+impl IntoIterator for SearchIndex {
+    type Item = SearchIndex;
+    type IntoIter = std::vec::IntoIter<Self::Item>;
 
-/// This function gets Data, serializes it and writes it to a file.
-/// Data must be serializable either with a custom function or via #[derive(Serialize)].
-/// All fields of the serializable data must also have the Serialize function.
-pub fn write_data_to_file<T>(data: T, filename: &str) -> Result<(), Box<dyn Error>>
-where
-    T: Serialize,
+    /// Returns an iterator over a single `SearchIndex` instance.
+    ///
+    /// This allows the `SearchIndex` to be treated as an iterable collection with a single element.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use imsearch::suchindex::SearchIndex;
+    ///
+    /// let search_index = SearchIndex::new("/path/to/file.png".to_string(), 6.9, vec![/* Histogram data */]);
+    ///
+    /// // Iterate over the search index as a collection with a single element
+    /// for item in search_index {
+    ///     println!("Item: {:?}", item);
+    /// }
+    /// ```
+    fn into_iter(self) -> Self::IntoIter {
+        vec![self].into_iter()
+    }
+}
+
+/// Writes the provided data to a JSON file.
+///
+/// This function takes the provided data, which can be either a `Vec<SearchIndex>` or a single
+/// `SearchIndex` item, and appends it to an existing JSON file located at the datastore path.
+/// If the file does not exist, a new file will be created. The data is serialized as JSON using
+/// the `serde_json` crate and written to the file in a pretty-printed format.
+///
+/// # Arguments
+///
+/// * `data` - The data to be written to the file. It can be either a `Vec<SearchIndex>` or a single
+///            `SearchIndex` item. The data will be appended to the existing content of the file.
+///
+/// # Errors
+///
+/// This function returns an error if there is a problem reading the existing data from the file,
+/// serializing the combined data, or writing the data to the file.
+///
+/// # Examples
+///
+/// Writing a single `SearchIndex` to the file:
+///
+/// ```rust
+/// use std::error::Error;
+/// use imsearch::suchindex::{SearchIndex, write_data_to_file};
+///
+/// let search_index = SearchIndex {
+///  /* ... */ filepath: "".to_string(),filename: "".to_string(),average_brightness: 0.0 , histogram: vec![],};
+/// if let Err(err) = write_data_to_file(search_index) {
+///     eprintln!("Error writing data to file: {}", err);
+/// }
+/// ```
+///
+/// Writing a `Vec<SearchIndex>` to the file:
+///
+/// ```rust
+/// use std::error::Error;
+/// use imsearch::suchindex::{SearchIndex, write_data_to_file};
+///
+/// let search_indices: Vec<SearchIndex> = vec![/* ... */];
+/// if let Err(err) = write_data_to_file(search_indices) {
+///     eprintln!("Error writing data to file: {}", err);
+/// }
+/// ```
+pub fn write_data_to_file<T>(data: T) -> Result<(), Box<dyn Error>>
+    where
+        T: IntoIterator<Item = SearchIndex>,
 {
     let datastore_filepath = get_datastore_path()?;
-    let filepath = format!("{}{}.json", datastore_filepath, filename);
-    let data_str = serde_json::to_string_pretty(&data)?;
-    fs::write(filepath, data_str)?;
+
+    let mut filedata: Vec<SearchIndex> = read_data_from_datastore()?;
+    filedata.extend(data);
+
+    let data_str = serde_json::to_string_pretty(&filedata)?;
+    fs::write(&datastore_filepath, data_str)?;
+
     Ok(())
 }
 
-/// This function reads data from filepath and converts it into struct T.
-/// It returns an instance of type T.
-/// Data must be deserializable either with a custom function or via #[derive(Deserialize)].
-/// All fields of the deserializable data must also have the Deserialize function.
-/// The path can be only the filename without '.json' ending or with an ending like '.json' or '.png'.
-pub fn read_data_from_datastore<T>(filename: &str) -> Result<T, Box<dyn Error>>
+/// Reads data from the datastore file and deserializes it into a vector of type T.
+///
+/// # Errors
+///
+/// This function can return an error in the following situations:
+///
+/// - If retrieving the datastore path using `get_datastore_path` fails.
+/// - If reading the contents of the datastore file using `fs::read_to_string` fails.
+/// - If deserializing the JSON data using `serde_json::from_str` fails.
+///
+/// # Arguments
+///
+/// This function takes no arguments.
+///
+/// # Generic Parameters
+///
+/// - `T`: The type to deserialize the data into. It must implement the `Deserialize` trait from `serde`.
+///
+/// # Returns
+///
+/// This function returns a `Result` containing the deserialized data as a vector of type T on success,
+/// or a boxed error trait object (`Box<dyn Error>`) on failure. If deserialization fails, an empty vector is returned
+/// and the error is logged to the console without panicking.
+///
+/// # Example
+///
+/// ```rust
+/// # use std::error::Error;
+///
+///     // Assuming the necessary imports and functions are defined
+/// # use imsearch::suchindex::{read_data_from_datastore, SearchIndex};
+/// # fn main() -> Result<(), Box<dyn Error>> {
+///     let data: Vec<SearchIndex> = read_data_from_datastore()?;
+///
+///     // Process the read data as needed
+///
+///     Ok(())
+/// # }
+/// ```
+pub fn read_data_from_datastore<T>() -> Result<Vec<T>, Box<dyn Error>>
 where
     T: for<'de> Deserialize<'de>,
 {
     let datastore_path = get_datastore_path()?;
-    let filepath = format!("{}{}.json", datastore_path, filename);
-    let data_str = fs::read_to_string(filepath)?;
-    let data = serde_json::from_str(&data_str)?;
-    Ok(data)
+
+    let data_str = fs::read_to_string(datastore_path)?;
+    match serde_json::from_str(&data_str) {
+        Ok(data) => Ok(data),
+        Err(err) => {
+            eprintln!("Error: {}", err);
+            Ok(Vec::new())
+        }
+    }
 }
-/// This function reads data from filepath and converts it into struct T.
-/// It returns an instance of type T.
-/// Data must be deserializable either with a custom function or via #[derive(Deserialize)].
-/// All fields of the deserializable data must also have the Deserialize function.
-/// The path has to be from the root: either 'C://.../xxx.json or src/.../xxx.json
-pub fn read_data_from_file<T>(filepath: &str) -> Result<T, Box<dyn Error>>
+/// Reads data from a file and deserializes it into a vector of a given type.
+///
+/// The `read_data_from_file` function reads the contents of the file specified by the `filepath`
+/// argument and deserializes it into a vector of type `T`. The type `T` must implement the
+/// `Deserialize` trait.
+///
+/// # Arguments
+///
+/// * `filepath` - The path to the file from which to read the data.
+///
+/// # Returns
+///
+/// The function returns a `Result` containing the deserialized data as a vector of type `T` if
+/// successful. If an error occurs during the file reading or deserialization process, an `Err`
+/// variant is returned, containing a boxed dynamic error (`Box<dyn Error>`).
+///
+/// # Examples
+///
+/// ```rust
+/// # use imsearch::suchindex::read_data_from_file;
+///
+/// #[derive(serde::Deserialize)]
+/// struct MyData {
+///     // fields of your data structure
+/// }
+///
+/// // Read data from a file and deserialize it into a vector of MyData
+/// if let Ok(data) = read_data_from_file::<MyData>("data.json") {
+///     for item in data {
+///         // Process each item in the vector
+///         // ...
+///     }
+/// } else {
+///     eprintln!("Error reading data from file");
+/// }
+/// ```
+pub fn read_data_from_file<T>(filepath: &str) -> Result<Vec<T>, Box<dyn Error>>
 where
     T: for<'de> Deserialize<'de>,
 {
     let data_str = fs::read_to_string(filepath)?;
-    let data = serde_json::from_str(&data_str)?;
+    let data: Vec<T> = serde_json::from_str(&data_str)?;
     Ok(data)
 }
 
-/// Extracts the filename from a given filepath.
-/// If the filepath contains a directory path, it returns the filename without the extension.
-/// If the filepath doesn't contain a directory path, it returns the entire filepath.
-pub fn extract_filename(filepath: String) -> String {
-    let filename = filepath
-        .rsplit_once('/')
-        .map(|(_, last_element)| last_element)
-        .unwrap_or(filepath.as_str());
-
-    if let Some((name, _)) = filename.rsplit_once('.') {
-        name.to_string()
-    } else {
-        filename.to_string()
-    }
-}
-
-/// This function appends two Strings together and returns a String back.
-/// string1 is first, string2 is second.
-pub fn append_string(string1: String, string2: String) -> String {
-    let mut result = String::new();
-    result.push_str(&string1);
-    result.push_str(&string2);
-    result
-}
-
-///This function prepares all the values of the functions and writes it to the DataStore.
-/// Input: Filepath.
-/// Output: no return but a file with data was created.
-pub fn generate_suchindex(filepath: String) {
+/// Generates a search index for a given picture file and writes it to a data file.
+///
+/// # Arguments
+///
+/// * `filepath` - A string representing the path to the picture file.
+///
+/// # Examples
+///
+/// ```
+/// # use std::error::Error;
+/// # use imsearch::suchindex::generate_suchindex;
+/// # const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
+///
+/// # fn main(){
+///     generate_suchindex(PICTURE_FILEPATH.to_string()).unwrap();
+/// # }
+/// ```
+///
+/// # Errors
+///
+/// Returns an error if there was any problem reading the picture file or writing the search index to the data file.
+pub fn generate_suchindex(filepath: String) -> Result<(),Box<dyn Error>>{
     let pic_u8: PictureU8 = read_picture(filepath.clone());
-    let pic_f32 = pic_u8.to_picture_f32();
-    let histograms = get_histogram(&pic_f32.to_picture_u8());
+    let histograms = get_histogram(&pic_u8);
+    //TODO helligkeit
 
     let search_index = SearchIndex::new(filepath, 6.9, histograms);
-
-    write_data_to_file(&search_index, search_index.filename.as_str()).unwrap();
+    write_data_to_file(search_index)?;
+    Ok(())
 }
 
 /// Analyzes pictures at the specified path.
@@ -120,7 +317,7 @@ pub fn generate_suchindex(filepath: String) {
 ///
 /// ```rust
 /// // Analyze pictures in a directory
-/// use imsearch::suchindex::analyse_pictures;
+/// # use imsearch::suchindex::analyse_pictures;
 /// analyse_pictures("/path/to/pictures");
 ///
 /// // Analyze a single picture file
@@ -135,145 +332,17 @@ pub fn analyse_pictures(path: &str) {
                 return;
             }
         };
-        for entry in entries {
-            if let Ok(entry) = entry {
-                let entry_path = entry.path();
-                if let Some(file_path) = entry_path.to_str() {
-                    if is_file(file_path) {
-                        generate_suchindex(format_filepath(file_path));
-                    }
+        for entry in entries.filter_map(|entry| entry.ok()) {
+            let entry_path = entry.path();
+            if let Some(file_path) = entry_path.to_str() {
+                if is_file(file_path) {
+                    generate_suchindex(format_filepath(file_path)).unwrap();
                 }
             }
         }
     } else if is_file(path) {
-        generate_suchindex(path.to_string());
+        generate_suchindex(path.to_string()).unwrap();
     } else {
         eprintln!("Invalid path: {}", path);
     }
-}
-
-/// Determines if the given filepath points to a directory.
-///
-/// # Arguments
-///
-/// * `filepath` - A string slice representing the filepath to check.
-///
-/// # Returns
-///
-/// Returns `true` if the filepath points to a directory, `false` otherwise.
-///
-/// # Examples
-///
-/// ```
-/// use imsearch::suchindex::is_directory;
-/// let is_dir = is_directory("src/tests/files/DataStoreJSON");
-/// assert_eq!(is_dir, true);
-/// ```
-pub fn is_directory(filepath: &str) -> bool {
-    let path = Path::new(filepath);
-    path.is_dir()
-}
-
-/// Determines if the given filepath points to a file.
-///
-/// # Arguments
-///
-/// * `filepath` - A string slice representing the filepath to check.
-///
-/// # Returns
-///
-/// Returns `true` if the filepath points to a file, `false` otherwise.
-///
-/// # Examples
-///
-/// ```rust
-/// use imsearch::suchindex::is_file;
-/// let is_file = is_file("src/tests/files/pictures_for_testing/bird.png");
-/// assert_eq!(is_file, true);
-/// ```
-pub fn is_file(filepath: &str) -> bool {
-    let path = Path::new(filepath);
-    path.is_file()
-}
-
-/// Counts the number of files in a folder.
-///
-/// This function takes a `folder_path` parameter, which is the path to the folder.
-/// It iterates over each entry in the folder and counts the number of files.
-/// The function returns the total count of files found in the folder.
-///
-/// # Arguments
-///
-/// * `folder_path` - The path to the folder.
-///
-/// # Returns
-///
-/// The number of files found in the folder.
-///
-/// # Examples
-///
-/// ```rust
-///use imsearch::suchindex::count_files_in_folder;
-/// let folder_path = "src/tests/files/DataStoreJSON/";
-/// let file_count = count_files_in_folder(folder_path);
-/// println!("Number of files: {}", file_count);
-/// ```
-pub fn count_files_in_folder(folder_path: &str) -> usize {
-    let entries = match fs::read_dir(folder_path) {
-        Ok(entries) => entries,
-        Err(err) => {
-            println!("Error reading directory: {}", err);
-            return 0;
-        }
-    };
-    let mut count = 0;
-    for entry in entries {
-        if let Ok(entry) = entry {
-            if entry.file_type().map(|ft| ft.is_file()).unwrap_or(false) {
-                count += 1;
-            }
-        }
-    }
-    count
-}
-
-/// Formats the filepath by replacing backslashes with forward slashes.
-///
-/// This function takes a filepath as input and replaces all occurrences of backslashes (`\`) with
-/// forward slashes (`/`). It is useful for converting filepaths between different platform
-/// conventions (e.g., Windows and Unix-like systems).
-///
-/// # Arguments
-///
-/// * `filepath` - A string representing the filepath to be formatted.
-///
-/// # Returns
-///
-/// A formatted filepath with backslashes replaced by forward slashes.
-///
-/// # Examples
-///
-/// ```
-/// use imsearch::suchindex::format_filepath;
-/// let filepath = "aaa\\bbb\\ccc\\ddd.xxx";
-/// let formatted = format_filepath(filepath);
-/// assert_eq!(formatted, "aaa/bbb/ccc/ddd.xxx");
-/// ```
-pub fn format_filepath(filepath: &str) -> String {
-    filepath.replace("\\", "/")
-}
-pub fn delete_files_in_folder(folder_path: &str) -> Result<(), std::io::Error> {
-    let entries = fs::read_dir(folder_path)?;
-
-    for entry in entries {
-        if let Ok(entry) = entry {
-            let file_path = entry.path();
-
-            if file_path.is_file() {
-                fs::remove_file(file_path)?;
-            }
-        }
-    }
-
-    Ok(())
 }
