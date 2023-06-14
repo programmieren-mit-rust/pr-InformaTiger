@@ -1,34 +1,31 @@
 use std::error::Error;
-use std::fs;
-use std::path::Path;
-use serde::{Deserialize, Serialize};
 use crate::{get_datastore_path, get_histogram, Histogram, PictureU8, read_picture, SearchIndex};
-use imsearch::{get_histogram, PictureU8, print_all_diagrams, read_picture};
-use imsearch::picture::Picture;
-use crate::picture::Picture;
+use crate::suchindex::Searchindex;
+
+
 
 
 impl compare_picture{
-    pub fn calcute_values_of_new_pictures(){
-       //Aufruf Histoogramme,
-        //Aufruf AverageBrighness
-    }
-    pub fn find_similar_images(file_path: &str, images: &[SearchIndex]) -> Vec<String> {
+    pub fn get_values_of_new_pictures(&self, search_index: &SearchIndex){
         // Lade das Bild vom gegebenen Dateipfad
         // Hier musst du den Code zum Laden des Bildes implementieren
-        generate_suchindex(PictureU8, averagebrightness, histograms);
+        println!("Filepath:{}", search_index.filepath);
         //Evas Funktion
-
-
+       //Aufruf Histoogramme,
+        //Aufruf AverageBrighness
         // Berechne den average_brightness des neuen Bildes
         // Hier rufst du die entsprechende Methode auf, die den average_brightness berechnet
+
         //Lotte und Jessi Funktion
 
         // Berechne das Histogramm des neuen Bildes
         // Hier rufst du die entsprechende Methode auf, die das Histogramm berechnet
-
+        //let histogramm = get_histogramm(&pic_f32.to_picture_u8);
         //Thomas Funktion
 
+    }
+    pub fn find_similar_images(file_path: &str, images: &[SearchIndex]) -> Vec<String> {
+        //Werte vergleichen mit denen aus json
         // Erstelle eine leere Liste, um die Ergebnisse zu speichern
         let mut similar_images: Vec<(f32, &SearchIndex)> = Vec::new();
 
