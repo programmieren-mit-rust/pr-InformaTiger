@@ -294,7 +294,7 @@ where
 ///
 /// Returns an error if there was any problem reading the picture file or writing the search index to the data file.
 pub fn generate_suchindex(filepath: String) -> Result<(),Box<dyn Error>>{
-    let pic_u8: PictureU8 = read_picture(filepath.clone());
+    let pic_u8: PictureU8 = read_picture(&filepath.clone());
     let histograms = get_histogram(&pic_u8);
     //TODO helligkeit
 

@@ -58,10 +58,8 @@ impl Display for PictureU8 {
         )
     }
 }
-
-#[derive(Debug, Clone)]
 /// Represents a picture with pixel values stored as `f32`.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct PictureF32 {
     pub lines: u32,   //height
     pub columns: u32, //width
