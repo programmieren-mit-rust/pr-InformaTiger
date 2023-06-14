@@ -108,6 +108,8 @@ pub fn count_files_in_folder(folder_path: &str) -> usize {
 pub fn format_filepath(filepath: &str) -> String {
     filepath.replace('\\', "/")
 }
+
+
 pub fn delete_files_in_folder(folder_path: &str) -> Result<(), std::io::Error> {
     let entries = fs::read_dir(folder_path)?;
 
