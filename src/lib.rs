@@ -16,7 +16,7 @@ use std::fs::File;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::Histogram,
-    crate::picture::PictureU8,
+    crate::picture::{Picture, PictureU8},
 };
 
 pub fn read_picture(path: &str) -> PictureU8 {
@@ -75,41 +75,58 @@ pub fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize
 ///
 /// # Arguments
 ///
-/// * `pic` - A reference to a `PictureU8` object containing the image data.
+/// * `pic` - A reference to a `Picture` trait object. These need to implement to_picture_u8()
+///         which is needed for this function.
 ///
 /// # Examples
 ///
 /// ```
 /// use imsearch::get_histogram;
-/// use imsearch::picture::PictureU8;
+/// use imsearch::picture::{PictureF32, PictureU8};
 ///
-/// // Create a sample picture
-/// let picture = PictureU8 {
+/// // Create a sample PictureU8
+/// let picture_u8 = PictureU8 {
 ///     lines: 1,
 ///     columns: 3,
 ///     data: vec![0, 255, 25, 99], // Sample image data
 ///     color_channel_count: 2,
 /// };
+/// // Create a sample PictureF32
+/// let picture_f32 = PictureF32 {
+///     lines: 1,
+///     columns: 3,
+///     data: vec![0.0, 1.0, 0.1, 0.38], // Sample image data
+///     color_channel_count: 2,
+/// };
 ///
-/// let histograms = get_histogram(&picture);
+/// let histograms_u8 = get_histogram(&picture_u8);
+/// let histograms_f32 = get_histogram(&picture_f32);
 ///
-/// assert_eq!(histograms.len(), picture.color_channel_count);
+/// assert_eq!(histograms_u8.len(), picture_u8.color_channel_count);
+/// assert_eq!(histograms_f32.len(), picture_f32.color_channel_count);
 ///
 /// // Assert the expected pixel counts in the histograms
-/// assert_eq!(histograms[0].bins[0], 2);
-/// assert_eq!(histograms[1].bins[1], 1);
-/// assert_eq!(histograms[1].bins[4], 1);
+/// assert_eq!(histograms_u8[0].bins[0], 2);
+/// assert_eq!(histograms_u8[1].bins[1], 1);
+/// assert_eq!(histograms_u8[1].bins[4], 1);
+///
+/// assert_eq!(histograms_f32[0].bins[0], 2);
+/// assert_eq!(histograms_f32[1].bins[1], 1);
+/// assert_eq!(histograms_f32[1].bins[4], 1);
 /// ```
-pub fn get_histogram(pic: &PictureU8) -> Vec<Histogram> {
-    let mut histograms: Vec<Histogram> = vec![Histogram::new(); pic.color_channel_count];
+pub fn get_histogram(pic: &dyn Picture) -> Vec<Histogram> {
+    // convert any Picture-Object to PictureU8
+    let pic_u8 = pic.to_picture_u8();
+
+    let mut histograms: Vec<Histogram> = vec![Histogram::new(); pic_u8.color_channel_count];
 
     // komplette Daten durchiterieren, immer je Daten zu 1 Pixel ansehen (abhängig von color_channel_count)
     let mut current_index: usize = 0;
-    while current_index < pic.data.len() {
-        for i in 0..pic.color_channel_count {
-            histograms[i].add_pixel_to_correct_bin(pic.data[current_index + i]);
+    while current_index < pic_u8.data.len() {
+        for i in 0..pic_u8.color_channel_count {
+            histograms[i].add_pixel_to_correct_bin(pic_u8.data[current_index + i]);
         }
-        current_index += pic.color_channel_count;
+        current_index += pic_u8.color_channel_count;
     }
 
     histograms
