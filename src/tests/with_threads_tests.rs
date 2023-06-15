@@ -1,5 +1,5 @@
 use crate::with_threads::{
-    another_get_histogram_with_threads, convert_data_to_f32, convert_data_to_f32_with_threads,
+    get_histogram_with_threads, convert_data_to_f32, convert_data_to_f32_with_threads,
     convert_data_to_u8, convert_data_to_u8_with_threads, take_every_nth_value,
 };
 use crate::PictureU8;
@@ -31,7 +31,7 @@ fn test_another_get_histogram_with_threads() {
     };
 
     // Calculate histograms using multiple threads
-    let histograms = another_get_histogram_with_threads(&pic);
+    let histograms = get_histogram_with_threads(&pic);
 
     // Assert the expected histogram values
     assert_eq!(histograms.len(), 2);

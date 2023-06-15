@@ -15,7 +15,7 @@ use std::thread;
 ///
 /// ```
 /// use imsearch::PictureU8;
-/// use imsearch::with_threads::another_get_histogram_with_threads;
+/// use imsearch::with_threads::get_histogram_with_threads;
 ///
 /// let pic = PictureU8 {
 ///     lines: 1,
@@ -25,13 +25,13 @@ use std::thread;
 /// };
 ///
 /// // Calculate histograms using multiple threads
-/// let histograms = another_get_histogram_with_threads(&pic);
+/// let histograms = get_histogram_with_threads(&pic);
 ///
 /// assert_eq!(histograms.len(), 2);
 /// assert_eq!(histograms[0].bins[4], 2);
 /// assert_eq!(histograms[1].bins[0], 2);
 /// ```
-pub fn another_get_histogram_with_threads(pic: &PictureU8) -> Vec<Histogram> {
+pub fn get_histogram_with_threads(pic: &PictureU8) -> Vec<Histogram> {
     let mut histograms: Vec<Histogram> = Vec::<Histogram>::new();
 
     // --- preparation for threads ---

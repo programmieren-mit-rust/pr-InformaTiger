@@ -1,10 +1,10 @@
 use imsearch::picture::Picture;
-use imsearch::with_threads::another_get_histogram_with_threads;
+use imsearch::with_threads::get_histogram_with_threads;
 use imsearch::{get_histogram, read_picture, PictureU8};
 use std::time::Instant;
 
 fn main() {
-    let pic_u8: PictureU8 = read_picture("src/gelbeOberleitung.png");
+    let pic_u8: PictureU8 = read_picture("src/tests/files/pictures_for_testing/bird.png");
     println!("PictureU8: {pic_u8}"); // :? führt hier dazu, dass data AUCH ausgegeben wird, das passt aber meist nicht in die Console
 
     // Create the PictureU8 instance and convert it to PictureF32
@@ -20,7 +20,7 @@ fn main() {
 
     // Measure the execution time of get_histogram_with_threads
     let start_time = Instant::now();
-    let histograms_with_threads = another_get_histogram_with_threads(&pic_u8);
+    let histograms_with_threads = get_histogram_with_threads(&pic_u8);
     let elapsed_time = start_time.elapsed();
 
     // Print the execution time
