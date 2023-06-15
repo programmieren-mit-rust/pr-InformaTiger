@@ -38,13 +38,14 @@ pub fn read_picture(path: &str) -> PictureU8 {
         data: Vec::from(picture_data), //muss von &[u8] gecastet werden
     }
 }
-pub fn print_all_diagrams(histograms: Vec<Histogram>, color_channel_count: usize) {
+
+pub fn print_all_diagrams(histograms: Vec<Histogram>) {
     println!("Aufteilung der Werte in {} Bins.", histograms[0].bins.len());
     //color_channel_count: 1 -> █
     //color_channel_count: 3 -> R, G, B
     //color_channel_count: 4 -> R, G, B, ▒
     for current_color_channel in 0..histograms.len() {
-        let bar_symbol = match color_channel_count {
+        let bar_symbol = match histograms.len() {
             1 => String::from("█"),
             3 => match current_color_channel {
                 0 => red_escape("█"),
