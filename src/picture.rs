@@ -120,7 +120,7 @@ pub trait AverageBrightness {
     fn average_brightness(&self, grayray: &Vec<f32>) -> f32; //Grayray-Werte werden Addiert und durch Anzahl pixel (arraylänge) geteilt --> Wert der Mitlleren Helligkeit.
 }
 
-impl AverageBrightness for PictureF32 {
+impl<T: Picture> AverageBrightness for T {
     fn gray_intensity_single_val(
         &self,
         red_colour_val: f32,
@@ -134,18 +134,20 @@ impl AverageBrightness for PictureF32 {
     }
 
     fn gray_intensity_array(&self) -> Vec<f32> {
+        let pic_f32 = &self.to_picture_f32();
+
         let mut grayray: Vec<f32> = Vec::new();
         let mut count_colour: usize = 0;
 
-        if self.color_channel_count >= 3 {
+        if pic_f32.color_channel_count >= 3 {
             //Colour_count muss 3 oder 4 sein, also größer als 2.
-            while count_colour < self.data.len() {
-                let r = self.data[count_colour]; //  Wert1 -> Rot
-                let g = self.data[count_colour + 1]; // Wert2 -> Grün
-                let b = self.data[count_colour + 2]; // Wert3 -> Blau
+            while count_colour < pic_f32.data.len() {
+                let r = pic_f32.data[count_colour]; //  Wert1 -> Rot
+                let g = pic_f32.data[count_colour + 1]; // Wert2 -> Grün
+                let b = pic_f32.data[count_colour + 2]; // Wert3 -> Blau
 
-                grayray.push(self.gray_intensity_single_val(r, g, b));
-                count_colour += self.color_channel_count;
+                grayray.push(pic_f32.gray_intensity_single_val(r, g, b));
+                count_colour += pic_f32.color_channel_count;
             }
         }
 
