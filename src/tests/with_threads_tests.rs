@@ -21,7 +21,7 @@ fn test_take_every_nth_value() {
 }
 
 #[test]
-fn test_another_get_histogram_with_threads() {
+fn test_get_histogram_with_threads() {
     // Create a sample PictureU8 instance
     let pic = PictureU8 {
         lines: 1,
