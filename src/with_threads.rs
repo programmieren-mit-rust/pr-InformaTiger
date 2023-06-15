@@ -158,6 +158,31 @@ pub fn divide_data(data: &Vec<u8>, into_n_parts: usize) -> Vec<Vec<u8>> {
     divided_data
 }
 
+/// Converts a slice of `f32` values to a `Vec<u8>`.
+///
+/// The function takes the input data and performs the conversion from the range [0.0, 1.0]
+/// to the range [0, 255] for each value.
+///
+/// # Arguments
+///
+/// * `data` - A slice of `f32` values representing the input data.
+///
+/// # Returns
+///
+/// A `Vec<u8>` containing the converted data.
+///
+/// # Examples
+///
+/// ```
+/// use imsearch::with_threads::convert_data_to_u8;
+/// let data = vec![0.0, 0.5, 1.0];
+/// let converted_data = convert_data_to_u8(&data);
+/// assert_eq!(converted_data, vec![0, 127, 255]);
+/// ```
+///
+/// # Panics
+///
+/// The function does not panic.
 pub fn convert_data_to_u8(data: &[f32]) -> Vec<u8> {
     let mut new_data = Vec::<u8>::new();
 
@@ -167,6 +192,31 @@ pub fn convert_data_to_u8(data: &[f32]) -> Vec<u8> {
     new_data
 }
 
+/// Converts a slice of `u8` values to a `Vec<f32>`.
+///
+/// The function takes the input data and performs the conversion from the range [0, 255]
+/// to the range [0.0, 1.0] for each value.
+///
+/// # Arguments
+///
+/// * `data` - A slice of `u8` values representing the input data.
+///
+/// # Returns
+///
+/// A `Vec<f32>` containing the converted data.
+///
+/// # Examples
+///
+/// ```
+/// use imsearch::with_threads::convert_data_to_f32;
+/// let data = vec![0, 127, 255];
+/// let converted_data = convert_data_to_f32(&data);
+/// assert_eq!(converted_data, vec![0.0, 0.49803922, 1.0]);
+/// ```
+///
+/// # Panics
+///
+/// The function does not panic.
 pub fn convert_data_to_f32(data: &[u8]) -> Vec<f32> {
     let mut new_data = Vec::<f32>::new();
 
@@ -178,7 +228,42 @@ pub fn convert_data_to_f32(data: &[u8]) -> Vec<f32> {
 }
 
 const THREAD_COUNT: usize = 4;
+const THREAD_THRESHOLD: usize = 200;
+/// Converts a slice of `f32` values to a `Vec<u8>` with parallel processing using threads.
+///
+/// The function takes the input data and performs the conversion from the range [0.0, 1.0]
+/// to the range [0, 255] for each value using parallel processing with multiple threads.
+///
+/// # Arguments
+///
+/// * `data` - A slice of `f32` values representing the input data.
+///
+/// # Returns
+///
+/// A `Vec<u8>` containing the converted data.
+///
+/// # Examples
+///
+/// ```
+/// use imsearch::with_threads::convert_data_to_u8_with_threads;
+/// let data = vec![0.0, 0.5, 1.0];
+/// let converted_data = convert_data_to_u8_with_threads(&data);
+/// assert_eq!(converted_data, vec![0, 127, 255]);
+/// ```
+///
+/// # Panics
+///
+/// The function does not panic. If the input data is empty, an empty `Vec<u8>` will be returned.
 pub fn convert_data_to_u8_with_threads(data: &[f32]) -> Vec<u8> {
+    if data.is_empty() {
+        return Vec::<u8>::new();
+    }
+
+    // if data is not particularly long don't bother using threads
+    if data.len() < (THREAD_COUNT * THREAD_THRESHOLD) {
+        return convert_data_to_u8(data);
+    }
+
     let mut new_data = Vec::<u8>::new();
 
     // --- preparation for threads ---
@@ -224,7 +309,39 @@ pub fn convert_data_to_u8_with_threads(data: &[f32]) -> Vec<u8> {
     new_data
 }
 
+/// Converts a slice of u8 values to a Vec of f32 values in parallel using multiple threads.
+///
+/// This function takes a slice of u8 values and converts each value from the range [0, 255] to the range [0.0, 1.0]
+/// by dividing each value by 255.0. The conversion is performed in parallel using multiple threads to improve performance.
+/// If the input data is empty, an empty Vec<f32> will be returned.
+/// If the input data length is below a certain threshold, it falls back to the non-threaded version (`convert_data_to_u8`).
+///
+/// # Arguments
+///
+/// * `data` - A slice of u8 values to be converted.
+///
+/// # Examples
+///
+/// ```
+/// use imsearch::with_threads::convert_data_to_f32_with_threads;
+/// let data = [0, 128, 255];
+/// let converted_data = convert_data_to_f32_with_threads(&data);
+/// assert_eq!(converted_data, [0.0, 0.5019608, 1.0]);
+/// ```
+///
+/// # Panics
+///
+/// This function does not panic.
 pub fn convert_data_to_f32_with_threads(data: &[u8]) -> Vec<f32> {
+    if data.is_empty() {
+        return Vec::<f32>::new();
+    }
+
+    // if data is not particularly long don't bother using threads
+    if data.len() < (THREAD_COUNT * THREAD_THRESHOLD) {
+        return convert_data_to_f32(data);
+    }
+
     let mut new_data = Vec::<f32>::new();
 
     // --- preparation for threads ---
