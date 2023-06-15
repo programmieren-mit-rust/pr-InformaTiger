@@ -62,8 +62,8 @@ fn test_another_get_histogram_with_threads() {
 
     // Assert the expected histogram values
     assert_eq!(histograms.len(), 2);
-    assert_eq!(histograms[0].bins[4].pixel_count, 2);
-    assert_eq!(histograms[1].bins[0].pixel_count, 2);
+    assert_eq!(histograms[0].bins[4], 2);
+    assert_eq!(histograms[1].bins[0], 2);
 }
 
 #[test]
