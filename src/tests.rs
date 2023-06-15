@@ -17,3 +17,6 @@ mod suchindex_tests;
 
 #[cfg(test)]
 mod test_2a;
+
+#[cfg(test)]
+mod lib_tests;
