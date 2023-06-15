@@ -1,5 +1,5 @@
 use crate::picture::PictureF32;
-use crate::{get_histogram, print_all_diagrams, Histogram, Picture, PictureU8};
+use crate::{get_histogram, Histogram, Picture, PictureU8};
 
 #[test]
 fn test_creating_new_data_type() {
