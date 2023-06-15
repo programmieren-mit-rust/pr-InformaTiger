@@ -129,35 +129,6 @@ pub fn take_every_nth_value(vec: &Vec<u8>, n: usize, start_at_index: usize) -> V
     new_vec
 }
 
-/// Divides the given `data` into `into_n_parts` parts and returns a new vector of divided data.
-///
-/// # Arguments
-///
-/// * `data` - The input data to be divided.
-/// * `into_n_parts` - The number of parts to divide the data into.
-///
-/// # Examples
-///
-/// Divide a vector of u8 data into 3 parts:
-///
-/// ```
-/// use imsearch::with_threads::divide_data;
-///
-/// let data = vec![1, 2, 3, 4, 5, 6, 7, 8, 9];
-/// let divided_data = divide_data(&data, 3);
-///
-/// assert_eq!(divided_data, vec![vec![1, 4, 7], vec![2, 5, 8], vec![3, 6, 9]]);
-/// ```
-pub fn divide_data(data: &Vec<u8>, into_n_parts: usize) -> Vec<Vec<u8>> {
-    let mut divided_data = Vec::new();
-
-    for i in 0..into_n_parts {
-        divided_data.push(take_every_nth_value(data, into_n_parts, i));
-    }
-
-    divided_data
-}
-
 /// Converts a slice of `f32` values to a `Vec<u8>`.
 ///
 /// The function takes the input data and performs the conversion from the range [0.0, 1.0]

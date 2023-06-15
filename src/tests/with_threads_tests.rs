@@ -1,35 +1,8 @@
 use crate::with_threads::{
     another_get_histogram_with_threads, convert_data_to_f32, convert_data_to_f32_with_threads,
-    convert_data_to_u8, convert_data_to_u8_with_threads, divide_data, take_every_nth_value,
+    convert_data_to_u8, convert_data_to_u8_with_threads, take_every_nth_value,
 };
 use crate::PictureU8;
-
-#[test]
-fn test_divide_data() {
-    let data = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
-    let divided_into_2_parts = divide_data(&data, 2);
-    let divided_into_3_parts = divide_data(&data, 3);
-    let divided_into_4_parts = divide_data(&data, 4);
-
-    assert_eq!(
-        divided_into_2_parts,
-        vec![vec![1, 3, 5, 7, 9, 11], vec![2, 4, 6, 8, 10, 12]]
-    );
-    assert_eq!(
-        divided_into_3_parts,
-        vec![vec![1, 4, 7, 10], vec![2, 5, 8, 11], vec![3, 6, 9, 12]]
-    );
-    assert_eq!(
-        divided_into_4_parts,
-        vec![
-            vec![1, 5, 9],
-            vec![2, 6, 10],
-            vec![3, 7, 11],
-            vec![4, 8, 12]
-        ]
-    );
-}
 
 #[test]
 fn test_take_every_nth_value() {
