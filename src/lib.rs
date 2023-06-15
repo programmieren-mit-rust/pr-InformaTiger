@@ -39,8 +39,61 @@ pub fn read_picture(path: &str) -> PictureU8 {
     }
 }
 
+/// Prints histograms of color channels using different bar symbols based on the number of color channels.
+///
+/// This function takes a vector of histograms and prints each histogram in a separate section. The bar symbols used to represent
+/// the histogram bins vary based on the number of color channels present in the histograms.
+///
+/// # Arguments
+///
+/// * `histograms` - A vector of Histogram structs representing the histograms of color channels.
+///
+/// # Examples
+///
+/// ```
+/// use imsearch::histogram::Histogram;
+/// use imsearch::print_all_diagrams;
+///
+/// let histogram1 = Histogram {
+///     bins: vec![0, 2, 1, 3, 2, 0],
+/// };
+/// let histogram2 = Histogram {
+///     bins: vec![1, 4, 2, 1, 0, 1],
+/// };
+///
+/// let histograms = vec![histogram1, histogram2];
+///
+/// print_all_diagrams(histograms);
+/// ```
+///
+/// Output:
+/// ```text
+/// Division of the values in 6 bins.
+/// Histogram of color channel 0:
+/// 0: ███
+/// 1: ████
+/// 2: █
+/// 3: ███
+/// 4: ████
+/// 5: ███
+///
+/// Histogram of color channel 1:
+/// 0: █
+/// 1: ████
+/// 2: ██
+/// 3: █
+/// 4:
+/// 5: █
+/// ```
+///
+/// # Panics
+///
+/// This function does not panic.
 pub fn print_all_diagrams(histograms: Vec<Histogram>) {
-    println!("Aufteilung der Werte in {} Bins.", histograms[0].bins.len());
+    println!(
+        "Division of the values in {} bins.",
+        histograms[0].bins.len()
+    );
     //color_channel_count: 1 -> █
     //color_channel_count: 3 -> R, G, B
     //color_channel_count: 4 -> R, G, B, ▒
@@ -63,7 +116,7 @@ pub fn print_all_diagrams(histograms: Vec<Histogram>) {
             _ => String::from("█"),
         };
 
-        println!("Histogramm zu Farbkanal {current_color_channel}:");
+        println!("Histogram of color channel {current_color_channel}:");
 
         histograms[current_color_channel].print_diagram(bar_symbol);
 
