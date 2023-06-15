@@ -1,4 +1,7 @@
-use crate::with_threads::{another_get_histogram_with_threads, divide_data, take_every_nth_value};
+use crate::with_threads::{
+    another_get_histogram_with_threads, convert_data_to_f32, convert_data_to_f32_with_threads,
+    convert_data_to_u8, convert_data_to_u8_with_threads, divide_data, take_every_nth_value,
+};
 use crate::PictureU8;
 
 #[test]
@@ -61,4 +64,104 @@ fn test_another_get_histogram_with_threads() {
     assert_eq!(histograms.len(), 2);
     assert_eq!(histograms[0].bins[4].pixel_count, 2);
     assert_eq!(histograms[1].bins[0].pixel_count, 2);
+}
+
+#[test]
+fn test_convert_data_to_f32_with_threads() {
+    // Test case 1: Empty data
+    let data: Vec<u8> = Vec::new();
+    let converted_data = convert_data_to_f32_with_threads(&data);
+    assert_eq!(converted_data, Vec::<f32>::new());
+
+    // Test case 2: Random data
+    let data = vec![0, 128, 255];
+    let converted_data = convert_data_to_f32_with_threads(&data);
+    assert_eq!(converted_data, vec![0.0, 0.5019608, 1.0]);
+
+    // Test case 3: Data length below the threshold
+    let data = vec![0; 100];
+    let converted_data = convert_data_to_f32_with_threads(&data);
+    assert_eq!(converted_data, vec![0.0; 100]);
+
+    // Test case 4: Data length above the threshold
+    let data = vec![255; 1_000_000];
+    let converted_data = convert_data_to_f32_with_threads(&data);
+    assert_eq!(converted_data.len(), 1_000_000);
+    // Calculate the sum manually using a for-loop to prevent an overflow
+    let mut sum: f32 = 0.0;
+    for value in &converted_data {
+        sum += value;
+    }
+    assert_eq!(sum, 1.0 * 1_000_000.0);
+}
+
+#[test]
+fn test_convert_data_to_u8_with_threads() {
+    // Test case 1: Empty data
+    let data: Vec<f32> = Vec::new();
+    let converted_data = convert_data_to_u8_with_threads(&data);
+    assert_eq!(converted_data, Vec::<u8>::new());
+
+    // Test case 2: Random data
+    let data = vec![0.0, 0.5, 1.0];
+    let converted_data = convert_data_to_u8_with_threads(&data);
+    assert_eq!(converted_data, vec![0, 127, 255]);
+
+    // Test case 3: Maximum data size
+    let data: Vec<f32> = vec![1.0; 1_000_000];
+    let converted_data = convert_data_to_u8_with_threads(&data);
+    assert_eq!(converted_data.len(), 1_000_000);
+
+    // Calculate the sum manually using a for-loop to prevent an overflow
+    let mut sum: u32 = 0;
+    for value in &converted_data {
+        sum += u32::from(*value);
+    }
+
+    assert_eq!(sum, 255 * 1_000_000);
+}
+
+#[test]
+fn test_convert_data_to_u8() {
+    // Test case 1: Empty data
+    let data: Vec<f32> = Vec::new();
+    let converted_data = convert_data_to_u8(&data);
+    assert_eq!(converted_data, Vec::<u8>::new());
+
+    // Test case 2: Random data
+    let data = vec![0.0, 0.5, 1.0];
+    let converted_data = convert_data_to_u8(&data);
+    assert_eq!(converted_data, vec![0, 127, 255]);
+
+    // Test case 3: Maximum data size without arithmetic overflow
+    let data: Vec<f32> = vec![1.0; 1_000_000];
+    let converted_data = convert_data_to_u8(&data);
+    assert_eq!(converted_data.len(), 1_000_000);
+
+    // Calculate the sum manually using a for-loop to prevent an overflow
+    let mut sum: u32 = 0;
+    for value in &converted_data {
+        sum += u32::from(*value);
+    }
+
+    assert_eq!(sum, 255 * 1_000_000);
+}
+
+#[test]
+fn test_convert_data_to_f32() {
+    // Test case 1: Empty data
+    let data: Vec<u8> = Vec::new();
+    let converted_data = convert_data_to_f32(&data);
+    assert_eq!(converted_data, Vec::<f32>::new());
+
+    // Test case 2: Random data
+    let data = vec![0, 127, 255];
+    let converted_data = convert_data_to_f32(&data);
+    assert_eq!(converted_data, vec![0.0, 0.49803922, 1.0]);
+
+    // Test case 3: Maximum data size
+    let data: Vec<u8> = vec![255; 1_000_000];
+    let converted_data = convert_data_to_f32(&data);
+    assert_eq!(converted_data.len(), 1_000_000);
+    assert_eq!(converted_data.iter().sum::<f32>(), 1.0 * 1_000_000.0);
 }
