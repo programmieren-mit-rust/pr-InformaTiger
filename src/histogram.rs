@@ -1,30 +1,12 @@
 use serde::{Deserialize, Serialize};
-use std::fmt::{Display, Formatter};
 
-/// Represents a bin in the histogram.
-///
-/// A bin represents a range of values in the histogram.
-/// It contains the bin index and the number of pixels that fall into that bin.
-#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
-pub struct Bin {
-    pub bin_index: u8,
-    pub pixel_count: u32,
-}
-
-impl Bin {
-    /// Adds a pixel to the bin's count.
-    pub fn add_pixel(&mut self) {
-        self.pixel_count += 1;
-    }
-}
-
-/// Represents a histogram with multiple bins.
+/// Represents a histogram with multiple bins that are numbers in the Vec<u32>
 ///
 /// A histogram divides the value range (0-255 or 0.0 to 1.0) into a specified number of bins.
 /// This depends on the constant BIN_COUNT.
 #[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Histogram {
-    pub bins: Vec<Bin>,
+    pub bins: Vec<u32>,
 }
 
 pub const BIN_COUNT: u8 = 5; // only dividers of 255 work: 1, 3, 5, 17, 51, 85, 255
@@ -40,17 +22,9 @@ impl Histogram {
     /// assert_eq!(histogram.bins.len(), BIN_COUNT as usize);
     /// ```
     pub fn new() -> Histogram {
-        let mut bins = Vec::<Bin>::new();
-
-        // Create BIN_COUNT number of bins
-        for bin_index in 0..BIN_COUNT {
-            bins.push(Bin {
-                bin_index,
-                pixel_count: 0,
-            });
+        Histogram {
+            bins: vec![0; BIN_COUNT as usize],
         }
-
-        Histogram { bins }
     }
 
     /// Adds a pixel to the correct bin based on its color value.
@@ -78,7 +52,7 @@ impl Histogram {
     /// histogram.add_pixel_to_correct_bin(0);
     ///
     /// // Verify that the pixel count in the corresponding bin has increased
-    /// assert_eq!(histogram.bins[0].pixel_count, 1);
+    /// assert_eq!(histogram.bins[0], 1);
     /// ```
     pub fn add_pixel_to_correct_bin(&mut self, color_value: u8) {
         let mut lower_bound: usize = 0;
@@ -89,7 +63,7 @@ impl Histogram {
         while upper_bound <= 255 && bin_index < self.bins.len() {
             // Check if the color_value falls within the current bin's range
             if color_value >= lower_bound as u8 && color_value <= upper_bound as u8 {
-                self.bins[bin_index].add_pixel();
+                self.bins[bin_index] += 1;
                 return;
             }
 
@@ -119,18 +93,11 @@ impl Histogram {
     /// # Example
     ///
     /// ```
-    /// use imsearch::histogram::{Histogram, Bin};
+    /// use imsearch::histogram::Histogram;
     ///
     /// let histogram = Histogram {
-    ///     bins: vec![
-    ///         Bin { bin_index: 0, pixel_count: 5 },
-    ///         Bin { bin_index: 1, pixel_count: 10 },
-    ///         Bin { bin_index: 2, pixel_count: 8 },
-    ///         Bin { bin_index: 3, pixel_count: 3 },
-    ///         Bin { bin_index: 4, pixel_count: 6 },
-    ///     ],
+    ///     bins: vec![5, 10, 8, 3, 6],
     /// };
-    ///
     /// histogram.print_diagram("#".to_string());
     /// ```
     /// Output:
@@ -145,10 +112,10 @@ impl Histogram {
     /// ```
     pub fn print_diagram(&self, bar_symbol: String) {
         // find max_value to determine the scale
-        let mut max_value = self.bins[0].pixel_count;
+        let mut max_value = self.bins[0];
         for bin_index in 1..self.bins.len() {
-            if self.bins[bin_index].pixel_count > max_value {
-                max_value = self.bins[bin_index].pixel_count;
+            if self.bins[bin_index] > max_value {
+                max_value = self.bins[bin_index];
             }
         }
 
@@ -164,16 +131,16 @@ impl Histogram {
 
         // Table Body
         for bin_index in 0..self.bins.len() {
-            let bar_length: usize = ((self.bins[bin_index].pixel_count as f32 / max_value as f32)
-                * MAX_BAR_WIDTH) as usize;
+            let bar_length: usize =
+                ((self.bins[bin_index] as f32 / max_value as f32) * MAX_BAR_WIDTH) as usize;
             let bar = bar_symbol.repeat(bar_length);
 
             // print value range and bar
             println!(
                 "{label:7}|{} {amount}",
                 bar,
-                label = format!("{}-{}", lower_bound, upper_bound),
-                amount = self.bins[bin_index].pixel_count
+                label = format!("{lower_bound}-{upper_bound}"),
+                amount = self.bins[bin_index],
             );
 
             //-----------------------
@@ -189,30 +156,5 @@ impl Histogram {
                 upper_bound += 255 / self.bins.len();
             }
         }
-    }
-}
-
-impl Display for Bin {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(
-            f,
-            "( Bin Index: {}, Pixel Count: {} )",
-            self.bin_index, self.pixel_count,
-        )
-    }
-}
-
-impl Display for Histogram {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        for i in 0..self.bins.len() {
-            writeln!(
-                f,
-                "\tBin Index: {}, Pixel Count: {}",
-                self.bins[i].bin_index, self.bins[i].pixel_count
-            )
-            .expect("Error while writing content of bins");
-        }
-
-        Ok(())
     }
 }

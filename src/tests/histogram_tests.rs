@@ -1,14 +1,4 @@
-use crate::{get_histogram, Bin, Histogram, PictureU8};
-
-#[test]
-fn test_bin_add_pixel() {
-    let mut bin = Bin {
-        bin_index: 0,
-        pixel_count: 0,
-    };
-    bin.add_pixel();
-    assert_eq!(bin.pixel_count, 1);
-}
+use crate::{get_histogram, Histogram, PictureU8};
 
 #[test]
 fn test_histogram_creation() {
@@ -19,20 +9,7 @@ fn test_histogram_creation() {
 #[test]
 fn test_histogram_bin_count() {
     let histogram = Histogram {
-        bins: vec![
-            Bin {
-                bin_index: 0,
-                pixel_count: 10,
-            },
-            Bin {
-                bin_index: 1,
-                pixel_count: 20,
-            },
-            Bin {
-                bin_index: 2,
-                pixel_count: 15,
-            },
-        ],
+        bins: vec![10, 20, 15],
     };
     assert_eq!(histogram.bins.len(), 3);
 }
@@ -51,9 +28,9 @@ fn test_get_histogram() {
     assert_eq!(histograms.len(), picture.color_channel_count);
 
     // Assert the expected pixel counts in the histograms
-    assert_eq!(histograms[0].bins[0].pixel_count, 2);
-    assert_eq!(histograms[1].bins[1].pixel_count, 1);
-    assert_eq!(histograms[1].bins[4].pixel_count, 1);
+    assert_eq!(histograms[0].bins[0], 2);
+    assert_eq!(histograms[1].bins[1], 1);
+    assert_eq!(histograms[1].bins[4], 1);
 }
 
 #[test]
@@ -69,9 +46,9 @@ fn test_add_pixel_to_correct_bin() {
     histogram.add_pixel_to_correct_bin(255);
 
     // Assert the pixel counts in the bins
-    assert_eq!(histogram.bins[0].pixel_count, 1);
-    assert_eq!(histogram.bins[1].pixel_count, 1);
-    assert_eq!(histogram.bins[2].pixel_count, 1);
-    assert_eq!(histogram.bins[3].pixel_count, 1);
-    assert_eq!(histogram.bins[4].pixel_count, 1);
+    assert_eq!(histogram.bins[0], 1);
+    assert_eq!(histogram.bins[1], 1);
+    assert_eq!(histogram.bins[2], 1);
+    assert_eq!(histogram.bins[3], 1);
+    assert_eq!(histogram.bins[4], 1);
 }

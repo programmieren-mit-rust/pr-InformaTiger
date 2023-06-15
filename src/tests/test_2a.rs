@@ -27,7 +27,7 @@ fn test_gray_intensity_array() {
         columns: 0,
     };
 
-    let result = picture.gray_intensity_array(picture.clone());
+    let result = picture.gray_intensity_array();
     //ÜberprÜfung des Ergebnisses
     assert_eq!(result, vec![0.1755, 0.17679998]); // Erwartetes Ergebnis basierend auf der Berechnung
 
