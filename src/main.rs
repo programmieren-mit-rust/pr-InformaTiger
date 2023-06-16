@@ -1,6 +1,7 @@
 use imsearch::picture::{AverageBrightness, Picture};
 use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
 use std::io;
+use imsearch::suchindex::{analyse_pictures, SearchIndex};
 
 const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 
@@ -37,8 +38,11 @@ pub fn eingabe() -> String {
     // Den eingegen Path extrahieren
     let input_lib = input_searchlib.trim().to_string();
 
-    return input_lib;
+
     //TODO hier müsste man den Inpu in nen Suchiex schreiben
+    analyse_pictures(&input_lib);
+    return input_lib;
+
 }
 
 pub fn wiederhol_eingabe() {
