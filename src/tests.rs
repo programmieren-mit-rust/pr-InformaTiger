@@ -6,4 +6,4 @@ mod file_handler_tests;
 mod histogram_tests;
 mod picture_tests;
 mod suchindex_tests;
-mod test_2a;
+mod test_averagebrightness;
