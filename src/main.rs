@@ -6,21 +6,16 @@ const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 
 fn main() {
     //Eingabe vom User , der Bilder die in den Search Index kommen / Suchpool
+    eingabe();
+    //TODO Suchindex für alle eingaben erstellen am besten in funktion eingabe()
+    wiederhol_eingabe();
 
+    //eingabe_suchbild();
+    let picture_path = eingabe_suchbild();
 
-
-
-    // Eingabe lesen Such Bild
-    println!("Bitte geben Sie den Datei-Pfad Ihres Bildes ein:");
-    let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("Fehler beim Lesen der Eingabe");
-    // Das eingegebene Wort extrahieren
-    let file_path = input.trim();
-
-    let pic_u8: PictureU8 = read_picture(file_path);
+    let pic_u8: PictureU8 = read_picture(&picture_path);
     println!("PictureU8: {pic_u8}"); // :? führt hier dazu, dass data AUCH ausgegeben wird, das passt aber meist nicht in die Console
-    // User Input (Eventuell noch mit GUI)
-
+                                     // User Input (Eventuell noch mit GUI)
 
     let histograms = get_histogram(&pic_u8);
     print_all_diagrams(histograms, pic_u8.color_channel_count); //TODO Werte nach Balken schreiben? (auf gleicher höhe (nach 40 Zeichen) oder direkt hinter Balken?) -> als optionales Feature?
@@ -31,36 +26,50 @@ fn main() {
     println!("Averagebrightness: {average_brightness}");
 }
 
-pub fn einlesen()->String {
-    println!("Bitte geben Sie den Datei-Pfad ihres Bilder-Ordners oder Bildes an ,in dem sie Bilder suchen wollen:(Schreiben Sie 'nein', wenn sie dies Übersprinen wollen)");
+
+
+pub fn eingabe() -> String {
+    println!("Bitte geben Sie den Datei-Pfad ihres Bilder-Ordners oder Bildes an ,aus dem sie Bilder suchen wollen:");
     let mut input_searchlib = String::new();
-    io::stdin().read_line(&mut input_searchlib).expect("Fehler beim Lesen der Eingabe");
-    // Das eingegebene Wort extrahieren
+    io::stdin()
+        .read_line(&mut input_searchlib)
+        .expect("Fehler beim Lesen der Eingabe");
+    // Den eingegen Path extrahieren
+    let input_lib = input_searchlib.trim().to_string();
 
-    let no= "nein";
-    match input_lib      {
-        no =>{ println!("Übersprungen!");}
-
-        _ => {let input_lip = input_searchlib.trim();
-            ;
-        }
     return input_lib;
-    }
-
+    //TODO hier müsste man den Inpu in nen Suchiex schreiben
 }
 
-pub fn wiederhol_eingbe(){
-    print!("Wollen Sie ihre Suchbibliothek noch erweitern?(ja/nein):");
+pub fn wiederhol_eingabe() {
+    println!("Wollen Sie ihre Suchbibliothek noch erweitern?(ja/nein):");
     let mut antwort = String::new();
-    io::stdin().read_line(&mut antwort).expect("Fehler beim Lesen der Eingabe");
-    let final_answer = input_searchlib.trim();
+    io::stdin()
+        .read_line(&mut antwort)
+        .expect("Fehler beim Lesen der Eingabe");
+    let final_answer = antwort.trim();
 
-    match final_answer{
-        f if f.contains("nein")=>{println!("OK, Eingabe wird übersprungen");}
-        f if f.contains("ja")=>{einlesen();}
-        _ => {wiederhol_eingbe();}
-
-
+    match final_answer {
+        f if f.contains("nein") => {
+            println!("OK, Eingabe wird übersprungen");
+        }
+        f if f.contains("ja") => {
+            eingabe();
+        }
+        _ => {
+            wiederhol_eingabe();
+        }
     }
+}
 
+fn eingabe_suchbild() -> String {
+    println!("Suche ähnliche Bilder für (Eingabe Datei-Pfad für Bild):");
+
+    let mut input_pic = String::new();
+    io::stdin()
+        .read_line(&mut input_pic)
+        .expect("Fehler beim Lesen der Eingabe");
+
+    let final_picture = input_pic.trim().to_string();
+    return final_picture;
 }
