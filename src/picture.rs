@@ -108,7 +108,7 @@ impl Display for PictureF32 {
     }
 }
 
-/// Trait for calculating the average brightness of an im
+/// Trait for calculating the average brightness of an image.
 
 pub trait AverageBrightness {
     /// Calculates the gray intensity value for a single pixel given the red, green, and blue color values.
