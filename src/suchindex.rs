@@ -411,7 +411,9 @@ pub fn search_index_exists(search_index_element: SearchIndex) -> Result<bool, Bo
     let stored_data: Vec<SearchIndex> = read_data_from_datastore()?;
 
     // Check if the search_index_element is present in the stored_data
-    let found = stored_data.iter().any(|stored_element| *stored_element == search_index_element);
+    let found = stored_data
+        .iter()
+        .any(|stored_element| *stored_element == search_index_element);
 
     Ok(found)
 }
