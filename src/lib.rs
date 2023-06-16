@@ -19,6 +19,32 @@ pub use {
     crate::picture::{Picture, PictureU8},
 };
 
+/// Reads an image file and returns the image data as a `PictureU8` struct.
+///
+/// This function reads the image file located at the specified path and returns the image data as a `PictureU8` struct,
+/// which contains information about the dimensions and color channels of the image, along with the pixel data.
+///
+/// # Arguments
+///
+/// * `path` - A string slice representing the path to the image file.
+///
+/// # Examples
+///
+/// ```
+/// use imsearch::read_picture;
+///
+/// let path = "src/tests/files/pictures_for_testing/bird.png";
+/// let picture = read_picture(path);
+///
+/// println!("Lines: {}", picture.lines);
+/// println!("Columns: {}", picture.columns);
+/// println!("Color Channels: {}", picture.color_channel_count);
+/// println!("Data: {:?}", picture.data);
+/// ```
+///
+/// # Panics
+///
+/// This function panics if there are any errors while reading the image file or decoding its contents.
 pub fn read_picture(path: &str) -> PictureU8 {
     //load picture
     let decoder = png::Decoder::new(File::open(path).unwrap());
