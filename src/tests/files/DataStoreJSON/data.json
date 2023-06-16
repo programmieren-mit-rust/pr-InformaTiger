@@ -1,103 +1,2709 @@
 [
   {
-    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filepath": "src/Bilder Programmentwurf-20230521/backlit_flower.png",
+    "filename": "backlit_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          727506,
+          661562,
+          327287,
+          199953,
+          151532
+        ]
+      },
+      {
+        "bins": [
+          731589,
+          833328,
+          266690,
+          153229,
+          83004
+        ]
+      },
+      {
+        "bins": [
+          875083,
+          687445,
+          185034,
+          208632,
+          111646
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2067840
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/ball_flower.png",
+    "filename": "ball_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          553352,
+          539030,
+          288890,
+          127429,
+          6335
+        ]
+      },
+      {
+        "bins": [
+          397636,
+          622148,
+          382109,
+          109639,
+          3504
+        ]
+      },
+      {
+        "bins": [
+          548215,
+          487746,
+          232685,
+          120195,
+          126195
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1515036
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/bird.png",
     "filename": "bird",
     "average_brightness": 6.9,
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/blue_sky_hessen.png",
+    "filename": "blue_sky_hessen",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          180171,
+          742325,
+          447379,
+          35658,
+          3
+        ]
+      },
+      {
+        "bins": [
+          179591,
+          583904,
+          553820,
+          88220,
+          1
+        ]
+      },
+      {
+        "bins": [
+          383431,
+          213391,
+          420107,
+          367678,
+          20929
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1405536
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_gray.png",
+    "filename": "daisy_gray",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1400672
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_reddish_1.png",
+    "filename": "daisy_reddish_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          208494,
+          1443609,
+          302925,
+          190754,
+          89234
+        ]
+      },
+      {
+        "bins": [
+          32772,
+          1620031,
+          337849,
+          194570,
+          49794
+        ]
+      },
+      {
+        "bins": [
+          167330,
+          1528741,
+          295623,
+          199544,
+          43778
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2235016
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/backlit_flower.png",
+    "filename": "backlit_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          727506,
+          661562,
+          327287,
+          199953,
+          151532
+        ]
+      },
+      {
+        "bins": [
+          731589,
+          833328,
+          266690,
+          153229,
+          83004
+        ]
+      },
+      {
+        "bins": [
+          875083,
+          687445,
+          185034,
+          208632,
+          111646
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2067840
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/ball_flower.png",
+    "filename": "ball_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          553352,
+          539030,
+          288890,
+          127429,
+          6335
+        ]
+      },
+      {
+        "bins": [
+          397636,
+          622148,
+          382109,
+          109639,
+          3504
+        ]
+      },
+      {
+        "bins": [
+          548215,
+          487746,
+          232685,
+          120195,
+          126195
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1515036
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/blue_sky_hessen.png",
+    "filename": "blue_sky_hessen",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          180171,
+          742325,
+          447379,
+          35658,
+          3
+        ]
+      },
+      {
+        "bins": [
+          179591,
+          583904,
+          553820,
+          88220,
+          1
+        ]
+      },
+      {
+        "bins": [
+          383431,
+          213391,
+          420107,
+          367678,
+          20929
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1405536
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_gray.png",
+    "filename": "daisy_gray",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1400672
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_reddish_1.png",
+    "filename": "daisy_reddish_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          208494,
+          1443609,
+          302925,
+          190754,
+          89234
+        ]
+      },
+      {
+        "bins": [
+          32772,
+          1620031,
+          337849,
+          194570,
+          49794
+        ]
+      },
+      {
+        "bins": [
+          167330,
+          1528741,
+          295623,
+          199544,
+          43778
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2235016
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_reddish_1.png",
+    "filename": "daisy_reddish_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          208494,
+          1443609,
+          302925,
+          190754,
+          89234
+        ]
+      },
+      {
+        "bins": [
+          32772,
+          1620031,
+          337849,
+          194570,
+          49794
+        ]
+      },
+      {
+        "bins": [
+          167330,
+          1528741,
+          295623,
+          199544,
+          43778
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2235016
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/backlit_flower.png",
+    "filename": "backlit_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          727506,
+          661562,
+          327287,
+          199953,
+          151532
+        ]
+      },
+      {
+        "bins": [
+          731589,
+          833328,
+          266690,
+          153229,
+          83004
+        ]
+      },
+      {
+        "bins": [
+          875083,
+          687445,
+          185034,
+          208632,
+          111646
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2067840
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/ball_flower.png",
+    "filename": "ball_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          553352,
+          539030,
+          288890,
+          127429,
+          6335
+        ]
+      },
+      {
+        "bins": [
+          397636,
+          622148,
+          382109,
+          109639,
+          3504
+        ]
+      },
+      {
+        "bins": [
+          548215,
+          487746,
+          232685,
+          120195,
+          126195
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1515036
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/blue_sky_hessen.png",
+    "filename": "blue_sky_hessen",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          180171,
+          742325,
+          447379,
+          35658,
+          3
+        ]
+      },
+      {
+        "bins": [
+          179591,
+          583904,
+          553820,
+          88220,
+          1
+        ]
+      },
+      {
+        "bins": [
+          383431,
+          213391,
+          420107,
+          367678,
+          20929
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1405536
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_gray.png",
+    "filename": "daisy_gray",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1400672
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_reddish_1.png",
+    "filename": "daisy_reddish_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          208494,
+          1443609,
+          302925,
+          190754,
+          89234
+        ]
+      },
+      {
+        "bins": [
+          32772,
+          1620031,
+          337849,
+          194570,
+          49794
+        ]
+      },
+      {
+        "bins": [
+          167330,
+          1528741,
+          295623,
+          199544,
+          43778
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2235016
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_reddish_2.png",
+    "filename": "daisy_reddish_2",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          304308,
+          1156681,
+          441068,
+          221285,
+          120646
+        ]
+      },
+      {
+        "bins": [
+          151359,
+          1511967,
+          377559,
+          169594,
+          33509
+        ]
+      },
+      {
+        "bins": [
+          131078,
+          1469352,
+          401395,
+          217541,
+          24622
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2243988
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flowers_gray.png",
+    "filename": "flowers_gray",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          942590,
+          705351,
+          196486,
+          71809,
+          88144
+        ]
+      },
+      {
+        "bins": [
+          942590,
+          705351,
+          196486,
+          71809,
+          88144
+        ]
+      },
+      {
+        "bins": [
+          964138,
+          689926,
+          194951,
+          67465,
+          87900
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2004380
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_hover.png",
+    "filename": "flower_hover",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          120163,
+          498092,
+          369333,
+          482494,
+          623726
+        ]
+      },
+      {
+        "bins": [
+          312858,
+          629655,
+          515586,
+          351432,
+          284277
+        ]
+      },
+      {
+        "bins": [
+          660802,
+          613004,
+          374196,
+          216525,
+          229281
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2093808
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_pink.png",
+    "filename": "flower_pink",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          542014,
+          501312,
+          182558,
+          85575,
+          28005
+        ]
+      },
+      {
+        "bins": [
+          942354,
+          365520,
+          28745,
+          2838,
+          7
+        ]
+      },
+      {
+        "bins": [
+          893914,
+          396241,
+          36969,
+          11490,
+          850
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1339464
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_purple_1.png",
+    "filename": "flower_purple_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          244574,
+          963199,
+          236339,
+          73338,
+          11662
+        ]
+      },
+      {
+        "bins": [
+          457295,
+          727239,
+          300954,
+          34463,
+          9161
+        ]
+      },
+      {
+        "bins": [
+          80439,
+          1065995,
+          243604,
+          93546,
+          45528
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1529112
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_purple_2.png",
+    "filename": "flower_purple_2",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          852226,
+          439657,
+          151792,
+          86637,
+          1856
+        ]
+      },
+      {
+        "bins": [
+          749170,
+          604820,
+          130689,
+          46962,
+          527
+        ]
+      },
+      {
+        "bins": [
+          912288,
+          206896,
+          126327,
+          194824,
+          91833
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1532168
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_yellow.png",
+    "filename": "flower_yellow",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          28469,
+          337697,
+          10287,
+          47836,
+          282991
+        ]
+      },
+      {
+        "bins": [
+          45859,
+          328005,
+          80085,
+          203911,
+          49420
+        ]
+      },
+      {
+        "bins": [
+          55582,
+          610597,
+          41075,
+          26,
+          0
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          707280
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/hut.png",
+    "filename": "hut",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          743998,
+          212286,
+          186555,
+          417541,
+          88344
+        ]
+      },
+      {
+        "bins": [
+          744107,
+          212177,
+          186552,
+          417544,
+          88344
+        ]
+      },
+      {
+        "bins": [
+          744193,
+          212136,
+          186753,
+          420741,
+          84901
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1648724
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/ice_flower.png",
+    "filename": "ice_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          1499311,
+          255364,
+          79244,
+          92705,
+          100476
+        ]
+      },
+      {
+        "bins": [
+          1419436,
+          323631,
+          91456,
+          108335,
+          84242
+        ]
+      },
+      {
+        "bins": [
+          1519378,
+          249842,
+          74048,
+          110532,
+          73300
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2027100
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/lago_como_1.png",
+    "filename": "lago_como_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          178397,
+          309697,
+          391550,
+          240068,
+          74568
+        ]
+      },
+      {
+        "bins": [
+          104434,
+          153663,
+          288518,
+          462255,
+          185410
+        ]
+      },
+      {
+        "bins": [
+          98194,
+          87259,
+          178322,
+          319162,
+          511343
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1194280
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/lago_como_2.png",
+    "filename": "lago_como_2",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          233830,
+          361241,
+          283566,
+          288207,
+          124404
+        ]
+      },
+      {
+        "bins": [
+          208784,
+          147922,
+          326883,
+          329121,
+          278538
+        ]
+      },
+      {
+        "bins": [
+          239922,
+          79503,
+          200510,
+          245149,
+          526164
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1291248
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/mushroom.png",
+    "filename": "mushroom",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          1959012,
+          216345,
+          13460,
+          34610,
+          11549
+        ]
+      },
+      {
+        "bins": [
+          2056009,
+          119402,
+          13048,
+          28692,
+          17825
+        ]
+      },
+      {
+        "bins": [
+          2100435,
+          71681,
+          12541,
+          19449,
+          30870
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2234976
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/odenwald.png",
+    "filename": "odenwald",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          215469,
+          256905,
+          348689,
+          233311,
+          53706
+        ]
+      },
+      {
+        "bins": [
+          173056,
+          191716,
+          258287,
+          348399,
+          136622
+        ]
+      },
+      {
+        "bins": [
+          235220,
+          170353,
+          147796,
+          351990,
+          202721
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1108080
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/plant_green.png",
+    "filename": "plant_green",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          33600,
+          681460,
+          374826,
+          96874,
+          5688
+        ]
+      },
+      {
+        "bins": [
+          24342,
+          625903,
+          387637,
+          145963,
+          8603
+        ]
+      },
+      {
+        "bins": [
+          30486,
+          742262,
+          337478,
+          77118,
+          5104
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1192448
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sheep.png",
+    "filename": "sheep",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          505078,
+          358279,
+          206229,
+          104022,
+          240652
+        ]
+      },
+      {
+        "bins": [
+          505078,
+          358279,
+          206229,
+          104022,
+          240652
+        ]
+      },
+      {
+        "bins": [
+          505078,
+          358279,
+          206229,
+          104022,
+          240652
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1414260
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sunset_beach.png",
+    "filename": "sunset_beach",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          267804,
+          360689,
+          207417,
+          308575,
+          373563
+        ]
+      },
+      {
+        "bins": [
+          472360,
+          258303,
+          549747,
+          200257,
+          37381
+        ]
+      },
+      {
+        "bins": [
+          447520,
+          478188,
+          497401,
+          94192,
+          747
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1518048
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sunset_hessen.png",
+    "filename": "sunset_hessen",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          268796,
+          342586,
+          296149,
+          256779,
+          352738
+        ]
+      },
+      {
+        "bins": [
+          413563,
+          247057,
+          324189,
+          296844,
+          235395
+        ]
+      },
+      {
+        "bins": [
+          539420,
+          116824,
+          394562,
+          348396,
+          117846
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1517048
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sunset_tree.png",
+    "filename": "sunset_tree",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          373473,
+          158918,
+          80994,
+          543063,
+          254896
+        ]
+      },
+      {
+        "bins": [
+          381682,
+          183665,
+          271635,
+          572680,
+          1682
+        ]
+      },
+      {
+        "bins": [
+          329677,
+          320573,
+          295143,
+          465816,
+          135
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1411344
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/town_blue.png",
+    "filename": "town_blue",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          844637,
+          509456,
+          32955,
+          9191,
+          2529
+        ]
+      },
+      {
+        "bins": [
+          345793,
+          627407,
+          419804,
+          5446,
+          318
+        ]
+      },
+      {
+        "bins": [
+          170655,
+          288874,
+          404953,
+          522586,
+          11700
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1398768
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/backlit_flower.png",
+    "filename": "backlit_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          727506,
+          661562,
+          327287,
+          199953,
+          151532
+        ]
+      },
+      {
+        "bins": [
+          731589,
+          833328,
+          266690,
+          153229,
+          83004
+        ]
+      },
+      {
+        "bins": [
+          875083,
+          687445,
+          185034,
+          208632,
+          111646
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2067840
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/ball_flower.png",
+    "filename": "ball_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          553352,
+          539030,
+          288890,
+          127429,
+          6335
+        ]
+      },
+      {
+        "bins": [
+          397636,
+          622148,
+          382109,
+          109639,
+          3504
+        ]
+      },
+      {
+        "bins": [
+          548215,
+          487746,
+          232685,
+          120195,
+          126195
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1515036
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/blue_sky_hessen.png",
+    "filename": "blue_sky_hessen",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          180171,
+          742325,
+          447379,
+          35658,
+          3
+        ]
+      },
+      {
+        "bins": [
+          179591,
+          583904,
+          553820,
+          88220,
+          1
+        ]
+      },
+      {
+        "bins": [
+          383431,
+          213391,
+          420107,
+          367678,
+          20929
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1405536
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_gray.png",
+    "filename": "daisy_gray",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1400672
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_reddish_1.png",
+    "filename": "daisy_reddish_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          208494,
+          1443609,
+          302925,
+          190754,
+          89234
+        ]
+      },
+      {
+        "bins": [
+          32772,
+          1620031,
+          337849,
+          194570,
+          49794
+        ]
+      },
+      {
+        "bins": [
+          167330,
+          1528741,
+          295623,
+          199544,
+          43778
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2235016
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_reddish_2.png",
+    "filename": "daisy_reddish_2",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          304308,
+          1156681,
+          441068,
+          221285,
+          120646
+        ]
+      },
+      {
+        "bins": [
+          151359,
+          1511967,
+          377559,
+          169594,
+          33509
+        ]
+      },
+      {
+        "bins": [
+          131078,
+          1469352,
+          401395,
+          217541,
+          24622
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2243988
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flowers_gray.png",
+    "filename": "flowers_gray",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          942590,
+          705351,
+          196486,
+          71809,
+          88144
+        ]
+      },
+      {
+        "bins": [
+          942590,
+          705351,
+          196486,
+          71809,
+          88144
+        ]
+      },
+      {
+        "bins": [
+          964138,
+          689926,
+          194951,
+          67465,
+          87900
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2004380
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_hover.png",
+    "filename": "flower_hover",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          120163,
+          498092,
+          369333,
+          482494,
+          623726
+        ]
+      },
+      {
+        "bins": [
+          312858,
+          629655,
+          515586,
+          351432,
+          284277
+        ]
+      },
+      {
+        "bins": [
+          660802,
+          613004,
+          374196,
+          216525,
+          229281
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2093808
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_pink.png",
+    "filename": "flower_pink",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          542014,
+          501312,
+          182558,
+          85575,
+          28005
+        ]
+      },
+      {
+        "bins": [
+          942354,
+          365520,
+          28745,
+          2838,
+          7
+        ]
+      },
+      {
+        "bins": [
+          893914,
+          396241,
+          36969,
+          11490,
+          850
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1339464
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_purple_1.png",
+    "filename": "flower_purple_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          244574,
+          963199,
+          236339,
+          73338,
+          11662
+        ]
+      },
+      {
+        "bins": [
+          457295,
+          727239,
+          300954,
+          34463,
+          9161
+        ]
+      },
+      {
+        "bins": [
+          80439,
+          1065995,
+          243604,
+          93546,
+          45528
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1529112
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_purple_2.png",
+    "filename": "flower_purple_2",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          852226,
+          439657,
+          151792,
+          86637,
+          1856
+        ]
+      },
+      {
+        "bins": [
+          749170,
+          604820,
+          130689,
+          46962,
+          527
+        ]
+      },
+      {
+        "bins": [
+          912288,
+          206896,
+          126327,
+          194824,
+          91833
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1532168
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_yellow.png",
+    "filename": "flower_yellow",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          28469,
+          337697,
+          10287,
+          47836,
+          282991
+        ]
+      },
+      {
+        "bins": [
+          45859,
+          328005,
+          80085,
+          203911,
+          49420
+        ]
+      },
+      {
+        "bins": [
+          55582,
+          610597,
+          41075,
+          26,
+          0
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          707280
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/hut.png",
+    "filename": "hut",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          743998,
+          212286,
+          186555,
+          417541,
+          88344
+        ]
+      },
+      {
+        "bins": [
+          744107,
+          212177,
+          186552,
+          417544,
+          88344
+        ]
+      },
+      {
+        "bins": [
+          744193,
+          212136,
+          186753,
+          420741,
+          84901
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1648724
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/ice_flower.png",
+    "filename": "ice_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          1499311,
+          255364,
+          79244,
+          92705,
+          100476
+        ]
+      },
+      {
+        "bins": [
+          1419436,
+          323631,
+          91456,
+          108335,
+          84242
+        ]
+      },
+      {
+        "bins": [
+          1519378,
+          249842,
+          74048,
+          110532,
+          73300
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2027100
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/lago_como_1.png",
+    "filename": "lago_como_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          178397,
+          309697,
+          391550,
+          240068,
+          74568
+        ]
+      },
+      {
+        "bins": [
+          104434,
+          153663,
+          288518,
+          462255,
+          185410
+        ]
+      },
+      {
+        "bins": [
+          98194,
+          87259,
+          178322,
+          319162,
+          511343
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1194280
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/lago_como_2.png",
+    "filename": "lago_como_2",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          233830,
+          361241,
+          283566,
+          288207,
+          124404
+        ]
+      },
+      {
+        "bins": [
+          208784,
+          147922,
+          326883,
+          329121,
+          278538
+        ]
+      },
+      {
+        "bins": [
+          239922,
+          79503,
+          200510,
+          245149,
+          526164
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1291248
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/mushroom.png",
+    "filename": "mushroom",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          1959012,
+          216345,
+          13460,
+          34610,
+          11549
+        ]
+      },
+      {
+        "bins": [
+          2056009,
+          119402,
+          13048,
+          28692,
+          17825
+        ]
+      },
+      {
+        "bins": [
+          2100435,
+          71681,
+          12541,
+          19449,
+          30870
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2234976
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/odenwald.png",
+    "filename": "odenwald",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          215469,
+          256905,
+          348689,
+          233311,
+          53706
+        ]
+      },
+      {
+        "bins": [
+          173056,
+          191716,
+          258287,
+          348399,
+          136622
+        ]
+      },
+      {
+        "bins": [
+          235220,
+          170353,
+          147796,
+          351990,
+          202721
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1108080
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/plant_green.png",
+    "filename": "plant_green",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          33600,
+          681460,
+          374826,
+          96874,
+          5688
+        ]
+      },
+      {
+        "bins": [
+          24342,
+          625903,
+          387637,
+          145963,
+          8603
+        ]
+      },
+      {
+        "bins": [
+          30486,
+          742262,
+          337478,
+          77118,
+          5104
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1192448
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sheep.png",
+    "filename": "sheep",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          505078,
+          358279,
+          206229,
+          104022,
+          240652
+        ]
+      },
+      {
+        "bins": [
+          505078,
+          358279,
+          206229,
+          104022,
+          240652
+        ]
+      },
+      {
+        "bins": [
+          505078,
+          358279,
+          206229,
+          104022,
+          240652
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1414260
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sunset_beach.png",
+    "filename": "sunset_beach",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          267804,
+          360689,
+          207417,
+          308575,
+          373563
+        ]
+      },
+      {
+        "bins": [
+          472360,
+          258303,
+          549747,
+          200257,
+          37381
+        ]
+      },
+      {
+        "bins": [
+          447520,
+          478188,
+          497401,
+          94192,
+          747
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1518048
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sunset_hessen.png",
+    "filename": "sunset_hessen",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          268796,
+          342586,
+          296149,
+          256779,
+          352738
+        ]
+      },
+      {
+        "bins": [
+          413563,
+          247057,
+          324189,
+          296844,
+          235395
+        ]
+      },
+      {
+        "bins": [
+          539420,
+          116824,
+          394562,
+          348396,
+          117846
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1517048
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sunset_tree.png",
+    "filename": "sunset_tree",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          373473,
+          158918,
+          80994,
+          543063,
+          254896
+        ]
+      },
+      {
+        "bins": [
+          381682,
+          183665,
+          271635,
+          572680,
+          1682
+        ]
+      },
+      {
+        "bins": [
+          329677,
+          320573,
+          295143,
+          465816,
+          135
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1411344
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/town_blue.png",
+    "filename": "town_blue",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          844637,
+          509456,
+          32955,
+          9191,
+          2529
+        ]
+      },
+      {
+        "bins": [
+          345793,
+          627407,
+          419804,
+          5446,
+          318
+        ]
+      },
+      {
+        "bins": [
+          170655,
+          288874,
+          404953,
+          522586,
+          11700
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1398768
         ]
       }
     ]
@@ -109,98 +2715,167 @@
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
         ]
       }
     ]
@@ -212,98 +2887,38 @@
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 244574
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 963199
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 236339
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 73338
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 11662
-          }
+          244574,
+          963199,
+          236339,
+          73338,
+          11662
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 457295
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 727239
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 300954
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 34463
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 9161
-          }
+          457295,
+          727239,
+          300954,
+          34463,
+          9161
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 80439
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 1065995
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 243604
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 93546
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 45528
-          }
+          80439,
+          1065995,
+          243604,
+          93546,
+          45528
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1529112
-          }
+          0,
+          0,
+          0,
+          0,
+          1529112
         ]
       }
     ]
@@ -315,304 +2930,38 @@
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 852226
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 439657
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 151792
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 86637
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1856
-          }
+          852226,
+          439657,
+          151792,
+          86637,
+          1856
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 749170
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 604820
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 130689
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 46962
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 527
-          }
+          749170,
+          604820,
+          130689,
+          46962,
+          527
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 912288
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 206896
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 126327
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 194824
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 91833
-          }
+          912288,
+          206896,
+          126327,
+          194824,
+          91833
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1532168
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "filepath": "src/tests/files/pictures_for_testing/bird.png",
-    "filename": "bird",
-    "average_brightness": 6.9,
-    "histogram": [
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "filepath": "src/tests/files/pictures_for_testing/bird.png",
-    "filename": "bird",
-    "average_brightness": 6.9,
-    "histogram": [
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
+          0,
+          0,
+          0,
+          0,
+          1532168
         ]
       }
     ]
@@ -630,98 +2979,38 @@
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
+          0,
+          0,
+          0,
+          0,
+          1488000
         ]
       }
     ]
@@ -733,98 +3022,38 @@
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
+          0,
+          0,
+          0,
+          0,
+          1488000
         ]
       }
     ]
@@ -836,98 +3065,124 @@
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
         ]
       }
     ]
@@ -939,98 +3194,38 @@
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 244574
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 963199
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 236339
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 73338
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 11662
-          }
+          244574,
+          963199,
+          236339,
+          73338,
+          11662
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 457295
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 727239
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 300954
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 34463
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 9161
-          }
+          457295,
+          727239,
+          300954,
+          34463,
+          9161
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 80439
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 1065995
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 243604
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 93546
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 45528
-          }
+          80439,
+          1065995,
+          243604,
+          93546,
+          45528
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1529112
-          }
+          0,
+          0,
+          0,
+          0,
+          1529112
         ]
       }
     ]
@@ -1042,407 +3237,38 @@
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 852226
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 439657
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 151792
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 86637
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1856
-          }
+          852226,
+          439657,
+          151792,
+          86637,
+          1856
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 749170
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 604820
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 130689
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 46962
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 527
-          }
+          749170,
+          604820,
+          130689,
+          46962,
+          527
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 912288
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 206896
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 126327
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 194824
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 91833
-          }
+          912288,
+          206896,
+          126327,
+          194824,
+          91833
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1532168
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "filepath": "src/tests/files/pictures_for_testing/bird.png",
-    "filename": "bird",
-    "average_brightness": 6.9,
-    "histogram": [
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "filepath": "src/tests/files/pictures_for_testing/bird.png",
-    "filename": "bird",
-    "average_brightness": 6.9,
-    "histogram": [
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "filepath": "src/tests/files/pictures_for_testing/bird.png",
-    "filename": "bird",
-    "average_brightness": 6.9,
-    "histogram": [
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
-        ]
-      },
-      {
-        "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
+          0,
+          0,
+          0,
+          0,
+          1532168
         ]
       }
     ]
@@ -1460,619 +3286,1328 @@
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
+          0,
+          0,
+          0,
+          0,
+          1488000
         ]
       }
     ]
   },
   {
-    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filepath": "src/Bilder Programmentwurf-20230521/backlit_flower.png",
+    "filename": "backlit_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          727506,
+          661562,
+          327287,
+          199953,
+          151532
+        ]
+      },
+      {
+        "bins": [
+          731589,
+          833328,
+          266690,
+          153229,
+          83004
+        ]
+      },
+      {
+        "bins": [
+          875083,
+          687445,
+          185034,
+          208632,
+          111646
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2067840
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/ball_flower.png",
+    "filename": "ball_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          553352,
+          539030,
+          288890,
+          127429,
+          6335
+        ]
+      },
+      {
+        "bins": [
+          397636,
+          622148,
+          382109,
+          109639,
+          3504
+        ]
+      },
+      {
+        "bins": [
+          548215,
+          487746,
+          232685,
+          120195,
+          126195
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1515036
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/bird.png",
     "filename": "bird",
     "average_brightness": 6.9,
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
+          0,
+          0,
+          0,
+          0,
+          1488000
         ]
       }
     ]
   },
   {
-    "filepath": "src/tests/files/pictures_for_testing/bird.png",
-    "filename": "bird",
+    "filepath": "src/Bilder Programmentwurf-20230521/blue_sky_hessen.png",
+    "filename": "blue_sky_hessen",
     "average_brightness": 6.9,
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
+          180171,
+          742325,
+          447379,
+          35658,
+          3
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
+          179591,
+          583904,
+          553820,
+          88220,
+          1
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
+          383431,
+          213391,
+          420107,
+          367678,
+          20929
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
+          0,
+          0,
+          0,
+          0,
+          1405536
         ]
       }
     ]
   },
   {
-    "filepath": "src/tests/files/pictures_for_testing/flower_purple_1.png",
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_gray.png",
+    "filename": "daisy_gray",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          669702,
+          574164,
+          139391,
+          3041,
+          14374
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1400672
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_reddish_1.png",
+    "filename": "daisy_reddish_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          208494,
+          1443609,
+          302925,
+          190754,
+          89234
+        ]
+      },
+      {
+        "bins": [
+          32772,
+          1620031,
+          337849,
+          194570,
+          49794
+        ]
+      },
+      {
+        "bins": [
+          167330,
+          1528741,
+          295623,
+          199544,
+          43778
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2235016
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/daisy_reddish_2.png",
+    "filename": "daisy_reddish_2",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          304308,
+          1156681,
+          441068,
+          221285,
+          120646
+        ]
+      },
+      {
+        "bins": [
+          151359,
+          1511967,
+          377559,
+          169594,
+          33509
+        ]
+      },
+      {
+        "bins": [
+          131078,
+          1469352,
+          401395,
+          217541,
+          24622
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2243988
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flowers_gray.png",
+    "filename": "flowers_gray",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          942590,
+          705351,
+          196486,
+          71809,
+          88144
+        ]
+      },
+      {
+        "bins": [
+          942590,
+          705351,
+          196486,
+          71809,
+          88144
+        ]
+      },
+      {
+        "bins": [
+          964138,
+          689926,
+          194951,
+          67465,
+          87900
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2004380
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_hover.png",
+    "filename": "flower_hover",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          120163,
+          498092,
+          369333,
+          482494,
+          623726
+        ]
+      },
+      {
+        "bins": [
+          312858,
+          629655,
+          515586,
+          351432,
+          284277
+        ]
+      },
+      {
+        "bins": [
+          660802,
+          613004,
+          374196,
+          216525,
+          229281
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2093808
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_pink.png",
+    "filename": "flower_pink",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          542014,
+          501312,
+          182558,
+          85575,
+          28005
+        ]
+      },
+      {
+        "bins": [
+          942354,
+          365520,
+          28745,
+          2838,
+          7
+        ]
+      },
+      {
+        "bins": [
+          893914,
+          396241,
+          36969,
+          11490,
+          850
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1339464
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_purple_1.png",
     "filename": "flower_purple_1",
     "average_brightness": 6.9,
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 244574
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 963199
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 236339
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 73338
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 11662
-          }
+          244574,
+          963199,
+          236339,
+          73338,
+          11662
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 457295
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 727239
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 300954
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 34463
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 9161
-          }
+          457295,
+          727239,
+          300954,
+          34463,
+          9161
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 80439
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 1065995
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 243604
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 93546
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 45528
-          }
+          80439,
+          1065995,
+          243604,
+          93546,
+          45528
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1529112
-          }
+          0,
+          0,
+          0,
+          0,
+          1529112
         ]
       }
     ]
   },
   {
-    "filepath": "src/tests/files/pictures_for_testing/flower_purple_2.png",
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_purple_2.png",
     "filename": "flower_purple_2",
     "average_brightness": 6.9,
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 852226
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 439657
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 151792
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 86637
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1856
-          }
+          852226,
+          439657,
+          151792,
+          86637,
+          1856
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 749170
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 604820
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 130689
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 46962
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 527
-          }
+          749170,
+          604820,
+          130689,
+          46962,
+          527
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 912288
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 206896
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 126327
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 194824
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 91833
-          }
+          912288,
+          206896,
+          126327,
+          194824,
+          91833
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1532168
-          }
+          0,
+          0,
+          0,
+          0,
+          1532168
         ]
       }
     ]
   },
   {
-    "filepath": "",
-    "filename": "",
-    "average_brightness": 0.0,
-    "histogram": []
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_yellow.png",
+    "filename": "flower_yellow",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          28469,
+          337697,
+          10287,
+          47836,
+          282991
+        ]
+      },
+      {
+        "bins": [
+          45859,
+          328005,
+          80085,
+          203911,
+          49420
+        ]
+      },
+      {
+        "bins": [
+          55582,
+          610597,
+          41075,
+          26,
+          0
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          707280
+        ]
+      }
+    ]
   },
   {
-    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filepath": "src/Bilder Programmentwurf-20230521/hut.png",
+    "filename": "hut",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          743998,
+          212286,
+          186555,
+          417541,
+          88344
+        ]
+      },
+      {
+        "bins": [
+          744107,
+          212177,
+          186552,
+          417544,
+          88344
+        ]
+      },
+      {
+        "bins": [
+          744193,
+          212136,
+          186753,
+          420741,
+          84901
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1648724
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/ice_flower.png",
+    "filename": "ice_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          1499311,
+          255364,
+          79244,
+          92705,
+          100476
+        ]
+      },
+      {
+        "bins": [
+          1419436,
+          323631,
+          91456,
+          108335,
+          84242
+        ]
+      },
+      {
+        "bins": [
+          1519378,
+          249842,
+          74048,
+          110532,
+          73300
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2027100
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/lago_como_1.png",
+    "filename": "lago_como_1",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          178397,
+          309697,
+          391550,
+          240068,
+          74568
+        ]
+      },
+      {
+        "bins": [
+          104434,
+          153663,
+          288518,
+          462255,
+          185410
+        ]
+      },
+      {
+        "bins": [
+          98194,
+          87259,
+          178322,
+          319162,
+          511343
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1194280
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/lago_como_2.png",
+    "filename": "lago_como_2",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          233830,
+          361241,
+          283566,
+          288207,
+          124404
+        ]
+      },
+      {
+        "bins": [
+          208784,
+          147922,
+          326883,
+          329121,
+          278538
+        ]
+      },
+      {
+        "bins": [
+          239922,
+          79503,
+          200510,
+          245149,
+          526164
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1291248
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/mushroom.png",
+    "filename": "mushroom",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          1959012,
+          216345,
+          13460,
+          34610,
+          11549
+        ]
+      },
+      {
+        "bins": [
+          2056009,
+          119402,
+          13048,
+          28692,
+          17825
+        ]
+      },
+      {
+        "bins": [
+          2100435,
+          71681,
+          12541,
+          19449,
+          30870
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          2234976
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/odenwald.png",
+    "filename": "odenwald",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          215469,
+          256905,
+          348689,
+          233311,
+          53706
+        ]
+      },
+      {
+        "bins": [
+          173056,
+          191716,
+          258287,
+          348399,
+          136622
+        ]
+      },
+      {
+        "bins": [
+          235220,
+          170353,
+          147796,
+          351990,
+          202721
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1108080
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/plant_green.png",
+    "filename": "plant_green",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          33600,
+          681460,
+          374826,
+          96874,
+          5688
+        ]
+      },
+      {
+        "bins": [
+          24342,
+          625903,
+          387637,
+          145963,
+          8603
+        ]
+      },
+      {
+        "bins": [
+          30486,
+          742262,
+          337478,
+          77118,
+          5104
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1192448
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sheep.png",
+    "filename": "sheep",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          505078,
+          358279,
+          206229,
+          104022,
+          240652
+        ]
+      },
+      {
+        "bins": [
+          505078,
+          358279,
+          206229,
+          104022,
+          240652
+        ]
+      },
+      {
+        "bins": [
+          505078,
+          358279,
+          206229,
+          104022,
+          240652
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1414260
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sunset_beach.png",
+    "filename": "sunset_beach",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          267804,
+          360689,
+          207417,
+          308575,
+          373563
+        ]
+      },
+      {
+        "bins": [
+          472360,
+          258303,
+          549747,
+          200257,
+          37381
+        ]
+      },
+      {
+        "bins": [
+          447520,
+          478188,
+          497401,
+          94192,
+          747
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1518048
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sunset_hessen.png",
+    "filename": "sunset_hessen",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          268796,
+          342586,
+          296149,
+          256779,
+          352738
+        ]
+      },
+      {
+        "bins": [
+          413563,
+          247057,
+          324189,
+          296844,
+          235395
+        ]
+      },
+      {
+        "bins": [
+          539420,
+          116824,
+          394562,
+          348396,
+          117846
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1517048
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/sunset_tree.png",
+    "filename": "sunset_tree",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          373473,
+          158918,
+          80994,
+          543063,
+          254896
+        ]
+      },
+      {
+        "bins": [
+          381682,
+          183665,
+          271635,
+          572680,
+          1682
+        ]
+      },
+      {
+        "bins": [
+          329677,
+          320573,
+          295143,
+          465816,
+          135
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1411344
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/town_blue.png",
+    "filename": "town_blue",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          844637,
+          509456,
+          32955,
+          9191,
+          2529
+        ]
+      },
+      {
+        "bins": [
+          345793,
+          627407,
+          419804,
+          5446,
+          318
+        ]
+      },
+      {
+        "bins": [
+          170655,
+          288874,
+          404953,
+          522586,
+          11700
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1398768
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/ball_flower.png",
+    "filename": "ball_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          553352,
+          539030,
+          288890,
+          127429,
+          6335
+        ]
+      },
+      {
+        "bins": [
+          397636,
+          622148,
+          382109,
+          109639,
+          3504
+        ]
+      },
+      {
+        "bins": [
+          548215,
+          487746,
+          232685,
+          120195,
+          126195
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1515036
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/bird.png",
     "filename": "bird",
     "average_brightness": 6.9,
     "histogram": [
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 194506
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 965746
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 137158
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117213
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 73377
-          }
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 92964
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 942925
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 264111
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 127887
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 60113
-          }
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 255263
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 932676
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 138444
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 117699
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 43918
-          }
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
         ]
       },
       {
         "bins": [
-          {
-            "bin_index": 0,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 1,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 2,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 3,
-            "pixel_count": 0
-          },
-          {
-            "bin_index": 4,
-            "pixel_count": 1488000
-          }
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/blue_sky_hessen.png",
+    "filename": "blue_sky_hessen",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          180171,
+          742325,
+          447379,
+          35658,
+          3
+        ]
+      },
+      {
+        "bins": [
+          179591,
+          583904,
+          553820,
+          88220,
+          1
+        ]
+      },
+      {
+        "bins": [
+          383431,
+          213391,
+          420107,
+          367678,
+          20929
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1405536
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/blue_sky_hessen.png",
+    "filename": "blue_sky_hessen",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          180171,
+          742325,
+          447379,
+          35658,
+          3
+        ]
+      },
+      {
+        "bins": [
+          179591,
+          583904,
+          553820,
+          88220,
+          1
+        ]
+      },
+      {
+        "bins": [
+          383431,
+          213391,
+          420107,
+          367678,
+          20929
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1405536
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_pink.png",
+    "filename": "flower_pink",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          542014,
+          501312,
+          182558,
+          85575,
+          28005
+        ]
+      },
+      {
+        "bins": [
+          942354,
+          365520,
+          28745,
+          2838,
+          7
+        ]
+      },
+      {
+        "bins": [
+          893914,
+          396241,
+          36969,
+          11490,
+          850
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1339464
         ]
       }
     ]

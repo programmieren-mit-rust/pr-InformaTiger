@@ -8,11 +8,11 @@ const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 fn main() {
     //Eingabe vom User , der Bilder die in den Search Index kommen / Suchpool
     eingabe();
-    //TODO Suchindex für alle eingaben erstellen am besten in funktion eingabe()
     wiederhol_eingabe();
 
     //eingabe_suchbild();
     let picture_path = eingabe_suchbild();
+
 
     let pic_u8: PictureU8 = read_picture(&picture_path);
     println!("PictureU8: {pic_u8}"); // :? führt hier dazu, dass data AUCH ausgegeben wird, das passt aber meist nicht in die Console
@@ -39,7 +39,7 @@ pub fn eingabe() -> String {
     let input_lib = input_searchlib.trim().to_string();
 
 
-    //TODO hier müsste man den Inpu in nen Suchiex schreiben
+    //Input in nen Suchiex schreiben
     analyse_pictures(&input_lib);
     return input_lib;
 
@@ -59,6 +59,7 @@ pub fn wiederhol_eingabe() {
         }
         f if f.contains("ja") => {
             eingabe();
+            wiederhol_eingabe();
         }
         _ => {
             wiederhol_eingabe();
@@ -75,5 +76,8 @@ fn eingabe_suchbild() -> String {
         .expect("Fehler beim Lesen der Eingabe");
 
     let final_picture = input_pic.trim().to_string();
+
+    // Input übergebn an Suchinex
+    analyse_pictures(&final_picture);
     return final_picture;
 }
