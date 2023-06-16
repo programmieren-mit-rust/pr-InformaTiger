@@ -1,3 +1,7 @@
+use crate::with_threads::{
+    convert_data_to_f32, convert_data_to_f32_with_threads, convert_data_to_u8,
+    convert_data_to_u8_with_threads,
+};
 use std::fmt::{Display, Formatter};
 
 /// The `Picture` trait represents a picture.
@@ -18,6 +22,7 @@ pub struct PictureU8 {
     pub data: Vec<u8>, // values from 0 to 255 (both included)
 }
 
+const USE_THREADS_FOR_CONVERSION: bool = true;
 impl Picture for PictureU8 {
     fn to_picture_u8(&self) -> PictureU8 {
         PictureU8 {
@@ -28,13 +33,11 @@ impl Picture for PictureU8 {
         }
     }
     fn to_picture_f32(&self) -> PictureF32 {
-        let mut new_data = Vec::<f32>::new();
-
-        //convert each value from [0, 255] to [0.0, 1.0]
-        for i in 0..self.data.len() {
-            let raw_f32_value = f32::from(self.data[i]);
-
-            new_data.push(raw_f32_value / 255.0);
+        let new_data;
+        if USE_THREADS_FOR_CONVERSION {
+            new_data = convert_data_to_f32_with_threads(&self.data);
+        } else {
+            new_data = convert_data_to_f32(&self.data);
         }
 
         PictureF32 {
@@ -69,11 +72,11 @@ pub struct PictureF32 {
 
 impl Picture for PictureF32 {
     fn to_picture_u8(&self) -> PictureU8 {
-        let mut new_data = Vec::<u8>::new();
-
-        //convert each value from [0.0, 1.0] to [0, 255]
-        for i in 0..self.data.len() {
-            new_data.push((self.data[i] * 255.0) as u8);
+        let new_data;
+        if USE_THREADS_FOR_CONVERSION {
+            new_data = convert_data_to_u8_with_threads(&self.data);
+        } else {
+            new_data = convert_data_to_u8(&self.data);
         }
 
         PictureU8 {
@@ -128,14 +131,12 @@ pub trait AverageBrightness {
         green_colour_val: f32,
         blue_colour_val: f32,
     ) -> f32;
-
     /// Calculates the gray intensity values for all pixels in the image and returns them as an array.
     ///
     /// # Returns
     ///
     /// An array containing the gray intensity values for all pixels in the image.
-    fn gray_intensity_array(&self, to_picture_f32: PictureF32) -> Vec<f32>;
-
+    fn gray_intensity_array(&self) -> Vec<f32>;
     /// Calculates the average brightness of the image based on the provided gray intensity values.
     ///
     /// # Arguments
@@ -145,10 +146,10 @@ pub trait AverageBrightness {
     /// # Returns
     ///
     /// The average brightness of the image.
-    fn average_brightness(&self, grayray: &Vec<f32>) -> f32;
+    fn average_brightness(&self, grayray: &Vec<f32>) -> f32; //Grayray-Werte werden Addiert und durch Anzahl pixel (arraylänge) geteilt --> Wert der Mitlleren Helligkeit.
 }
 
-impl AverageBrightness for PictureF32 {
+impl<T: Picture> AverageBrightness for T {
     /// Calculates the gray intensity value for a single pixel based on the provided RGB color values.
     /// The formula used to calculate the gray intensity is specified in the task description.
     ///
@@ -173,31 +174,30 @@ impl AverageBrightness for PictureF32 {
         ///
         /// An array containing the gray intensity values for each pixel in the picture.
         let singel_pixel_gray =
-            ((0.3 * red_colour_val) + (0.59 * green_colour_val) + (0.11 * blue_colour_val));
+            (0.3 * red_colour_val) + (0.59 * green_colour_val) + (0.11 * blue_colour_val);
 
         return singel_pixel_gray;
     }
-
-
-
     /// Calculates the gray intensity values for all pixels in the image and returns them as an array.
     ///
     /// # Returns
     ///
     /// An array containing the gray intensity values for all pixels in the image.
-    fn gray_intensity_array(&self, to_picture_f32: PictureF32) -> Vec<f32> {
+    fn gray_intensity_array(&self) -> Vec<f32> {
+        let pic_f32 = &self.to_picture_f32();
+
         let mut grayray: Vec<f32> = Vec::new();
         let mut count_colour: usize = 0;
 
-        if to_picture_f32.color_channel_count >= 3 {
+        if pic_f32.color_channel_count >= 3 {
 
-            while count_colour < to_picture_f32.data.len() {
-                let r = to_picture_f32.data[count_colour];
-                let g = to_picture_f32.data[count_colour + 1];
-                let b = to_picture_f32.data[count_colour + 2];
+            while count_colour < pic_f32.data.len() {
+                let r = pic_f32.data[count_colour];
+                let g = pic_f32.data[count_colour + 1];
+                let b = pic_f32.data[count_colour + 2];
 
-                grayray.push(self.gray_intensity_single_val(r, g, b));
-                count_colour += to_picture_f32.color_channel_count;
+                grayray.push(pic_f32.gray_intensity_single_val(r, g, b));
+                count_colour += pic_f32.color_channel_count;
             }
         }
 
