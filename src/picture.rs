@@ -179,6 +179,7 @@ impl<T: Picture> AverageBrightness for T {
         return singel_pixel_gray;
     }
     /// Calculates the gray intensity values for all pixels in the image and returns them as an array.
+    ///this function only uses the first tree channels (R,G,B) and skips channels bigger than 3
     ///
     /// # Returns
     ///
