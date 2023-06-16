@@ -27,7 +27,7 @@ fn test_gray_intensity_array() {
         columns: 0,
     };
 
-    let result = picture.gray_intensity_array(picture.clone());
+    let result = picture.gray_intensity_array();
 
     assert_eq!(result, vec![0.1755, 0.17679998]); // Expected result based on the calculation
 
@@ -48,7 +48,7 @@ fn test_average_brightness() {
 
     let result = picture.average_brightness(&grayray);
     //Überprüfen der mittleren Helligkeit
-    assert_eq!(result, 0.16904); /// Expected result based on the calculation ((0.20808 + 0.13) / 2)
+    assert_eq!(result, 0.16904); // Expected result based on the calculation ((0.20808 + 0.13) / 2)
 
 
     // TODO Weitere Testfälle hinzufügen...

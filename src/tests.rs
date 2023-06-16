@@ -14,7 +14,6 @@ mod picture_tests;
 
 #[cfg(test)]
 mod suchindex_tests;
-mod test_averagebrightness;
 
 #[cfg(test)]
 mod with_threads_tests;
