@@ -1,5 +1,6 @@
 use imsearch::picture::{AverageBrightness, Picture};
 use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
+use imsearch::suchindex::analyse_pictures;
 
 const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 
@@ -9,6 +10,8 @@ fn main() {
 
     let histograms = get_histogram(&pic_u8);
     print_all_diagrams(histograms, pic_u8.color_channel_count); //TODO Werte nach Balken schreiben? (auf gleicher höhe (nach 40 Zeichen) oder direkt hinter Balken?) -> als optionales Feature?
+
+    analyse_pictures("src/tests/files/pictures_for_testing");
 
     //Aufruf +Ausgabe Averagebrightness
     let grayray = pic_u8.to_picture_f32().gray_intensity_array();
