@@ -1,15 +1,13 @@
-use imsearch::picture::{AverageBrightness, Picture};
-use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
-use std::io;
-use imsearch::suchindex::{analyse_pictures, SearchIndex};
-use imsearch::user_input::{input, input_search_image, repeat_input};
+use crate::picture::PictureF32;
+use crate::{get_histogram, Histogram, Picture, PictureU8};
 
-const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
-
-fn main() {
+#[test]
+fn test_creating_new_data_type() {
     pub struct PictureU32 {
-        pub lines: u32,   //height
-        pub columns: u32, //width
+        pub lines: u32,
+        //height
+        pub columns: u32,
+        //width
         pub color_channel_count: usize,
         pub data: Vec<u32>, //different data type: u32
     }
@@ -66,28 +64,19 @@ fn main() {
         ],
     };
 
-    print_all_diagrams(get_histogram(&pic_u32));
+    let expected_result = vec![
+        Histogram {
+            bins: vec![3, 0, 0, 0, 0],
+        },
+        Histogram {
+            bins: vec![3, 0, 0, 0, 0],
+        },
+        Histogram {
+            bins: vec![2, 0, 1, 0, 0],
+        },
+    ];
 
-    let pic_u8: PictureU8 = read_picture(PICTURE_FILEPATH);
-    println!("PictureU8: {pic_u8}"); // :? führt hier dazu, dass data AUCH ausgegeben wird, das passt aber meist nicht in die Console
-    //Input User: SearchPool
-    input();
-    repeat_input();
-
-    //Input User: SearchImage
-    let picture_path = input_search_image();
-
-
-    let pic_u8: PictureU8 = read_picture(&picture_path);
-    println!("PictureU8: {pic_u8}");
-
-    let histograms = get_histogram(&pic_u8);
-    print_all_diagrams(histograms);
-
-    //Averagebrightness
-    let grayray = pic_u8.to_picture_f32().gray_intensity_array();
-    let average_brightness = pic_u8.to_picture_f32().average_brightness(&grayray);
-    println!("Averagebrightness: {average_brightness}");
+    // assert with get_histogram as a random sample to ensure functionality
+    // of the Picture-typed parameter
+    assert_eq!(expected_result, get_histogram(&pic_u32));
 }
-
-

@@ -47,7 +47,7 @@ use std::fs;
 ///     println!("Item: {:?}", item);
 /// }
 /// ```
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
+#[derive(Clone, Serialize, Deserialize, Debug, PartialEq)]
 pub struct SearchIndex {
     pub filepath: String,
     pub filename: String,
@@ -158,16 +158,22 @@ impl IntoIterator for SearchIndex {
 /// }
 /// ```
 pub fn write_data_to_file<T>(data: T) -> Result<(), Box<dyn Error>>
-where
-    T: IntoIterator<Item = SearchIndex>,
+    where
+        T: IntoIterator<Item = SearchIndex>,
 {
     let datastore_filepath = get_datastore_path()?;
-
     let mut filedata: Vec<SearchIndex> = read_data_from_datastore()?;
-    filedata.extend(data);
+
+
+    // if the data already exists in data.json it is skipped.
+    for item in data {
+        if !search_index_exists(item.clone())? {
+            filedata.push(item);
+        }
+    }
 
     let data_str = serde_json::to_string_pretty(&filedata)?;
-    fs::write(&datastore_filepath, data_str)?;
+    fs::write(datastore_filepath, data_str)?;
 
     Ok(())
 }
@@ -293,7 +299,7 @@ where
 ///
 /// Returns an error if there was any problem reading the picture file or writing the search index to the data file.
 pub fn generate_suchindex(filepath: String) -> Result<(), Box<dyn Error>> {
-    let pic_u8: PictureU8 = read_picture(&filepath.clone());
+    let pic_u8: PictureU8 = read_picture(&filepath);
     let histograms = get_histogram(&pic_u8);
     //TODO helligkeit
 
@@ -344,4 +350,72 @@ pub fn analyse_pictures(path: &str) {
     } else {
         eprintln!("Invalid path: {}", path);
     }
+}
+/// Checks if a given `SearchIndex` exists in the datastore.
+///
+/// # Arguments
+///
+/// * `search_index_element` - The `SearchIndex` to search for in the datastore.
+///
+/// # Returns
+///
+/// Returns a `Result` indicating whether the `search_index_element` exists in the datastore or not.
+/// If the search operation is successful, the `Result` will contain a boolean value:
+/// - `Ok(true)` if the `search_index_element` exists in the datastore.
+/// - `Ok(false)` if the `search_index_element` does not exist in the datastore.
+/// If any error occurs during the data retrieval or search operation, an `Err` variant will be returned
+/// containing a `Box<dyn Error>` trait object.
+///
+/// # Examples
+///
+/// ```
+/// use std::error::Error;
+///use imsearch::suchindex::SearchIndex;
+/// // Implement the necessary traits for SearchIndex
+/// // ...
+///
+/// // Simulate reading data from the datastore
+/// fn read_data_from_datastore() -> Result<Vec<SearchIndex>, Box<dyn Error>> {
+///     // Implementation omitted for brevity
+/// Ok(vec![])
+/// }
+///
+/// // Define the search_index_exists function
+/// pub fn search_index_exists(search_index_element: SearchIndex) -> Result<bool, Box<dyn Error>> {
+/// let stored_data: Vec<SearchIndex> = read_data_from_datastore()?;
+///
+///     // Check if the search_index_element is present in the stored_data
+///     let found = stored_data.iter().any(|stored_element| *stored_element == search_index_element);
+///
+///     Ok(found)
+/// }
+///
+/// // Example usage
+/// fn main() {
+///     let filepath = "/path/to/file.png".to_string();
+///     let average_brightness = 6.9;
+///     let histogram = vec![/* Histogram data */];
+///     let search_index = SearchIndex::new(filepath, average_brightness, histogram);
+///
+///     match search_index_exists(search_index) {
+///         Ok(true) => println!("Search index exists in the datastore."),
+///         Ok(false) => println!("Search index does not exist in the datastore."),
+///         Err(err) => eprintln!("Error occurred: {}", err),
+///     }
+/// }
+/// ```
+///
+/// In this example, the `search_index_exists` function takes a `SearchIndex` as input and checks
+/// if it exists in the `stored_data` obtained from the datastore. It returns a `Result` indicating
+/// the existence of the search index. The function can be used by passing a `SearchIndex` instance
+/// to check its existence in the datastore.
+pub fn search_index_exists(search_index_element: SearchIndex) -> Result<bool, Box<dyn Error>> {
+    let stored_data: Vec<SearchIndex> = read_data_from_datastore()?;
+
+    // Check if the search_index_element is present in the stored_data
+    let found = stored_data
+        .iter()
+        .any(|stored_element| *stored_element == search_index_element);
+
+    Ok(found)
 }
