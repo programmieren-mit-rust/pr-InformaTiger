@@ -16,6 +16,9 @@ mod picture_tests;
 mod suchindex_tests;
 
 #[cfg(test)]
+mod with_threads_tests;
+
+#[cfg(test)]
 mod test_2a;
 
 #[cfg(test)]
