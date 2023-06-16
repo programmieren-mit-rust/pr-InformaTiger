@@ -6,7 +6,7 @@ pub mod file_handler;
 pub mod histogram;
 pub mod picture;
 pub mod suchindex;
-pub mod test_2a;
+pub mod test_averagebrightness;
 mod tests;
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
