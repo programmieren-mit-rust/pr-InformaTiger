@@ -213,7 +213,7 @@ impl AverageBrightness for PictureF32 {
     ///
     /// # Returns
     ///
-    /// The average brightness of the image.bb
+    /// The average brightness of the image
     fn average_brightness(&self, grayray: &Vec<f32>) -> f32 {
         let mut sum_grey = 0f32; //Wert für die Summe aller Grauwerte(f32)
         let pixels = grayray.len() as f32;
