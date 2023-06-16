@@ -164,6 +164,8 @@ pub fn write_data_to_file<T>(data: T) -> Result<(), Box<dyn Error>>
     let datastore_filepath = get_datastore_path()?;
     let mut filedata: Vec<SearchIndex> = read_data_from_datastore()?;
 
+
+    // if the data already exists in data.json it is skipped.
     for item in data {
         if !search_index_exists(item.clone())? {
             filedata.push(item);
