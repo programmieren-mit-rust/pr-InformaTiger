@@ -7,6 +7,7 @@ pub mod histogram;
 pub mod picture;
 pub mod suchindex;
 mod tests;
+pub mod user_input;
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 use std::env;
