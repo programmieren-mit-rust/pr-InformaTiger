@@ -1,6 +1,5 @@
 use imsearch::picture::{AverageBrightness, Picture, PictureF32};
 use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
-use std::io;
 use imsearch::suchindex::{analyse_pictures, SearchIndex};
 use imsearch::user_input::{input, input_search_image, repeat_input};
 
