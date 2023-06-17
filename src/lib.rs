@@ -21,7 +21,7 @@ pub use {
     crate::histogram::Histogram,
     crate::picture::{Picture, PictureU8},
 };
-use crate::user_input::{input, repeat_input};
+use crate::user_input::{input};
 
 /// Reads an image file and returns the image data as a `PictureU8` struct.
 ///
@@ -240,7 +240,7 @@ pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
 }
 pub fn get_pictures_from_user(){
     //Input User: SearchPool
-    while repeat_input() {
-        input();
+    while input(){
+
     }
 }

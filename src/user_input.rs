@@ -14,24 +14,25 @@ use crate::suchindex::analyse_pictures;
 /// let file_path = input();
 /// println!("Entered file path: {}", file_path);
 /// ```
-pub fn input() -> String {
-    println!("Bitte geben Sie den Datei-Pfad ihres Bilder-Ordners oder Bildes an ,aus dem sie Bilder suchen wollen:");
+pub fn input() -> bool{
+    println!("To begin searching for similar images, please provide the file path of either the image folder or the specific image you want to use as a reference:");
     let mut input_searchlib = String::new();
     io::stdin()
         .read_line(&mut input_searchlib)
-        .expect("Fehler beim Lesen der Eingabe");
+        .expect("Error: wrong input. Please make sure to provide the correct file path of either the image folder or the image itself from which you wish to search for similar images.");
     // Den eingegen Path extrahieren
     let input_lib = input_searchlib.trim().to_string();
 
 
     //Input in nen Suchindex schreiben
     analyse_pictures(&input_lib);
-    return input_lib;
+
+    repeat_input()
 
 }
 
 /// Prompts the user to extend their search library or not.
-/// If "ja" (yes) is selected, calls the `input` function and repeats the input.
+/// If "y" (yes) is selected, calls the `input` function and repeats the input.
 ///
 /// # Examples
 ///
@@ -42,23 +43,22 @@ pub fn input() -> String {
 /// ```
 
 pub fn repeat_input() -> bool {
-    println!("Wollen Sie ihre Suchbibliothek noch erweitern?(ja/nein):");
+    println!("Would you like to expand your search library? Please answer with 'yes' or 'no'");
     let mut user_input = String::new();
     io::stdin()
         .read_line(&mut user_input)
-        .expect("Fehler beim Lesen der Eingabe");
+        .expect("Apologies for the error. Please answer with either 'yes' or 'no' to indicate whether you would like to expand your search library.");
 
     let final_answer = user_input
         .trim()
         .to_lowercase();
 
     match final_answer {
-        f if f.contains("nein") => {
-            println!("OK, Eingabe wird übersprungen");
+        f if f.contains("no") => {
+            println!("Understood. Skipping the input.");
             false
         }
-        f if f.contains("ja") => {
-            input();
+        f if f.contains("yes") => {
             true
         }
         _ => {
@@ -79,16 +79,15 @@ pub fn repeat_input() -> bool {
 /// ```
 
 pub fn input_search_image() -> String {
-    println!("Suche ähnliche Bilder für (Eingabe Datei-Pfad für Bild):");
+    println!("To perform a similar image search, please provide the path to the image for which you want to find similar images.");
 
-    let mut input_pic = String::new();
+    let mut user_input_picture = String::new();
     io::stdin()
-        .read_line(&mut input_pic)
-        .expect("Fehler beim Lesen der Eingabe");
+        .read_line(&mut user_input_picture)
+        .expect("Error reading the input");
 
-    let final_picture = input_pic.trim().to_string();
+    user_input_picture.trim().to_string()
 
     // Input übergebn an Suchinex
-    analyse_pictures(&final_picture);
-    return final_picture;
+    //TODO()! hier nach ähnlichen Bildern suchen
 }
