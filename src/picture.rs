@@ -33,12 +33,12 @@ impl Picture for PictureU8 {
         }
     }
     fn to_picture_f32(&self) -> PictureF32 {
-        let new_data;
+        let new_data: Vec<f32>;
         if USE_THREADS_FOR_CONVERSION {
             new_data = convert_data_to_f32_with_threads(&self.data);
         } else {
             new_data = convert_data_to_f32(&self.data);
-        }
+        };
 
         PictureF32 {
             lines: self.lines,
@@ -72,7 +72,7 @@ pub struct PictureF32 {
 
 impl Picture for PictureF32 {
     fn to_picture_u8(&self) -> PictureU8 {
-        let new_data;
+        let new_data: Vec<u8>;
         if USE_THREADS_FOR_CONVERSION {
             new_data = convert_data_to_u8_with_threads(&self.data);
         } else {
@@ -168,15 +168,7 @@ impl<T: Picture> AverageBrightness for T {
         green_colour_val: f32,
         blue_colour_val: f32,
     ) -> f32 {
-        /// Calculates the gray intensity values for all pixels in the picture and returns them as an array.
-        ///
-        /// # Returns
-        ///
-        /// An array containing the gray intensity values for each pixel in the picture.
-        let singel_pixel_gray =
-            (0.3 * red_colour_val) + (0.59 * green_colour_val) + (0.11 * blue_colour_val);
-
-        return singel_pixel_gray;
+        (0.3 * red_colour_val) + (0.59 * green_colour_val) + (0.11 * blue_colour_val)
     }
     /// Calculates the gray intensity values for all pixels in the image and returns them as an array.
     ///this function only uses the first tree channels (R,G,B) and skips channels bigger than 3
@@ -191,7 +183,6 @@ impl<T: Picture> AverageBrightness for T {
         let mut count_colour: usize = 0;
 
         if pic_f32.color_channel_count >= 3 {
-
             while count_colour < pic_f32.data.len() {
                 let r = pic_f32.data[count_colour];
                 let g = pic_f32.data[count_colour + 1];
@@ -204,7 +195,6 @@ impl<T: Picture> AverageBrightness for T {
 
         return grayray;
     }
-
 
     /// Calculates the average brightness of the image based on the provided gray intensity values.
     ///
@@ -219,7 +209,6 @@ impl<T: Picture> AverageBrightness for T {
         let mut sum_grey = 0f32;
         let pixels = grayray.len() as f32;
         let mut count: usize = 0;
-
 
         while count < pixels as usize {
             sum_grey = sum_grey + grayray[count];

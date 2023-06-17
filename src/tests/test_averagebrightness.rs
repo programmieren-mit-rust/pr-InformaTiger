@@ -44,12 +44,11 @@ fn test_average_brightness() {
         columns: 0,
     };
 
-    let grayray = vec![0.20808, 0.13];  // Example values for the test
+    let grayray = vec![0.20808, 0.13]; // Example values for the test
 
     let result = picture.average_brightness(&grayray);
     //Überprüfen der mittleren Helligkeit
     assert_eq!(result, 0.16904); // Expected result based on the calculation ((0.20808 + 0.13) / 2)
-
 
     // TODO Weitere Testfälle hinzufügen...
 }
