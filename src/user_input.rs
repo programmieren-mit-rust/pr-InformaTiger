@@ -79,12 +79,12 @@ pub fn repeat_input() -> bool {
 /// ```
 
 pub fn input_search_image() -> String {
-    println!("To perform a similar image search, please provide the path to the image for which you want to find similar images.");
+    println!("To perform a similar image search, please provide the path to the image for which you want to find similar images:");
 
     let mut user_input_picture = String::new();
     io::stdin()
         .read_line(&mut user_input_picture)
-        .expect("Error reading the input");
+        .expect("Error reading the input.");
 
     user_input_picture.trim().to_string()
 
