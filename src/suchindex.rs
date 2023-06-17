@@ -52,7 +52,7 @@ use std::fs;
 pub struct SearchIndex {
     pub filepath: String,
     pub filename: String,
-    pub average_brightness: f32, // information from average_brightness branch.
+    pub average_brightness: f32,
     pub histogram: Vec<Histogram>,
 }
 
@@ -68,7 +68,8 @@ impl SearchIndex {
     /// # Examples
     ///
     /// ```rust
-    /// use imsearch::suchindex::SearchIndex;
+    /// use imsearch::read_picture;
+    /// use imsearch::suchindex::{determine_avg_brightness, SearchIndex};
     ///
     /// let filepath = "/path/to/file.png".to_string();
     /// let average_brightness = 6.9;
@@ -167,12 +168,12 @@ where
     let mut filedata: Vec<SearchIndex> = read_data_from_datastore()?;
 
 
-    // if the data already exists in data.json it is skipped.
-    for item in data {
-        if !search_index_exists(item.clone())? {
-            filedata.push(item);
-        }
-    }
+    // // if the data already exists in data.json it is skipped.
+    // for item in data {
+    //     if !search_index_exists(&item)? {
+    //         filedata.push(item);
+    //     }
+    // }
 
     let data_str = serde_json::to_string_pretty(&filedata)?;
     fs::write(datastore_filepath, data_str)?;
@@ -301,13 +302,17 @@ where
 ///
 /// Returns an error if there was any problem reading the picture file or writing the search index to the data file.
 pub fn generate_suchindex_to_file(filepath: String) -> Result<(), Box<dyn Error>> {
-    let pic_u8: PictureU8 = read_picture(&filepath.clone());
+
+
+    let pic_u8: PictureU8 = read_picture(&filepath);
     let histograms = get_histogram(&pic_u8);
     let average_brightness = determine_avg_brightness(pic_u8);
 
 
     let search_index = SearchIndex::new(filepath, average_brightness, histograms);
-    write_data_to_file(search_index)?;
+    if !search_index_exists(&search_index)? {
+        write_data_to_file(search_index)?;
+    }
     Ok(())
 }
 
@@ -331,28 +336,29 @@ pub fn generate_suchindex_to_file(filepath: String) -> Result<(), Box<dyn Error>
 /// // Analyze a single picture file
 /// analyse_pictures("/path/to/picture.png");
 /// ```
-pub fn analyse_pictures(path: &str) {
+pub fn analyse_pictures(path: &str) -> Result<(), Box<dyn Error>> {
     if is_directory(path) {
         let entries = match fs::read_dir(path) {
             Ok(entries) => entries,
             Err(err) => {
                 eprintln!("Error reading directory: {}", err);
-                return;
+                return Err(Box::new(err));
             }
         };
         for entry in entries.filter_map(|entry| entry.ok()) {
             let entry_path = entry.path();
             if let Some(file_path) = entry_path.to_str() {
-                if is_file(file_path) {
+                if is_file(file_path) && !search_index_path_exists(file_path)?{
                     generate_suchindex_to_file(format_filepath(file_path)).unwrap();
                 }
             }
         }
-    } else if is_file(path) {
+    } else if is_file(path) && !search_index_path_exists(path)?{
         generate_suchindex_to_file(path.to_string()).unwrap();
     } else {
         eprintln!("Invalid path: {}", path);
     }
+    Ok(())
 }
 
 /// Checks if a given `SearchIndex` exists in the datastore.
@@ -413,22 +419,22 @@ pub fn analyse_pictures(path: &str) {
 /// if it exists in the `stored_data` obtained from the datastore. It returns a `Result` indicating
 /// the existence of the search index. The function can be used by passing a `SearchIndex` instance
 /// to check its existence in the datastore.
-pub fn search_index_exists(search_index_element: SearchIndex) -> Result<bool, Box<dyn Error>> {
+pub fn search_index_exists(search_index_element: &SearchIndex) -> Result<bool, Box<dyn Error>> {
     let stored_data: Vec<SearchIndex> = read_data_from_datastore()?;
 
     // Check if the search_index_element is present in the stored_data
     let found = stored_data
         .iter()
-        .any(|stored_element| *stored_element == search_index_element);
+        .any(|stored_element| *stored_element == *search_index_element);
 
     Ok(found)
 }
 
 
-    pub fn generate_suchindex(filepath: String) -> Result<SearchIndex, Box<dyn Error>> {
+pub fn generate_suchindex(filepath: String) -> Result<SearchIndex, Box<dyn Error>> {
     let pic_u8: PictureU8 = read_picture(&filepath);
     let histograms = get_histogram(&pic_u8);
-        let average_brightness= 6.9;
+        let average_brightness= determine_avg_brightness(pic_u8);
 
     Ok(SearchIndex::new(filepath, average_brightness, histograms))
 
@@ -437,4 +443,14 @@ pub fn determine_avg_brightness(pic_u8: PictureU8) -> f32 {
     let pic_f32 = pic_u8.to_picture_f32();
     let grayray = pic_f32.gray_intensity_array();
     pic_f32.average_brightness(&grayray)
+}
+pub fn search_index_path_exists(path: &str) -> Result<bool, Box<dyn Error>> {
+    let stored_data: Vec<SearchIndex> = read_data_from_datastore()?;
+
+    // Check if the search_index_element is present in the stored_data
+    let found = stored_data
+        .iter()
+        .any(|stored_element| *stored_element.filepath == path.to_string());
+
+    Ok(found)
 }

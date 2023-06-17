@@ -9,7 +9,8 @@ pub fn similarity_of_histograms(search_index1: SearchIndex, search_index2: Searc
 
 pub fn compare_vec_of_histograms(vec1: Vec<Vec<f64>>, vec2: Vec<Vec<f64>>) -> f64 {
     if vec1.len() != vec2.len() {
-        panic!("Input vectors have different lengths");
+        println!("Input vectors have different lengths");
+        return 0.0;
     }
     let mut result: Vec<f64> = Vec::new();
     for (i, (hist1, hist2)) in vec1.iter().zip(vec2.iter()).enumerate() {

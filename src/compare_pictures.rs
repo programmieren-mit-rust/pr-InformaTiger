@@ -1,8 +1,13 @@
 
 use crate::suchindex::{generate_suchindex, read_data_from_datastore};
 use crate::suchindex::SearchIndex;
-use std::error::Error;
 use crate::cosinus_similarity::similarity_of_histograms;
+
+enum SimilarityMeasure {
+    CosineSimilarity,
+    AverageBrightness,
+    SearchIndex,
+}
 
 /// A trait for comparing pictures.
 pub trait ComparePicture {
@@ -37,8 +42,8 @@ impl ComparePicture for SearchIndex {
         let mut count: usize = 0;
 
         while count < data.len() {
-            let diff = (data[data.len()-1].average_brightness - data[count].average_brightness).abs();
-            diff_brightness.push(diff);
+            let diff = (search_index.average_brightness - data[count].average_brightness).abs();
+            diff_brightness.push(1.0 - diff);
             count += 1;
         }
         diff_brightness
