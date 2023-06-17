@@ -1,7 +1,7 @@
 use imsearch::picture::{AverageBrightness, Picture, PictureF32};
 use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
-use imsearch::cosinus_similarity::{cosine_similarity, similarity_of_histograms};
-use imsearch::suchindex::{analyse_pictures, generate_suchindex, generate_suchindex_in_datastore};
+use imsearch::cosinus_similarity::{similarity_of_histograms};
+use imsearch::suchindex::{generate_suchindex};
 
 const PICTURE_FILEPATH_BIRD: &str = "src/tests/files/pictures_for_testing/bird.png";
 const PICTURE_FILEPATH_FLOWER1: &str = "src/tests/files/pictures_for_testing/flower_purple_1.png";
@@ -73,7 +73,7 @@ fn main() {
     println!("PictureU8: {pic_u8}"); // :? führt hier dazu, dass data AUCH ausgegeben wird, das passt aber meist nicht in die Console
 
     let histograms = get_histogram(&pic_u8);
-    print_all_diagrams(histograms.clone());
+    print_all_diagrams(histograms);
 
     //Aufruf +Ausgabe Averagebrightness
     let grayray = pic_u8.to_picture_f32().gray_intensity_array();
