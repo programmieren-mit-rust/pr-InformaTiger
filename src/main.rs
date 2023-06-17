@@ -1,5 +1,4 @@
-use imsearch::compare_pictures::{calculate_similarities};
-use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8, get_average_brightness_of_picture, print_calculated_similar_pictures};
+use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8, get_average_brightness_of_picture, print_calculated_similar_pictures, get_all_similar_pictures, get_top_five_similar_pictures};
 
 const PICTURE_FILEPATH_BIRD: &str = "src/tests/files/pictures_for_testing/bird.png";
 const PICTURE_FILEPATH_FLOWER2: &str =
@@ -16,6 +15,6 @@ fn main() {
     let average_brightness = get_average_brightness_of_picture(PICTURE_FILEPATH_BIRD);
     println!("Averagebrightness: {average_brightness}");
 
-    let similar_five_pictures = calculate_similarities(PICTURE_FILEPATH_FLOWER2).unwrap();
+    let similar_five_pictures = get_top_five_similar_pictures(PICTURE_FILEPATH_FLOWER2).unwrap();
     print_calculated_similar_pictures(similar_five_pictures);
 }

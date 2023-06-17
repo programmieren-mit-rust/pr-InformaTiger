@@ -272,3 +272,13 @@ pub fn get_average_brightness_of_two_pictures(path1: &str, path2: &str) -> f32{
 pub fn get_cosinus_similarity(search_index1: SearchIndex, search_index2: SearchIndex) -> f64 {
     determine_similarity_of_search_index_histograms(search_index1, search_index2) * 100.0
 }
+
+pub fn get_top_five_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>>{
+    let similar_pictures = get_all_similar_pictures(path)?;
+    Ok(similar_pictures.iter().take(5).cloned().collect())
+}
+
+pub fn get_all_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>>{
+    let similar_pictures = calculate_similarities(path)?;
+    Ok(similar_pictures)
+}

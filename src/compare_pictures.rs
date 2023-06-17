@@ -65,8 +65,7 @@ pub fn calculate_similarities(path: &str) -> Result<Vec<SimilarityInformation>, 
         similarities.push(similarity_measure);
     }
     sort_similarity_measures_by_similarity(&mut similarities);
-    let top_five = similarities.iter().take(5).cloned().collect();
-    Ok(top_five)
+    Ok(similarities)
 }
 fn compute_average(value1: f32, value2: f64) -> f64 {
     let value1_f64: f64 = f64::from(value1);
