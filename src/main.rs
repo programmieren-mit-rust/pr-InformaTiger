@@ -18,8 +18,9 @@ fn main() {
     print_all_diagrams(histograms);
 
     //Averagebrightness
-    let grayray = pic_u8.to_picture_f32().gray_intensity_array();
-    let average_brightness = pic_u8.to_picture_f32().average_brightness(&grayray);
+    let pic_f32 = pic_u8.to_picture_f32();
+    let grayray = pic_f32.gray_intensity_array();
+    let average_brightness = pic_f32.average_brightness(&grayray);
     println!("Averagebrightness: {average_brightness}");
 
     let pic_u8: PictureU8 = read_picture(PICTURE_FILEPATH);

@@ -33,14 +33,6 @@ pub fn input() -> bool{
 
 /// Prompts the user to extend their search library or not.
 /// If "y" (yes) is selected, calls the `input` function and repeats the input.
-///
-/// # Examples
-///
-/// ```
-///
-///
-///
-/// ```
 
 pub fn repeat_input() -> bool {
     println!("Would you like to expand your search library? Please answer with 'yes' or 'no'");
