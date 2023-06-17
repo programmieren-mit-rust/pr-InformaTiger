@@ -1,4 +1,4 @@
-use imsearch::picture::{AverageBrightness, Picture, PictureF32};
+use imsearch::picture::{AverageBrightness, Picture};
 use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8, get_pictures_from_user};
 use imsearch::user_input::{input_search_image};
 
