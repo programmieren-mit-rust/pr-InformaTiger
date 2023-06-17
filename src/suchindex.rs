@@ -168,7 +168,7 @@ where
     let mut filedata: Vec<SearchIndex> = read_data_from_datastore()?;
 
     for item in data {
-            filedata.push(item);
+        filedata.push(item);
     }
 
     let data_str = serde_json::to_string_pretty(&filedata)?;
@@ -298,11 +298,9 @@ where
 ///
 /// Returns an error if there was any problem reading the picture file or writing the search index to the data file.
 pub fn generate_suchindex_to_file(filepath: String) -> Result<(), Box<dyn Error>> {
-
     let pic_u8: PictureU8 = read_picture(&filepath);
     let histograms = get_histogram(&pic_u8);
     let average_brightness = determine_avg_brightness(pic_u8);
-
 
     let search_index = SearchIndex::new(filepath, average_brightness, histograms);
     if !search_index_exists(&search_index)? {
@@ -343,12 +341,12 @@ pub fn analyse_pictures(path: &str) -> Result<(), Box<dyn Error>> {
         for entry in entries.filter_map(|entry| entry.ok()) {
             let entry_path = entry.path();
             if let Some(file_path) = entry_path.to_str() {
-                if is_file(file_path) && !search_index_path_exists(file_path)?{
+                if is_file(file_path) && !search_index_path_exists(file_path)? {
                     generate_suchindex_to_file(format_filepath(file_path)).unwrap();
                 }
             }
         }
-    } else if is_file(path) && !search_index_path_exists(path)?{
+    } else if is_file(path) && !search_index_path_exists(path)? {
         generate_suchindex_to_file(path.to_string()).unwrap();
     } else {
         eprintln!("Invalid path: {}", path);
@@ -425,14 +423,12 @@ pub fn search_index_exists(search_index_element: &SearchIndex) -> Result<bool, B
     Ok(found)
 }
 
-
 pub fn generate_suchindex(filepath: String) -> Result<SearchIndex, Box<dyn Error>> {
     let pic_u8: PictureU8 = read_picture(&filepath);
     let histograms = get_histogram(&pic_u8);
-        let average_brightness= determine_avg_brightness(pic_u8);
+    let average_brightness = determine_avg_brightness(pic_u8);
 
     Ok(SearchIndex::new(filepath, average_brightness, histograms))
-
 }
 pub fn determine_avg_brightness(pic_u8: PictureU8) -> f32 {
     let pic_f32 = pic_u8.to_picture_f32();

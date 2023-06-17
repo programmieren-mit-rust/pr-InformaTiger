@@ -2,6 +2,7 @@
 // If they are added, they get executed when cargo run is called.
 
 pub mod compare_pictures;
+pub mod cosinus_similarity;
 pub mod escape;
 pub mod file_handler;
 pub mod histogram;
@@ -9,20 +10,19 @@ pub mod picture;
 pub mod suchindex;
 mod tests;
 pub mod with_threads;
-pub mod cosinus_similarity;
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 use std::env;
 use std::error::Error;
 use std::fs::File;
 
+use crate::compare_pictures::{calculate_similarities, SimilarityInformation};
+use crate::suchindex::generate_suchindex_to_file;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::Histogram,
     crate::picture::{Picture, PictureU8},
 };
-use crate::compare_pictures::{calculate_similarities, SimilarityInformation};
-use crate::suchindex::generate_suchindex_to_file;
 
 /// Reads an image file and returns the image data as a `PictureU8` struct.
 ///
@@ -240,15 +240,15 @@ pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
     }
 }
 
-pub fn store_pictures_in_database(path: &str)-> Result<(), Box<dyn Error>> {
+pub fn store_pictures_in_database(path: &str) -> Result<(), Box<dyn Error>> {
     generate_suchindex_to_file(path.to_string())?;
     Ok(())
 }
-pub fn search_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>>{
+pub fn search_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>> {
     let test = calculate_similarities(path)?;
     Ok(test)
 }
-pub fn print_similar_pictures(pictures: Vec<SimilarityInformation>){
+pub fn print_similar_pictures(pictures: Vec<SimilarityInformation>) {
     for element in pictures {
         element.print();
     }

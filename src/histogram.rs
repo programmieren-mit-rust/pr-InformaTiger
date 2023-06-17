@@ -159,13 +159,8 @@ impl Histogram {
     }
     pub fn normalize(&self) -> Vec<f64> {
         let sum: f64 = f64::from(self.bins.iter().sum::<u32>());
-        let normalized_bins: Vec<f64> = self
-            .bins
-            .iter()
-            .map(|&bin| f64::from(bin) / sum)
-            .collect();
+        let normalized_bins: Vec<f64> = self.bins.iter().map(|&bin| f64::from(bin) / sum).collect();
 
         normalized_bins
     }
-
 }

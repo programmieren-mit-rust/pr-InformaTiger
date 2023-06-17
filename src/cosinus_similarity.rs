@@ -1,6 +1,9 @@
 use crate::suchindex::SearchIndex;
 
-pub fn determine_similarity_of_search_index_histograms(search_index1: SearchIndex, search_index2: SearchIndex) -> f64{
+pub fn determine_similarity_of_search_index_histograms(
+    search_index1: SearchIndex,
+    search_index2: SearchIndex,
+) -> f64 {
     let normalized_histograms1 = get_normalized_histogram_of_search_index(search_index1);
     let normalized_histograms2 = get_normalized_histogram_of_search_index(search_index2);
 
@@ -21,9 +24,12 @@ pub fn compare_vec_of_histograms(vec1: Vec<Vec<f64>>, vec2: Vec<Vec<f64>>) -> f6
 }
 
 pub fn compute_cosine_similarity(histogram1: &[f64], histogram2: &[f64]) -> f64 {
-
     // Check if the histograms have the same length
-    assert_eq!(histogram1.len(), histogram2.len(), "Histograms must have the same length");
+    assert_eq!(
+        histogram1.len(),
+        histogram2.len(),
+        "Histograms must have the same length"
+    );
 
     // Calculate the dot product
     let dot_product: f64 = compute_dot_product(histogram1, histogram2);
@@ -37,7 +43,11 @@ pub fn compute_cosine_similarity(histogram1: &[f64], histogram2: &[f64]) -> f64 
 }
 
 fn compute_dot_product(histogram1: &[f64], histogram2: &[f64]) -> f64 {
-    histogram1.iter().zip(histogram2.iter()).map(|(&a, &b)| a * b).sum()
+    histogram1
+        .iter()
+        .zip(histogram2.iter())
+        .map(|(&a, &b)| a * b)
+        .sum()
 }
 
 fn compute_magnitude(histogram: &[f64]) -> f64 {
@@ -49,7 +59,7 @@ fn compute_average_of_vec(values: Vec<f64>) -> f64 {
     sum / values.len() as f64
 }
 
-pub fn get_normalized_histogram_of_search_index(search_index: SearchIndex) -> Vec<Vec<f64>>{
+pub fn get_normalized_histogram_of_search_index(search_index: SearchIndex) -> Vec<Vec<f64>> {
     let mut results: Vec<Vec<f64>> = Vec::new();
     for entry in search_index {
         for bin in entry.histogram {
