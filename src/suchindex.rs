@@ -1,4 +1,5 @@
 use crate::file_handler::{extract_filename, format_filepath, is_directory, is_file};
+use crate::picture::{AverageBrightness, Picture};
 use crate::{get_datastore_path, get_histogram, read_picture, Histogram, PictureU8};
 use serde::{Deserialize, Serialize};
 use std::error::Error;
@@ -158,10 +159,11 @@ impl IntoIterator for SearchIndex {
 /// }
 /// ```
 pub fn write_data_to_file<T>(data: T) -> Result<(), Box<dyn Error>>
-    where
-        T: IntoIterator<Item = SearchIndex>,
+where
+    T: IntoIterator<Item = SearchIndex>,
 {
     let datastore_filepath = get_datastore_path()?;
+
     let mut filedata: Vec<SearchIndex> = read_data_from_datastore()?;
 
 
@@ -287,23 +289,24 @@ where
 ///
 /// ```
 /// # use std::error::Error;
-/// # use imsearch::suchindex::generate_suchindex_in_datastore;
+/// # use imsearch::suchindex::generate_suchindex_to_file;
 /// # const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 ///
 /// # fn main(){
-///     generate_suchindex_in_datastore(PICTURE_FILEPATH.to_string()).unwrap();
+///     generate_suchindex_to_file(PICTURE_FILEPATH.to_string()).unwrap();
 /// # }
 /// ```
 ///
 /// # Errors
 ///
 /// Returns an error if there was any problem reading the picture file or writing the search index to the data file.
-pub fn generate_suchindex_in_datastore(filepath: String) -> Result<(), Box<dyn Error>> {
-    let pic_u8: PictureU8 = read_picture(&filepath);
+pub fn generate_suchindex_to_file(filepath: String) -> Result<(), Box<dyn Error>> {
+    let pic_u8: PictureU8 = read_picture(&filepath.clone());
     let histograms = get_histogram(&pic_u8);
-    //TODO helligkeit
+    let average_brightness = determine_avg_brightness(pic_u8);
 
-    let search_index = SearchIndex::new(filepath, 6.9, histograms);
+
+    let search_index = SearchIndex::new(filepath, average_brightness, histograms);
     write_data_to_file(search_index)?;
     Ok(())
 }
@@ -341,16 +344,17 @@ pub fn analyse_pictures(path: &str) {
             let entry_path = entry.path();
             if let Some(file_path) = entry_path.to_str() {
                 if is_file(file_path) {
-                    generate_suchindex_in_datastore(format_filepath(file_path)).unwrap();
+                    generate_suchindex_to_file(format_filepath(file_path)).unwrap();
                 }
             }
         }
     } else if is_file(path) {
-        generate_suchindex_in_datastore(path.to_string()).unwrap();
+        generate_suchindex_to_file(path.to_string()).unwrap();
     } else {
         eprintln!("Invalid path: {}", path);
     }
 }
+
 /// Checks if a given `SearchIndex` exists in the datastore.
 ///
 /// # Arguments
@@ -419,11 +423,18 @@ pub fn search_index_exists(search_index_element: SearchIndex) -> Result<bool, Bo
 
     Ok(found)
 }
-pub fn generate_suchindex(filepath: String) -> Result<SearchIndex, Box<dyn Error>> {
+
+
+    pub fn generate_suchindex(filepath: String) -> Result<SearchIndex, Box<dyn Error>> {
     let pic_u8: PictureU8 = read_picture(&filepath);
     let histograms = get_histogram(&pic_u8);
-    //TODO helligkeit
+        let average_brightness= 6.9;
 
-    Ok(SearchIndex::new(filepath, 6.9, histograms))
+    Ok(SearchIndex::new(filepath, average_brightness, histograms))
 
+}
+pub fn determine_avg_brightness(pic_u8: PictureU8) -> f32 {
+    let pic_f32 = pic_u8.to_picture_f32();
+    let grayray = pic_f32.gray_intensity_array(pic_f32.clone());
+    pic_f32.average_brightness(&grayray)
 }

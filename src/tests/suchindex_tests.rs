@@ -1,7 +1,5 @@
 use crate::picture::Picture;
-use crate::suchindex::{
-    analyse_pictures, generate_suchindex_in_datastore, read_data_from_datastore, write_data_to_file, SearchIndex,
-};
+use crate::suchindex::{analyse_pictures, generate_suchindex_to_file, read_data_from_datastore, write_data_to_file, SearchIndex, generate_suchindex};
 use crate::{get_datastore_path, get_histogram, read_picture, set_datastore_filepath, PictureU8};
 
 const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
@@ -15,7 +13,7 @@ fn test_generate_suchindex() {
     let picture = PICTURE_FILEPATH.to_string();
 
     // Analyse picture and store the info.
-    generate_suchindex_in_datastore(picture).expect("generate_suchindex failed");
+    generate_suchindex_to_file(picture).expect("generate_suchindex failed");
 
     // Was it successful written?
     // Assert that the file was successfully written
@@ -29,7 +27,7 @@ fn test_read_data_from_datastore() {
     let pic_f32 = pic_u8.to_picture_f32();
     let histograms = get_histogram(&pic_f32.to_picture_u8());
 
-    let search_index = SearchIndex::new(PICTURE_FILEPATH.to_string(), 6.9, histograms);
+    let search_index = generate_suchindex(PICTURE_FILEPATH.to_string()).unwrap();
     if let Err(err) = write_data_to_file(search_index) {
         eprintln!("Error writing data to file: {}", err);
     }
