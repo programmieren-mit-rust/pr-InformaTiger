@@ -1,7 +1,27 @@
-# Image Search Library for PNGs
+# Image Search Library for PNGs (Rust)
 
-This is a simple image search library designed to perform image searches based on a given image. The library takes a search term in the form of an image and outputs the most similar images from a pool of pre-indexed images. The criteria for similarity can be flexibly defined.
-Features
+This Image Search Library is a powerful and customizable image search library specifically developed for the Rust programming language. Its primary objective is to facilitate efficient image searches based on a provided input image. With this library, you can easily retrieve the most similar images from a pre-indexed pool or one of your own.
+
+## Key Features:
+- Perform image searches based on PNG images using Rust.
+- Retrieve the most similar images from a pool of pre-indexed PNG images.
+-Customize and expand the image pool according to your specific requirements and preferences.
+- Benefit from efficient algorithms for accurate and fast image retrieval.
+
+## Usage:
+1. Add the Image Search Library as a dependency in your Rust project.
+2. (Optional) Provide your own index-pool.
+2. Provide the input PNG image for the search.
+3. Configure the library according to your preferences, including the image pool and similarity criteria.
+4. Execute the search using the library's functions or methods.
+5. Access the results and utilize them in your Rust application.
+
+Whether you need image search functionality for content-based image retrieval, recommendation systems, or any other PNG image-related tasks, this Image Search Library in Rust offers a customizable and efficient solution to meet your needs.
+
+For detailed instructions on installation, usage examples, and customization options, please refer to the documentation provided with the library.
+ImageSearchLib is a versatile library specifically developed for performing image searches based on a given image.
+By providing a search term in the form of an image, the library efficiently retrieves the most similar images from a pool of indexed images.
+The great advantage of this library lies in its expandability, allowing users to tailor the image pool to their specific needs.
 
 The library provides the following central types:
 
@@ -22,59 +42,41 @@ To use the library, follow these steps:
 
 Here's an example of how to use the library:
 
-python
+ cargo imsearch
 
-from image_search import SearchIndex, Features, Images
 
 # Create a search index
-search_index = SearchIndex()
+    search_index = SearchIndex()
 
 # Add images to the search index
-image_data = Images.read_image('path/to/image.png')
-features = Features.extract(image_data)
-search_index.add_image(image_data, features)
+    image_data = Images.read_image('path/to/image.png')
+    features = Features.extract(image_data)
+    search_index.add_image(image_data, features)
 
 # Search for similar images
-search_image = Images.read_image('path/to/search_image.png')
-similar_images = search_index.search(search_image, criteria='euclidean_distance', num_results=5)
+    search_image = Images.read_image('path/to/search_image.png')
+    similar_images = search_index.search(search_image, criteria='euclidean_distance', num_results=5)
+
+
+
 
 # Display the similar images
-for image in similar_images:
-    Images.display_image(image)
-
-Custom Features
-
-If you want to use custom features, you can implement your own feature extraction methods and use them with the search index. Simply create a new class that inherits from the Features class and override the extract method to extract the desired features from the image data. Then, you can pass an instance of your custom features class to the add_image method of the search index.
-
-python
-
-from image_search import SearchIndex, Features, Images
-
-class CustomFeatures(Features):
-    def extract(self, image_data):
-        # Custom feature extraction logic
-        # Return the extracted features
+    # TODO:
 
 # Create a search index
-search_index = SearchIndex()
+    search_index = SearchIndex()
 
-# Add images with custom features to the search index
-image_data = Images.read_image('path/to/image.png')
-custom_features = CustomFeatures.extract(image_data)
-search_index.add_image(image_data, custom_features)
+# Add images to the search index
+    input()
+    repeat_input()
+
 
 # Search for similar images using the custom features
-search_image = Images.read_image('path/to/search_image.png')
-similar_images = search_index.search(search_image, criteria='custom_features_similarity', num_results=5)
+    picture_path = input_search_image()
 
 Supported Similarity Criteria
 
-The library supports the following built-in similarity criteria:
 
-    Euclidean Distance: Measures the similarity between two images based on the Euclidean distance between their feature vectors.
-    Cosine Similarity: Measures the similarity between two images based on the cosine of the angle between their feature vectors.
-    Custom Features Similarity: Allows you to define your own similarity measure when using custom features.
 
 # License
-
-You as library user can select between MIT and Apache 2.0.
+This program is licensed by MIT.
