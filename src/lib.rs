@@ -21,6 +21,8 @@ pub use {
     crate::histogram::Histogram,
     crate::picture::{Picture, PictureU8},
 };
+use crate::compare_pictures::{calculate_similarities, SimilarityInformation};
+use crate::suchindex::generate_suchindex_to_file;
 
 /// Reads an image file and returns the image data as a `PictureU8` struct.
 ///
@@ -235,5 +237,19 @@ pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
             //eprintln!("datastore_filepath was not set. Using default filepath. Error: {}", err);
             Ok(DEFAULT_DATASTORE_FILEPATH.to_string())
         }
+    }
+}
+
+pub fn store_pictures_in_database(path: &str)-> Result<(), Box<dyn Error>> {
+    generate_suchindex_to_file(path.to_string())?;
+    Ok(())
+}
+pub fn search_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>>{
+    let test = calculate_similarities(path)?;
+    Ok(test)
+}
+pub fn print_similar_pictures(pictures: Vec<SimilarityInformation>){
+    for element in pictures {
+        element.print();
     }
 }

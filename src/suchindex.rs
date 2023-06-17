@@ -167,13 +167,9 @@ where
 
     let mut filedata: Vec<SearchIndex> = read_data_from_datastore()?;
 
-
-    // // if the data already exists in data.json it is skipped.
-    // for item in data {
-    //     if !search_index_exists(&item)? {
-    //         filedata.push(item);
-    //     }
-    // }
+    for item in data {
+            filedata.push(item);
+    }
 
     let data_str = serde_json::to_string_pretty(&filedata)?;
     fs::write(datastore_filepath, data_str)?;
@@ -303,7 +299,6 @@ where
 /// Returns an error if there was any problem reading the picture file or writing the search index to the data file.
 pub fn generate_suchindex_to_file(filepath: String) -> Result<(), Box<dyn Error>> {
 
-
     let pic_u8: PictureU8 = read_picture(&filepath);
     let histograms = get_histogram(&pic_u8);
     let average_brightness = determine_avg_brightness(pic_u8);
@@ -331,10 +326,10 @@ pub fn generate_suchindex_to_file(filepath: String) -> Result<(), Box<dyn Error>
 /// ```rust
 /// // Analyze pictures in a directory
 /// # use imsearch::suchindex::analyse_pictures;
-/// analyse_pictures("/path/to/pictures");
+/// analyse_pictures("/path/to/pictures").expect(e);
 ///
 /// // Analyze a single picture file
-/// analyse_pictures("/path/to/picture.png");
+/// analyse_pictures("/path/to/picture.png").expect(e);
 /// ```
 pub fn analyse_pictures(path: &str) -> Result<(), Box<dyn Error>> {
     if is_directory(path) {

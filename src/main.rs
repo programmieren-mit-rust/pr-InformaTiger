@@ -1,7 +1,7 @@
 use imsearch::picture::{AverageBrightness, Picture};
 use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
-use imsearch::compare_pictures::{calculate_similarities, SimilarityMeasure};
-use imsearch::cosinus_similarity::similarity_of_histograms;
+use imsearch::compare_pictures::{calculate_similarities, SimilarityInformation};
+use imsearch::cosinus_similarity::determine_similarity_of_search_index_histograms;
 use imsearch::suchindex::{generate_suchindex};
 
 const PICTURE_FILEPATH_BIRD: &str = "src/tests/files/pictures_for_testing/bird.png";
@@ -20,37 +20,13 @@ fn main() {
     let average_brightness = pic_u8.to_picture_f32().average_brightness(&grayray); // Aufruf von averagebrightness
     println!("Averagebrightness: {average_brightness}");
 
-    let bird1 = generate_suchindex(PICTURE_FILEPATH_BIRD.to_string()).unwrap();
-    let flower1 = generate_suchindex(PICTURE_FILEPATH_FLOWER1.to_string()).unwrap();
-    let flower2 = generate_suchindex(PICTURE_FILEPATH_FLOWER2.to_string()).unwrap();
-
-    let similarity =similarity_of_histograms(bird1.clone(), bird1.clone());
-    println!("Cosine Similarity same pic: {}", similarity);
-    let similarity =similarity_of_histograms(flower1.clone(), flower2);
-    println!("Cosine Similarity 2 flowers: {}", similarity);
-    let similarity =similarity_of_histograms(flower1, bird1);
-    println!("Cosine Similarity different pics: {}", similarity);
 
 
-    let test = calculate_similarities(PICTURE_FILEPATH_BIRD).unwrap();
+    let test = &calculate_similarities(PICTURE_FILEPATH_FLOWER2).unwrap()[..5];
 
-
-    for similarity in test {
-        match similarity {
-            SimilarityMeasure::CosineSimilarity(value) => {
-                println!("Cosine similarity: {}", value);
-            }
-            SimilarityMeasure::AverageBrightness(value) => {
-                println!("Average brightness difference: {}", value);
-            }
-            SimilarityMeasure::SearchIndex(index) => {
-                println!("Search index: {:?}", index.filepath);
-                println!("________________________________");
-            }
-            SimilarityMeasure::Similarity(index) => {
-                println!("Similarity: {:?}", index);
-            }
-        }
+    for element in test {
+        element.print();
     }
+
 }
 
