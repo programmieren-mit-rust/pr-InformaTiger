@@ -8,7 +8,7 @@ pub mod picture;
 pub mod suchindex;
 mod tests;
 pub mod with_threads;
-mod cosinus_similarity;
+pub mod cosinus_similarity;
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 use std::env;

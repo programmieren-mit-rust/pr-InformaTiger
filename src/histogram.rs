@@ -157,18 +157,15 @@ impl Histogram {
             }
         }
     }
-    // pub fn normalize(&self) -> Histogram {
-    //     let sum: u32 = self.bins.iter().sum();
-    //     let normalized_bins: Vec<u32> = self.bins.iter().map(|&bin| bin / sum).collect();
-    //
-    //     Histogram {
-    //         bins: normalized_bins,
-    //     }
-    // }
     pub fn normalize_to_float(&self) -> Vec<f64> {
-        let sum: u32 = self.bins.iter().sum();
-        let normalized_bins: Vec<f64> = self.bins.iter().map(|&bin| f64::from(bin) / f64::from(sum)).collect();
+        let sum: f64 = f64::from(self.bins.iter().sum::<u32>());
+        let normalized_bins: Vec<f64> = self
+            .bins
+            .iter()
+            .map(|&bin| f64::from(bin) / sum)
+            .collect();
 
         normalized_bins
     }
+
 }

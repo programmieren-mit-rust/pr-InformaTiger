@@ -1,6 +1,6 @@
 use crate::picture::Picture;
 use crate::suchindex::{
-    analyse_pictures, generate_suchindex, read_data_from_datastore, write_data_to_file, SearchIndex,
+    analyse_pictures, generate_suchindex_in_datastore, read_data_from_datastore, write_data_to_file, SearchIndex,
 };
 use crate::{get_datastore_path, get_histogram, read_picture, set_datastore_filepath, PictureU8};
 
@@ -15,7 +15,7 @@ fn test_generate_suchindex() {
     let picture = PICTURE_FILEPATH.to_string();
 
     // Analyse picture and store the info.
-    generate_suchindex(picture).expect("generate_suchindex failed");
+    generate_suchindex_in_datastore(picture).expect("generate_suchindex failed");
 
     // Was it successful written?
     // Assert that the file was successfully written

@@ -1,6 +1,39 @@
-fn normalize_histogram(histogram: &[f64]) -> Vec<f64> {
-    let sum: f64 = histogram.iter().sum();
-    histogram.iter().map(|&value| value / sum).collect()
+use crate::suchindex::SearchIndex;
+
+pub fn similarity_of_histograms(search_index1: SearchIndex, search_index2: SearchIndex) -> f64{
+    let normalized_histograms1 = normalize_histogram_of_search_index(search_index1);
+    let normalized_histograms2 = normalize_histogram_of_search_index(search_index2);
+
+    compare_vec_of_histograms(normalized_histograms1, normalized_histograms2)
+}
+
+pub fn compare_vec_of_histograms(vec1: Vec<Vec<f64>>, vec2: Vec<Vec<f64>>) -> f64 {
+    if vec1.len() != vec2.len() {
+        panic!("Input vectors have different lengths");
+    }
+    let mut result: Vec<f64> = Vec::new();
+    for (i, (hist1, hist2)) in vec1.iter().zip(vec2.iter()).enumerate() {
+        let similarity = cosine_similarity( hist1, hist2);
+        result.push(similarity);
+    }
+    compute_average(result)
+}
+
+
+pub fn cosine_similarity(histogram1: &[f64], histogram2: &[f64]) -> f64 {
+
+    // Check if the histograms have the same length
+    assert_eq!(histogram1.len(), histogram2.len(), "Histograms must have the same length");
+
+    // Calculate the dot product
+    let dot_product: f64 = compute_dot_product(histogram1, histogram2);
+
+    // Calculate the magnitudes
+    let magnitude1: f64 = compute_magnitude(histogram1);
+    let magnitude2: f64 = compute_magnitude(histogram2);
+
+    // Calculate the cosine similarity
+    dot_product / (magnitude1 * magnitude2)
 }
 
 fn compute_dot_product(histogram1: &[f64], histogram2: &[f64]) -> f64 {
@@ -8,24 +41,21 @@ fn compute_dot_product(histogram1: &[f64], histogram2: &[f64]) -> f64 {
 }
 
 fn compute_magnitude(histogram: &[f64]) -> f64 {
-    histogram.iter().map(|&value| value * value).sum::<f64>().sqrt()
+    histogram.iter().map(|&a| a * a).sum::<f64>().sqrt()
 }
 
-fn compute_cosine_similarity(histogram1: &[f64], histogram2: &[f64]) -> f64 {
-    let normalized1 = normalize_histogram(histogram1);
-    let normalized2 = normalize_histogram(histogram2);
-
-    let dot_product = compute_dot_product(&normalized1, &normalized2);
-    let magnitude1 = compute_magnitude(&normalized1);
-    let magnitude2 = compute_magnitude(&normalized2);
-
-    dot_product / (magnitude1 * magnitude2)
+fn compute_average(values: Vec<f64>) -> f64 {
+    let sum: f64 = values.iter().sum();
+    sum / values.len() as f64
 }
 
-fn main() {
-    let histogram1 = vec![1.0, 2.0, 3.0];
-    let histogram2 = vec![0.5, 1.0, 1.5];
-
-    let similarity = compute_cosine_similarity(&histogram1, &histogram2);
-    println!("Cosine Similarity: {}", similarity);
+pub fn normalize_histogram_of_search_index(search_index: SearchIndex) -> Vec<Vec<f64>>{
+    let mut results: Vec<Vec<f64>> = Vec::new();
+    for entry in search_index {
+        for bin in entry.histogram {
+            let normalized_bins = bin.normalize_to_float();
+            results.push(normalized_bins);
+        }
+    }
+    results
 }

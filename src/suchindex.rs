@@ -287,18 +287,18 @@ where
 ///
 /// ```
 /// # use std::error::Error;
-/// # use imsearch::suchindex::generate_suchindex;
+/// # use imsearch::suchindex::generate_suchindex_in_datastore;
 /// # const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 ///
 /// # fn main(){
-///     generate_suchindex(PICTURE_FILEPATH.to_string()).unwrap();
+///     generate_suchindex_in_datastore(PICTURE_FILEPATH.to_string()).unwrap();
 /// # }
 /// ```
 ///
 /// # Errors
 ///
 /// Returns an error if there was any problem reading the picture file or writing the search index to the data file.
-pub fn generate_suchindex(filepath: String) -> Result<(), Box<dyn Error>> {
+pub fn generate_suchindex_in_datastore(filepath: String) -> Result<(), Box<dyn Error>> {
     let pic_u8: PictureU8 = read_picture(&filepath);
     let histograms = get_histogram(&pic_u8);
     //TODO helligkeit
@@ -341,12 +341,12 @@ pub fn analyse_pictures(path: &str) {
             let entry_path = entry.path();
             if let Some(file_path) = entry_path.to_str() {
                 if is_file(file_path) {
-                    generate_suchindex(format_filepath(file_path)).unwrap();
+                    generate_suchindex_in_datastore(format_filepath(file_path)).unwrap();
                 }
             }
         }
     } else if is_file(path) {
-        generate_suchindex(path.to_string()).unwrap();
+        generate_suchindex_in_datastore(path.to_string()).unwrap();
     } else {
         eprintln!("Invalid path: {}", path);
     }
@@ -418,4 +418,12 @@ pub fn search_index_exists(search_index_element: SearchIndex) -> Result<bool, Bo
         .any(|stored_element| *stored_element == search_index_element);
 
     Ok(found)
+}
+pub fn generate_suchindex(filepath: String) -> Result<SearchIndex, Box<dyn Error>> {
+    let pic_u8: PictureU8 = read_picture(&filepath);
+    let histograms = get_histogram(&pic_u8);
+    //TODO helligkeit
+
+    Ok(SearchIndex::new(filepath, 6.9, histograms))
+
 }
