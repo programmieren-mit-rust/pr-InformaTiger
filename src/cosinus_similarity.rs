@@ -10,13 +10,13 @@ pub fn determine_similarity_of_search_index_histograms(
     compare_vec_of_histograms(normalized_histograms1, normalized_histograms2)
 }
 
-pub fn compare_vec_of_histograms(vec1: Vec<Vec<f64>>, vec2: Vec<Vec<f64>>) -> f64 {
-    if vec1.len() != vec2.len() {
+pub fn compare_vec_of_histograms(normalized_histogram1: Vec<Vec<f64>>, normalized_histogram2: Vec<Vec<f64>>) -> f64 {
+    if normalized_histogram1.len() != normalized_histogram2.len() {
         println!("Input vectors have different lengths");
         return 0.0;
     }
     let mut result: Vec<f64> = Vec::new();
-    for (hist1, hist2) in vec1.iter().zip(vec2.iter()) {
+    for (hist1, hist2) in normalized_histogram1.iter().zip(normalized_histogram2.iter()) {
         let similarity = compute_cosine_similarity(hist1, hist2);
         result.push(similarity);
     }

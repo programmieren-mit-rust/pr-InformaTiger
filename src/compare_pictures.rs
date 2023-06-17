@@ -28,9 +28,7 @@ impl SimilarityInformation {
         println!("______________________________");
         println!("Similarity:           {:3.2}%", self.similarity * 100.0);
         println!("Picture filepath:     {}", self.search_index.filepath);
-        println!(
-            "Cosine-Similarity:    {:3.2}%",
-            self.cosine_similarity * 100.0
+        println!("Cosine-Similarity:    {:3.2}%", self.cosine_similarity * 100.0
         );
         println!(
             "Average brightness:   {:3.2}%",
@@ -41,7 +39,7 @@ impl SimilarityInformation {
 }
 
 pub fn calculate_similarities(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>> {
-    let search_index = generate_suchindex(path.to_string())?;
+    let search_index = generate_suchindex(path.to_string());
 
     let search_indexes_database: Vec<SearchIndex> =
         read_data_from_datastore().expect("Fehler beim Lesen der Daten aus dem Datastore");
