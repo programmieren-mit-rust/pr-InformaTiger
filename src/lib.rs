@@ -6,7 +6,6 @@ pub mod file_handler;
 pub mod histogram;
 pub mod picture;
 pub mod suchindex;
-pub mod test_averagebrightness;
 mod tests;
 pub mod with_threads;
 
