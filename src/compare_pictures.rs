@@ -1,6 +1,6 @@
 use crate::cosinus_similarity::determine_similarity_of_search_index_histograms;
-use crate::suchindex::SearchIndex;
-use crate::suchindex::{generate_suchindex, read_data_from_datastore};
+use crate::search_index::SearchIndex;
+use crate::search_index::{generate_suchindex, read_data_from_datastore};
 use std::error::Error;
 
 #[derive(Debug, Clone)]

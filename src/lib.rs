@@ -7,7 +7,7 @@ pub mod escape;
 pub mod file_handler;
 pub mod histogram;
 pub mod picture;
-pub mod suchindex;
+pub mod search_index;
 mod tests;
 pub mod with_threads;
 
@@ -17,7 +17,7 @@ use std::error::Error;
 use std::fs::File;
 
 use crate::compare_pictures::{calculate_similarities, SimilarityInformation};
-use crate::suchindex::{generate_suchindex_to_file, SearchIndex};
+use crate::search_index::{generate_suchindex, generate_suchindex_to_file, SearchIndex};
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::Histogram,
@@ -281,4 +281,7 @@ pub fn get_top_five_similar_pictures(path: &str) -> Result<Vec<SimilarityInforma
 pub fn get_all_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>>{
     let similar_pictures = calculate_similarities(path)?;
     Ok(similar_pictures)
+}
+pub fn get_search_index(filepath: &str) -> Result<SearchIndex, Box<dyn Error>>{
+    generate_suchindex(filepath.to_string())
 }

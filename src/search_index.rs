@@ -22,7 +22,7 @@ use std::fs;
 /// Creating a new `SearchIndex` instance:
 ///
 /// ```rust
-/// # use imsearch::suchindex::SearchIndex;
+/// # use imsearch::search_index::SearchIndex;
 ///
 /// let filepath = "/path/to/file.png".to_string();
 /// let average_brightness = 6.9;
@@ -39,7 +39,7 @@ use std::fs;
 /// Implementing the `IntoIterator` trait for `SearchIndex`:
 ///
 /// ```rust
-/// # use imsearch::suchindex::SearchIndex;
+/// # use imsearch::search_index::SearchIndex;
 ///
 /// let search_index = SearchIndex::new("/path/to/file.png".to_string(), 6.9, vec![/* Histogram data */]);
 ///
@@ -69,7 +69,7 @@ impl SearchIndex {
     ///
     /// ```rust
     /// use imsearch::read_picture;
-    /// use imsearch::suchindex::{determine_avg_brightness, SearchIndex};
+    /// use imsearch::search_index::{determine_avg_brightness, SearchIndex};
     ///
     /// let filepath = "/path/to/file.png".to_string();
     /// let average_brightness = 6.9;
@@ -102,7 +102,7 @@ impl IntoIterator for SearchIndex {
     /// # Examples
     ///
     /// ```rust
-    /// use imsearch::suchindex::SearchIndex;
+    /// use imsearch::search_index::SearchIndex;
     ///
     /// let search_index = SearchIndex::new("/path/to/file.png".to_string(), 6.9, vec![/* Histogram data */]);
     ///
@@ -139,7 +139,7 @@ impl IntoIterator for SearchIndex {
 ///
 /// ```rust
 /// use std::error::Error;
-/// use imsearch::suchindex::{SearchIndex, write_data_to_file};
+/// use imsearch::search_index::{SearchIndex, write_data_to_file};
 ///
 /// let search_index = SearchIndex {
 ///  /* ... */ filepath: "".to_string(),filename: "".to_string(),average_brightness: 0.0 , histogram: vec![],};
@@ -152,7 +152,7 @@ impl IntoIterator for SearchIndex {
 ///
 /// ```rust
 /// use std::error::Error;
-/// use imsearch::suchindex::{SearchIndex, write_data_to_file};
+/// use imsearch::search_index::{SearchIndex, write_data_to_file};
 ///
 /// let search_indices: Vec<SearchIndex> = vec![/* ... */];
 /// if let Err(err) = write_data_to_file(search_indices) {
@@ -207,7 +207,7 @@ where
 /// # use std::error::Error;
 ///
 ///     // Assuming the necessary imports and functions are defined
-/// # use imsearch::suchindex::{read_data_from_datastore, SearchIndex};
+/// # use imsearch::search_index::{read_data_from_datastore, SearchIndex};
 /// # fn main() -> Result<(), Box<dyn Error>> {
 ///     let data: Vec<SearchIndex> = read_data_from_datastore()?;
 ///
@@ -250,7 +250,7 @@ where
 /// # Examples
 ///
 /// ```rust
-/// # use imsearch::suchindex::read_data_from_file;
+/// # use imsearch::search_index::read_data_from_file;
 ///
 /// #[derive(serde::Deserialize)]
 /// struct MyData {
@@ -286,7 +286,7 @@ where
 ///
 /// ```
 /// # use std::error::Error;
-/// # use imsearch::suchindex::generate_suchindex_to_file;
+/// # use imsearch::search_index::generate_suchindex_to_file;
 /// # const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 ///
 /// # fn main(){
@@ -298,11 +298,7 @@ where
 ///
 /// Returns an error if there was any problem reading the picture file or writing the search index to the data file.
 pub fn generate_suchindex_to_file(filepath: String) -> Result<(), Box<dyn Error>> {
-    let pic_u8: PictureU8 = read_picture(&filepath);
-    let histograms = get_histogram(&pic_u8);
-    let average_brightness = determine_avg_brightness(pic_u8);
-
-    let search_index = SearchIndex::new(filepath, average_brightness, histograms);
+    let search_index = generate_suchindex(filepath)?;
     if !search_index_exists(&search_index)? {
         write_data_to_file(search_index)?;
     }
@@ -323,7 +319,7 @@ pub fn generate_suchindex_to_file(filepath: String) -> Result<(), Box<dyn Error>
 ///
 /// ```rust
 /// // Analyze pictures in a directory
-/// # use imsearch::suchindex::analyse_pictures;
+/// # use imsearch::search_index::analyse_pictures;
 /// analyse_pictures("/path/to/pictures").expect("analysing pictures failed");
 ///
 /// // Analyze a single picture file
@@ -373,7 +369,7 @@ pub fn analyse_pictures(path: &str) -> Result<(), Box<dyn Error>> {
 ///
 /// ```
 /// use std::error::Error;
-///use imsearch::suchindex::SearchIndex;
+///use imsearch::search_index::SearchIndex;
 /// // Implement the necessary traits for SearchIndex
 /// // ...
 ///

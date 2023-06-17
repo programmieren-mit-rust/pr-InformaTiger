@@ -1,8 +1,9 @@
-use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8, get_average_brightness_of_picture, print_calculated_similar_pictures, get_all_similar_pictures, get_top_five_similar_pictures};
+use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8, get_average_brightness_of_picture,
+               print_calculated_similar_pictures, get_top_five_similar_pictures};
 
 const PICTURE_FILEPATH_BIRD: &str = "src/tests/files/pictures_for_testing/bird.png";
 const PICTURE_FILEPATH_FLOWER2: &str =
-    "src/tests/files/pictures_for_testing/flower_purple_1 - Copy.png";
+    "src/tests/files/pictures_for_testing/flower_purple_1_modified.png";
 
 fn main() {
     let pic_u8: PictureU8 = read_picture(PICTURE_FILEPATH_BIRD);

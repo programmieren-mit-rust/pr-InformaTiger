@@ -13,7 +13,7 @@ mod histogram_tests;
 mod picture_tests;
 
 #[cfg(test)]
-mod suchindex_tests;
+mod search_index_tests;
 
 #[cfg(test)]
 mod with_threads_tests;

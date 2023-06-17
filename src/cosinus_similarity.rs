@@ -1,4 +1,4 @@
-use crate::suchindex::SearchIndex;
+use crate::search_index::SearchIndex;
 
 pub fn determine_similarity_of_search_index_histograms(
     search_index1: SearchIndex,
