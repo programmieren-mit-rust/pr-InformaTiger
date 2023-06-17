@@ -36,9 +36,11 @@ pub fn input() -> String {
 /// # Examples
 ///
 /// ```
-/// use imsearch::user_input::repeat_input;
-/// repeat_input();
+///
+///
+///
 /// ```
+
 pub fn repeat_input() {
     println!("Wollen Sie ihre Suchbibliothek noch erweitern?(ja/nein):");
     let mut antwort = String::new();
