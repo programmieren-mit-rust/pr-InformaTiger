@@ -44,10 +44,13 @@ fn main() {
                 println!("Average brightness difference: {}", value);
             }
             SimilarityMeasure::SearchIndex(index) => {
-                println!("Search index: {:?}", index);
+                println!("Search index: {:?}", index.filepath);
+                println!("________________________________");
+            }
+            SimilarityMeasure::Similarity(index) => {
+                println!("Similarity: {:?}", index);
             }
         }
     }
-
 }
 

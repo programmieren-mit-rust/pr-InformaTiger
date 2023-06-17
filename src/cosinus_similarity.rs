@@ -50,6 +50,8 @@ fn compute_average(values: Vec<f64>) -> f64 {
     sum / values.len() as f64
 }
 
+
+
 pub fn normalize_histogram_of_search_index(search_index: SearchIndex) -> Vec<Vec<f64>>{
     let mut results: Vec<Vec<f64>> = Vec::new();
     for entry in search_index {
