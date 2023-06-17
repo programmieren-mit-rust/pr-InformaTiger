@@ -6,7 +6,6 @@ const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 
 fn main() {
 
-
     get_pictures_from_user();
 
     //Input User: SearchImage
@@ -23,10 +22,8 @@ fn main() {
     let average_brightness = pic_u8.to_picture_f32().average_brightness(&grayray);
     println!("Averagebrightness: {average_brightness}");
 
-    print_all_diagrams(get_histogram(&pic_u32));
-
     let pic_u8: PictureU8 = read_picture(PICTURE_FILEPATH);
-    println!("PictureU8: {pic_u8}"); // :? führt hier dazu, dass data AUCH ausgegeben wird, das passt aber meist nicht in die Console
+    println!("PictureU8: {pic_u8}");
 
 }
 
