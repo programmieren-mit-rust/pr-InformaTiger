@@ -1,0 +1,223 @@
+[
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 0.3730396,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/flower_purple_1 - Copy.png",
+    "filename": "flower_purple_1 - Copy",
+    "average_brightness": 0.3074395,
+    "histogram": [
+      {
+        "bins": [
+          244574,
+          963175,
+          236349,
+          73346,
+          11668
+        ]
+      },
+      {
+        "bins": [
+          457301,
+          727233,
+          300954,
+          34463,
+          9161
+        ]
+      },
+      {
+        "bins": [
+          80446,
+          1065988,
+          243604,
+          93546,
+          45528
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1529112
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/flower_purple_1.png",
+    "filename": "flower_purple_1",
+    "average_brightness": 0.30743936,
+    "histogram": [
+      {
+        "bins": [
+          244574,
+          963199,
+          236339,
+          73338,
+          11662
+        ]
+      },
+      {
+        "bins": [
+          457295,
+          727239,
+          300954,
+          34463,
+          9161
+        ]
+      },
+      {
+        "bins": [
+          80439,
+          1065995,
+          243604,
+          93546,
+          45528
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1529112
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/flower_purple_2.png",
+    "filename": "flower_purple_2",
+    "average_brightness": 0.24839287,
+    "histogram": [
+      {
+        "bins": [
+          852226,
+          439657,
+          151792,
+          86637,
+          1856
+        ]
+      },
+      {
+        "bins": [
+          749170,
+          604820,
+          130689,
+          46962,
+          527
+        ]
+      },
+      {
+        "bins": [
+          912288,
+          206896,
+          126327,
+          194824,
+          91833
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1532168
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "",
+    "filename": "",
+    "average_brightness": 0.0,
+    "histogram": []
+  }
+]

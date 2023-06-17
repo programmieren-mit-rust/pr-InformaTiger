@@ -1,17 +1,15 @@
-use imsearch::picture::{AverageBrightness, Picture, PictureF32};
-use imsearch::{get_datastore_path, suchindex};
+use imsearch::picture::{AverageBrightness, Picture};
 use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
-use imsearch::compare_pictures::ComparePicture;
+use imsearch::compare_pictures::{ComparePicture, most_similar_pictures};
 use imsearch::cosinus_similarity::similarity_of_histograms;
-use imsearch::suchindex::{analyse_pictures, generate_suchindex, generate_suchindex_to_file, read_data_from_datastore, SearchIndex};
+use imsearch::suchindex::{generate_suchindex};
 
 const PICTURE_FILEPATH_BIRD: &str = "src/tests/files/pictures_for_testing/bird.png";
 const PICTURE_FILEPATH_FLOWER1: &str = "src/tests/files/pictures_for_testing/flower_purple_1.png";
 const PICTURE_FILEPATH_FLOWER2: &str = "src/tests/files/pictures_for_testing/flower_purple_1 - Copy.png";
 
 fn main() {
-    let pic_u8: PictureU8 = read_picture("src/Bilder Programmentwurf-20230521/ice_flower.png");
-    let pic_u8: PictureU8 = read_picture(PICTURE_FILEPATH);
+    let pic_u8: PictureU8 = read_picture(PICTURE_FILEPATH_BIRD);
     println!("PictureU8: {pic_u8}"); // :? führt hier dazu, dass data AUCH ausgegeben wird, das passt aber meist nicht in die Console
 
     let histograms = get_histogram(&pic_u8);
@@ -34,16 +32,8 @@ fn main() {
     println!("Cosine Similarity different pics: {}", similarity);
 
 
-    let search_index = generate_suchindex(PICTURE_FILEPATH.to_string()).expect("Oh no the table is broken!");
+    most_similar_pictures(PICTURE_FILEPATH_BIRD.to_string());
 
-    // Aufruf der Funktion difference_brightnesses
-    let diff_brightness = search_index.difference_brightnesses(&search_index);
-
-
-    // Ausgabe der Werte in diff_brightness
-    for diff in diff_brightness {
-        println!("{}", diff);
-    }
 
 }
 

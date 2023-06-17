@@ -435,6 +435,6 @@ pub fn search_index_exists(search_index_element: SearchIndex) -> Result<bool, Bo
 }
 pub fn determine_avg_brightness(pic_u8: PictureU8) -> f32 {
     let pic_f32 = pic_u8.to_picture_f32();
-    let grayray = pic_f32.gray_intensity_array(pic_f32.clone());
+    let grayray = pic_f32.gray_intensity_array();
     pic_f32.average_brightness(&grayray)
 }
