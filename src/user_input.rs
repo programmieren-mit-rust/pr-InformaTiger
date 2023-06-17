@@ -15,7 +15,7 @@ use crate::suchindex::analyse_pictures;
 /// println!("Entered file path: {}", file_path);
 /// ```
 pub fn input() -> bool{
-    println!("To begin searching for similar images, please provide the file path of either the image folder or the specific image you want to use as a reference:");
+    println!("Please provide the file path of either the image folder or the specific image you want to use as a reference:");
     let mut input_searchlib = String::new();
     io::stdin()
         .read_line(&mut input_searchlib)
