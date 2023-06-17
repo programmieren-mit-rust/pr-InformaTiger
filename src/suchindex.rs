@@ -324,10 +324,10 @@ pub fn generate_suchindex_to_file(filepath: String) -> Result<(), Box<dyn Error>
 /// ```rust
 /// // Analyze pictures in a directory
 /// # use imsearch::suchindex::analyse_pictures;
-/// analyse_pictures("/path/to/pictures").expect(e);
+/// analyse_pictures("/path/to/pictures").expect("analysing pictures failed");
 ///
 /// // Analyze a single picture file
-/// analyse_pictures("/path/to/picture.png").expect(e);
+/// analyse_pictures("/path/to/picture.png").expect("analysing pictures failed");
 /// ```
 pub fn analyse_pictures(path: &str) -> Result<(), Box<dyn Error>> {
     if is_directory(path) {
