@@ -24,7 +24,7 @@ pub fn input() -> String {
     let input_lib = input_searchlib.trim().to_string();
 
 
-    //Input in nen Suchiex schreiben
+    //Input in nen Suchindex schreiben
     analyse_pictures(&input_lib);
     return input_lib;
 
@@ -41,24 +41,28 @@ pub fn input() -> String {
 ///
 /// ```
 
-pub fn repeat_input() {
+pub fn repeat_input() -> bool {
     println!("Wollen Sie ihre Suchbibliothek noch erweitern?(ja/nein):");
-    let mut antwort = String::new();
+    let mut user_input = String::new();
     io::stdin()
-        .read_line(&mut antwort)
+        .read_line(&mut user_input)
         .expect("Fehler beim Lesen der Eingabe");
-    let final_answer = antwort.trim();
+
+    let final_answer = user_input
+        .trim()
+        .to_lowercase();
 
     match final_answer {
         f if f.contains("nein") => {
             println!("OK, Eingabe wird übersprungen");
+            false
         }
         f if f.contains("ja") => {
             input();
-            repeat_input();
+            true
         }
         _ => {
-            repeat_input();
+            true
         }
     }
 }

@@ -1,5 +1,5 @@
 use imsearch::picture::{AverageBrightness, Picture, PictureF32};
-use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
+use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8, get_pictures_from_user};
 use imsearch::suchindex::{analyse_pictures, SearchIndex};
 use imsearch::user_input::{input, input_search_image, repeat_input};
 
@@ -8,9 +8,8 @@ const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 fn main() {
 
 
-    //Input User: SearchPool
-    input();
-    repeat_input();
+    get_pictures_from_user();
+
 
     //Input User: SearchImage
     let picture_path = input_search_image();
@@ -90,7 +89,7 @@ fn main() {
 
     let pic_u8: PictureU8 = read_picture(PICTURE_FILEPATH);
     println!("PictureU8: {pic_u8}"); // :? führt hier dazu, dass data AUCH ausgegeben wird, das passt aber meist nicht in die Console
-  ;
+
 }
 
 
