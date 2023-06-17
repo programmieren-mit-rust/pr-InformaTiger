@@ -3,7 +3,7 @@ use crate::suchindex::SearchIndex;
 use crate::suchindex::{generate_suchindex, read_data_from_datastore};
 use std::error::Error;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct SimilarityInformation {
     similarity: f64,
     search_index: SearchIndex,
@@ -48,8 +48,8 @@ pub fn calculate_similarities(path: &str) -> Result<Vec<SimilarityInformation>, 
     let mut similarities = Vec::<SimilarityInformation>::new();
 
     for database_element in &search_indexes_database {
-        let diff = (search_index.average_brightness - database_element.average_brightness).abs();
-        let avg_brightness = 1.0 - diff;
+        let difference_of_brightness = (search_index.average_brightness - database_element.average_brightness).abs();
+        let avg_brightness = 1.0 - difference_of_brightness;
         let cosine_similarity = determine_similarity_of_search_index_histograms(
             search_index.clone(),
             database_element.clone(),
@@ -65,11 +65,11 @@ pub fn calculate_similarities(path: &str) -> Result<Vec<SimilarityInformation>, 
         similarities.push(similarity_measure);
     }
     sort_similarity_measures_by_similarity(&mut similarities);
-    Ok(similarities)
+    let top_five = similarities.iter().take(5).cloned().collect();
+    Ok(top_five)
 }
 fn compute_average(value1: f32, value2: f64) -> f64 {
     let value1_f64: f64 = f64::from(value1);
-
     (value1_f64 + value2) / 2.0
 }
 

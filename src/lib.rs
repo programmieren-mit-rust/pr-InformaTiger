@@ -17,12 +17,14 @@ use std::error::Error;
 use std::fs::File;
 
 use crate::compare_pictures::{calculate_similarities, SimilarityInformation};
-use crate::suchindex::generate_suchindex_to_file;
+use crate::suchindex::{generate_suchindex_to_file, SearchIndex};
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::Histogram,
     crate::picture::{Picture, PictureU8},
 };
+use crate::cosinus_similarity::determine_similarity_of_search_index_histograms;
+use crate::picture::{AverageBrightness, PictureF32};
 
 /// Reads an image file and returns the image data as a `PictureU8` struct.
 ///
@@ -248,8 +250,25 @@ pub fn search_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>,
     let test = calculate_similarities(path)?;
     Ok(test)
 }
-pub fn print_similar_pictures(pictures: Vec<SimilarityInformation>) {
+pub fn print_calculated_similar_pictures(pictures: Vec<SimilarityInformation>) {
     for element in pictures {
         element.print();
     }
+}
+
+pub fn get_average_brightness_of_picture(path: &str) -> f32{
+    let pic_f32: PictureF32 = read_picture(path).to_picture_f32();
+    let gray_intensity_array = pic_f32.gray_intensity_array();
+    pic_f32.average_brightness(&gray_intensity_array)
+}
+
+//Returns the average brightness of two pictures in percent
+pub fn get_average_brightness_of_two_pictures(path1: &str, path2: &str) -> f32{
+    let avg_brightness_picture1 = get_average_brightness_of_picture(path1);
+    let avg_brightness_picture2 = get_average_brightness_of_picture(path2);
+    (1.0 - (avg_brightness_picture1 - avg_brightness_picture2).abs()) * 100.0
+}
+
+pub fn get_cosinus_similarity(search_index1: SearchIndex, search_index2: SearchIndex) -> f64 {
+    determine_similarity_of_search_index_histograms(search_index1, search_index2) * 100.0
 }

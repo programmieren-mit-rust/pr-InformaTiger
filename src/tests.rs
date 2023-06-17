@@ -19,7 +19,7 @@ mod suchindex_tests;
 mod with_threads_tests;
 
 #[cfg(test)]
-mod test_2a;
+mod average_brightness_tests;
 
 #[cfg(test)]
 mod lib_tests;
