@@ -1,8 +1,8 @@
 use imsearch::picture::{AverageBrightness, Picture};
 use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8};
-use imsearch::compare_pictures::{ComparePicture, most_similar_pictures};
+use imsearch::compare_pictures::{calculate_similarities, SimilarityMeasure};
 use imsearch::cosinus_similarity::similarity_of_histograms;
-use imsearch::suchindex::{analyse_pictures, generate_suchindex};
+use imsearch::suchindex::{generate_suchindex};
 
 const PICTURE_FILEPATH_BIRD: &str = "src/tests/files/pictures_for_testing/bird.png";
 const PICTURE_FILEPATH_FLOWER1: &str = "src/tests/files/pictures_for_testing/flower_purple_1.png";
@@ -31,10 +31,23 @@ fn main() {
     let similarity =similarity_of_histograms(flower1, bird1);
     println!("Cosine Similarity different pics: {}", similarity);
 
-    analyse_pictures("Bilder Programmentwurf-20230617").unwrap();
 
-    most_similar_pictures(PICTURE_FILEPATH_BIRD.to_string());
+    let test = calculate_similarities(PICTURE_FILEPATH_BIRD).unwrap();
 
+
+    for similarity in test {
+        match similarity {
+            SimilarityMeasure::CosineSimilarity(value) => {
+                println!("Cosine similarity: {}", value);
+            }
+            SimilarityMeasure::AverageBrightness(value) => {
+                println!("Average brightness difference: {}", value);
+            }
+            SimilarityMeasure::SearchIndex(index) => {
+                println!("Search index: {:?}", index);
+            }
+        }
+    }
 
 }
 
