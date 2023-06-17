@@ -146,9 +146,9 @@ pub trait AverageBrightness {
     /// # Returns
     ///
     /// The average brightness of the image.
-    fn average_brightness(&self, grayray: &Vec<f32>) -> f32; //grayray-Werte werden Addiert und durch Anzahl pixel (Array-länge) geteilt --> Wert der mittleren Helligkeit.
+    fn average_brightness(&self, grayray: &Vec<f32>) -> f32;  //summing up the grayscale values and dividing them by the number of pixels (length of the array) to calculate the average brightness value.
 }
-
+///the implement block is implemented for everything that implements Picture.
 impl<T: Picture> AverageBrightness for T {
     /// Calculates the gray intensity value for a single pixel based on the provided RGB color values.
     /// The formula used to calculate the gray intensity is specified in the task description.
