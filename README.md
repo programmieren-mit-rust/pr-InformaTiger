@@ -43,9 +43,12 @@ To use the library, follow these steps:
     To search for similar images, use the search method, providing the search image and specifying the similarity criteria.
     The search method will return a list of the most similar images based on the specified criteria.
 
-Here's an example of how to use the library:
 
- cargo imsearch
+
+
+#### Here's an example of how to use the library:
+    
+ 
 
 
 ### Create a search index
