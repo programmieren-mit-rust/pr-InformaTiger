@@ -8,13 +8,11 @@ const PICTURE_FILEPATH_FLOWER2: &str =
 
 fn main() {
 
+
     get_pictures_from_user();
 
     //Input User: SearchImage
     let picture_path = input_search_image();
-
-    let similar_five_pictures = get_top_five_similar_pictures(picture_path.clone().as_str()).unwrap();
-    print_calculated_similar_pictures(similar_five_pictures);
 
     println!("Information on the picture you provided:");
 
@@ -28,6 +26,11 @@ fn main() {
     println!("PictureU8: {pic_u8}");
     let histograms = get_histogram(&pic_u8);
     print_all_diagrams(histograms);
+
+    let similar_five_pictures = get_top_five_similar_pictures(picture_path.clone().as_str()).unwrap();
+    print_calculated_similar_pictures(similar_five_pictures);
+
+
 
 }
 
