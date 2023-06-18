@@ -21,10 +21,10 @@ Whether you need image search functionality for content-based image retrieval, r
 6. Access the results and utilize them in your Rust application.
 
 
-For detailed instructions on installation, usage examples, and customization options, please refer to the documentation provided within the library.
-ImageSearchLib is a versatile library specifically developed for performing image searches based on a given image.
-By providing a search term in the form of an image, the library efficiently retrieves the most similar images from a pool of indexed images.
-The great advantage of this library lies in its expandability, allowing users to tailor the image pool to their specific needs.
+For detailed instructions on installation, usage examples, and customization of the SearchPool, please refer to the documentation provided within the library.
+ImageSearchLib is a library specifically developed for performing image searches based on a given image.
+By providing a search term in the form of an image, the library will retrieve the most similar images from a pool of indexed images.
+
 
 The library provides the following central types:
 
