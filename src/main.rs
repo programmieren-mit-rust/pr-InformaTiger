@@ -12,6 +12,9 @@ const PICTURE_FILEPATH_FLOWER2: &str =
     "src/tests/files/pictures_for_testing/flower_purple_1_modified.png";
 
 fn main() {
+
+    analyse_pictures("src/tests/files/pictures_for_testing/");
+
     // Asking the user to add elements to the picture library.
     // Later you can compare pictures to the library which was provided.
     get_pictures_from_user();
