@@ -18,7 +18,7 @@ This Image Search Library is a powerful and customizable image search library sp
 
 Whether you need image search functionality for content-based image retrieval, recommendation systems, or any other PNG image-related tasks, this Image Search Library in Rust offers a customizable and efficient solution to meet your needs.
 
-For detailed instructions on installation, usage examples, and customization options, please refer to the documentation provided with the library.
+For detailed instructions on installation, usage examples, and customization options, please refer to the documentation provided within the library.
 ImageSearchLib is a versatile library specifically developed for performing image searches based on a given image.
 By providing a search term in the form of an image, the library efficiently retrieves the most similar images from a pool of indexed images.
 The great advantage of this library lies in its expandability, allowing users to tailor the image pool to their specific needs.
