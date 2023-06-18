@@ -26,7 +26,7 @@ fn test_generate_suchindex() {
 /// It tests if the data written and read is the same.
 #[test]
 fn test_read_data_from_datastore() {
-    let search_index = generate_suchindex(PICTURE_FILEPATH.to_string()).unwrap();
+    let search_index = generate_suchindex(PICTURE_FILEPATH.to_string());
     if let Err(err) = write_data_to_file(search_index) {
         eprintln!("Error writing data to file: {}", err);
     }

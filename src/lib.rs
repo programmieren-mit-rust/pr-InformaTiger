@@ -9,8 +9,8 @@ pub mod histogram;
 pub mod picture;
 pub mod search_index;
 mod tests;
-pub mod user_input;
 pub mod with_threads;
+pub mod user_input;
 
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";

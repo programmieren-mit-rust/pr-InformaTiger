@@ -167,8 +167,9 @@ pub fn write_data_to_file<T>(data: T) -> Result<(), Box<dyn Error>>
 
     let mut datastore_data: Vec<SearchIndex> = read_data_from_datastore()?;
 
+    for item in data {
         datastore_data.push(item);
-
+    }
 
     let data_str = serde_json::to_string_pretty(&datastore_data)?;
     fs::write(datastore_filepath, data_str)?;

@@ -1,5 +1,5 @@
-use imsearch::picture::{AverageBrightness, Picture, PictureF32};
-use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8, get_average_brightness_of_picture, get_top_five_similar_pictures, print_calculated_similar_pictures};
+use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8, get_average_brightness_of_picture, get_top_five_similar_pictures, print_calculated_similar_pictures, get_pictures_from_user};
+use imsearch::user_input::input_search_image;
 
 const PICTURE_FILEPATH_BIRD: &str = "src/tests/files/pictures_for_testing/bird.png";
 const PICTURE_FILEPATH_FLOWER2: &str =
