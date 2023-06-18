@@ -284,7 +284,7 @@ pub fn convert_data_to_u8_with_threads(data: &[f32]) -> Vec<u8> {
 ///
 /// This function takes a slice of u8 values and converts each value from the range [0, 255] to the range [0.0, 1.0]
 /// by dividing each value by 255.0. The conversion is performed in parallel using multiple threads to improve performance.
-/// If the input data is empty, an empty Vec<f32> will be returned.
+/// If the input data is empty, an empty `Vec<f32>` will be returned.
 /// If the input data length is below a certain threshold, it falls back to the non-threaded version (`convert_data_to_u8`).
 ///
 /// # Arguments

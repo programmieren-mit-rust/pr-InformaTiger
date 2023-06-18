@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-/// Represents a histogram with multiple bins that are numbers in the Vec<u32>
+/// Represents a histogram with multiple bins that are numbers in the `Vec<u32>`
 ///
 /// A histogram divides the value range (0-255 or 0.0 to 1.0) into a specified number of bins.
 /// This depends on the constant BIN_COUNT.
@@ -156,5 +156,11 @@ impl Histogram {
                 upper_bound += 255 / self.bins.len();
             }
         }
+    }
+    pub fn normalize(&self) -> Vec<f64> {
+        let sum: f64 = f64::from(self.bins.iter().sum::<u32>());
+        let normalized_bins: Vec<f64> = self.bins.iter().map(|&bin| f64::from(bin) / sum).collect();
+
+        normalized_bins
     }
 }

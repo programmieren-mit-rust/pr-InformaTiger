@@ -1,11 +1,13 @@
 // Here all of the files for the library have to be added.
 // If they are added, they get executed when cargo run is called.
 
+pub mod compare_pictures;
+pub mod cosinus_similarity;
 pub mod escape;
 pub mod file_handler;
 pub mod histogram;
 pub mod picture;
-pub mod suchindex;
+pub mod search_index;
 mod tests;
 pub mod user_input;
 pub mod with_threads;
@@ -15,6 +17,10 @@ use std::env;
 use std::error::Error;
 use std::fs::File;
 
+use crate::compare_pictures::{calculate_similarities, SimilarityInformation};
+use crate::cosinus_similarity::determine_similarity_of_search_index_histograms;
+use crate::picture::{AverageBrightness, PictureF32};
+use crate::search_index::{generate_suchindex, generate_suchindex_to_file, SearchIndex};
 use crate::user_input::input;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
@@ -237,6 +243,7 @@ pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
         }
     }
 }
+
 pub fn get_pictures_from_user() {
     //Input User: SearchPool
     loop {
@@ -244,4 +251,213 @@ pub fn get_pictures_from_user() {
             break;
         }
     }
+}
+
+pub fn store_pictures_in_database(path: &str) -> Result<(), Box<dyn Error>> {
+    generate_suchindex_to_file(path.to_string())?;
+    Ok(())
+}
+pub fn search_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>> {
+    let test = calculate_similarities(path)?;
+    Ok(test)
+}
+
+/// Prints the calculated similarity information for a list of pictures.
+///
+/// # Arguments
+///
+/// * `pictures` - A vector of `SimilarityInformation` structs representing the calculated similarity information.
+///
+///
+/// # Safety
+///
+/// This function does not perform any unsafe operations or rely on any external resources.
+/// It assumes that the provided vector contains valid `SimilarityInformation` structs.
+///
+pub fn print_calculated_similar_pictures(pictures: Vec<SimilarityInformation>) {
+    for element in pictures {
+        element.print();
+    }
+}
+
+/// Retrieves the average brightness of a picture located at the specified path.
+///
+/// # Arguments
+///
+/// * `path` - The path to the picture file.
+///
+/// # Returns
+///
+/// The average brightness of the picture as a floating-point number between 0.0 and 1.0.
+///
+/// # Examples
+///
+/// ```
+/// # use imsearch::get_average_brightness_of_picture;
+/// let path = "src/tests/files/pictures_for_testing/flower_purple_1.png";
+/// let average_brightness = get_average_brightness_of_picture(path);
+/// println!("Average brightness: {}", average_brightness);
+/// ```
+///
+/// # Panics
+///
+/// This function will panic if the picture file cannot be read or if there is an error during the conversion process.
+///
+/// # Safety
+///
+/// This function assumes that the picture file exists at the specified path and is in a supported format.
+/// It also assumes that the file can be successfully read and converted to a floating-point representation.
+/// It does not perform any input validation, so ensure that the path is valid and accessible.
+///
+pub fn get_average_brightness_of_picture(path: &str) -> f32 {
+    let pic_f32: PictureF32 = read_picture(path).to_picture_f32();
+    let gray_intensity_array = pic_f32.gray_intensity_array();
+    pic_f32.average_brightness(&gray_intensity_array)
+}
+
+/// Calculates the difference in average brightness between two pictures and returns the result as a percentage.
+///
+/// # Arguments
+///
+/// * `path1` - The path to the first picture file.
+/// * `path2` - The path to the second picture file.
+///
+/// # Returns
+///
+/// The difference in average brightness between the two pictures as a percentage, ranging from 0.0 to 100.0.
+///
+/// # Examples
+///
+/// ```
+/// # use imsearch::get_average_brightness_of_two_pictures;
+/// let path1 = "src/tests/files/pictures_for_testing/flower_purple_1.png";
+/// let path2 = "src/tests/files/pictures_for_testing/flower_purple_1.png";
+/// let brightness_difference = get_average_brightness_of_two_pictures(path1, path2);
+/// println!("Brightness difference: {}%", brightness_difference);
+/// ```
+///
+/// # Panics
+///
+/// This function will panic if any of the picture files cannot be read or if there are errors during the calculation of average brightness.
+///
+/// # Safety
+///
+/// This function assumes that both picture files exist at the specified paths and are in supported formats.
+/// It also assumes that the files can be successfully read and their average brightness can be calculated using the `get_average_brightness_of_picture` function.
+/// It does not perform any input validation, so ensure that the paths are valid and the files are accessible.
+///
+pub fn get_average_brightness_of_two_pictures(path1: &str, path2: &str) -> f32 {
+    let avg_brightness_picture1 = get_average_brightness_of_picture(path1);
+    let avg_brightness_picture2 = get_average_brightness_of_picture(path2);
+    (1.0 - (avg_brightness_picture1 - avg_brightness_picture2).abs()) * 100.0
+}
+
+/// Calculates the cosine similarity between two search indexes and returns the result as a percentage.
+///
+/// # Arguments
+///
+/// * `search_index1` - The first search index.
+/// * `search_index2` - The second search index.
+///
+/// # Returns
+///
+/// The cosine similarity between the two search indexes as a percentage, ranging from 0.0 to 100.0.
+///
+/// # Panics
+///
+/// This function will panic if there are errors during the calculation of the cosine similarity.
+///
+/// # Safety
+///
+/// This function assumes that both search indexes are valid and contain appropriate data for calculating the cosine similarity.
+/// It does not perform any input validation, so ensure that the search indexes are properly constructed and represent valid data.
+///
+pub fn get_cosinus_similarity(search_index1: SearchIndex, search_index2: SearchIndex) -> f64 {
+    determine_similarity_of_search_index_histograms(search_index1, search_index2) * 100.0
+}
+
+/// Retrieves the top five similar pictures based on a given picture path.
+///
+/// # Arguments
+///
+/// * `path` - The path to the picture file.
+///
+/// # Returns
+///
+/// A `Result` containing a vector of `SimilarityInformation` structs representing the top five similar pictures, if successful.
+/// If an error occurs during the process, an `Err` variant containing a boxed dynamic error is returned.
+///
+///
+/// # Errors
+///
+/// This function can return an error if there are issues while retrieving or processing the similar pictures.
+/// The specific error types are boxed dynamic errors that implement the `Error` trait.
+///
+/// # Safety
+///
+/// This function assumes that the picture file exists at the specified path and is in a supported format.
+/// It does not perform any input validation, so ensure that the path is valid and accessible.
+/// The function relies on the underlying implementation of `get_all_similar_pictures` to handle the safety and correctness of the similarity retrieval process.
+///
+pub fn get_top_five_similar_pictures(
+    path: &str,
+) -> Result<Vec<SimilarityInformation>, Box<dyn Error>> {
+    let similar_pictures = get_all_similar_pictures(path)?;
+    Ok(similar_pictures.iter().take(5).cloned().collect())
+}
+
+/// Retrieves a list of all similar pictures based on a given picture path.
+///
+/// # Arguments
+///
+/// * `path` - The path to the picture file.
+///
+/// # Returns
+///
+/// A `Result` containing a vector of `SimilarityInformation` structs representing the similar pictures, if successful.
+/// If an error occurs during the process, an `Err` variant containing a boxed dynamic error is returned.
+///
+/// # Errors
+///
+/// This function can return an error if there are issues while calculating or retrieving the similar pictures.
+/// The specific error types are boxed dynamic errors that implement the `Error` trait.
+///
+/// # Safety
+///
+/// This function assumes that the picture file exists at the specified path and is in a supported format.
+/// It does not perform any input validation, so ensure that the path is valid and accessible.
+/// The function relies on the underlying implementation of `calculate_similarities` to handle the safety and correctness of the similarity calculation process.
+///
+pub fn get_all_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>> {
+    let similar_pictures = calculate_similarities(path)?;
+    Ok(similar_pictures)
+}
+
+/// Retrieves a search index based on the specified file path.
+///
+/// # Arguments
+///
+/// * `filepath` - The path to the file used to generate the search index.
+///
+/// # Returns
+///
+/// A `SearchIndex` containing the generated search index.
+///
+/// # Examples
+///
+/// ```
+/// # use imsearch::get_search_index;
+/// let filepath = "src/tests/files/pictures_for_testing/flower_purple_1.png";
+/// let search_index = get_search_index(filepath);
+/// // Use the search index for further operations
+/// ```
+///
+/// # Safety
+///
+/// This function assumes that the file exists at the specified path and is in a format suitable for generating a search index.
+/// It does not perform any input validation, so ensure that the filepath is valid and accessible.
+/// The function relies on the underlying implementation of `generate_suchindex` to handle the safety and correctness of the search index generation process.
+///
+pub fn get_search_index(filepath: &str) -> SearchIndex {
+    generate_suchindex(filepath.to_string())
 }

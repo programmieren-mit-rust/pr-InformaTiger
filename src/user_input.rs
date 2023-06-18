@@ -1,4 +1,4 @@
-use crate::suchindex::analyse_pictures;
+use crate::search_index::analyse_pictures;
 /// This module provides functions for user input and picture analysis.
 ///
 use std::io;
@@ -24,7 +24,8 @@ pub fn input() -> bool {
     let input_lib = input_searchlib.trim().to_string();
 
     // Analyse pictures and write them as SearchIndex into the datastore
-    analyse_pictures(&input_lib);
+    //TODO()!
+    analyse_pictures(&input_lib).unwrap();
 
     repeat_input()
 }

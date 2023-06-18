@@ -2,7 +2,7 @@
   {
     "filepath": "src/tests/files/pictures_for_testing/bird.png",
     "filename": "bird",
-    "average_brightness": 6.9,
+    "average_brightness": 0.3730396,
     "histogram": [
       {
         "bins": [
@@ -45,7 +45,7 @@
   {
     "filepath": "src/tests/files/pictures_for_testing/flower_purple_1.png",
     "filename": "flower_purple_1",
-    "average_brightness": 6.9,
+    "average_brightness": 0.30743936,
     "histogram": [
       {
         "bins": [
@@ -86,9 +86,52 @@
     ]
   },
   {
+    "filepath": "src/tests/files/pictures_for_testing/flower_purple_1_modified.png",
+    "filename": "flower_purple_1_modified",
+    "average_brightness": 0.31882963,
+    "histogram": [
+      {
+        "bins": [
+          168297,
+          746484,
+          210002,
+          112574,
+          291755
+        ]
+      },
+      {
+        "bins": [
+          655653,
+          621553,
+          217968,
+          26895,
+          7043
+        ]
+      },
+      {
+        "bins": [
+          363575,
+          889836,
+          178902,
+          66210,
+          30589
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1529112
+        ]
+      }
+    ]
+  },
+  {
     "filepath": "src/tests/files/pictures_for_testing/flower_purple_2.png",
     "filename": "flower_purple_2",
-    "average_brightness": 6.9,
+    "average_brightness": 0.24839287,
     "histogram": [
       {
         "bins": [
@@ -129,41 +172,84 @@
     ]
   },
   {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 0.3730396,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
     "filepath": "",
     "filename": "",
     "average_brightness": 0.0,
     "histogram": []
   },
   {
-    "filepath": "src/Bilder Programmentwurf-20230521/ball_flower.png",
-    "filename": "ball_flower",
-    "average_brightness": 6.9,
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 0.3730396,
     "histogram": [
       {
         "bins": [
-          553352,
-          539030,
-          288890,
-          127429,
-          6335
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
         ]
       },
       {
         "bins": [
-          397636,
-          622148,
-          382109,
-          109639,
-          3504
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
         ]
       },
       {
         "bins": [
-          548215,
-          487746,
-          232685,
-          120195,
-          126195
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
         ]
       },
       {
@@ -172,7 +258,56 @@
           0,
           0,
           0,
-          1515036
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "",
+    "filename": "",
+    "average_brightness": 0.0,
+    "histogram": []
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 0.3730396,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
         ]
       }
     ]
