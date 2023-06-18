@@ -8,7 +8,6 @@ const PICTURE_FILEPATH_FLOWER2: &str =
 
 fn main() {
 
-
     get_pictures_from_user();
 
     //Input User: SearchImage
