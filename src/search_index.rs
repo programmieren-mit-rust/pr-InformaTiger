@@ -422,12 +422,12 @@ pub fn search_index_exists(search_index_element: &SearchIndex) -> Result<bool, B
 pub fn generate_suchindex(filepath: String) -> SearchIndex {
     let pic_u8: PictureU8 = read_picture(&filepath);
     let histograms = get_histogram(&pic_u8);
-    let average_brightness = determine_avg_brightness(pic_u8);
+    let average_brightness = determine_avg_brightness(&pic_u8);
 
     SearchIndex::new(filepath, average_brightness, histograms)
 }
 
-pub fn determine_avg_brightness(pic_u8: PictureU8) -> f32 {
+pub fn determine_avg_brightness(pic_u8: &dyn Picture) -> f32 {
     let pic_f32 = pic_u8.to_picture_f32();
     let grayray = pic_f32.gray_intensity_array();
     pic_f32.average_brightness(&grayray)

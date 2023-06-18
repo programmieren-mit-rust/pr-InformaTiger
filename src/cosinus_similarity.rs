@@ -15,12 +15,12 @@ pub fn compare_vec_of_histograms(normalized_histogram1: Vec<Vec<f64>>, normalize
         println!("Input vectors have different lengths");
         return 0.0;
     }
-    let mut result: Vec<f64> = Vec::new();
+    let mut similarities: Vec<f64> = Vec::new();
     for (hist1, hist2) in normalized_histogram1.iter().zip(normalized_histogram2.iter()) {
         let similarity = compute_cosine_similarity(hist1, hist2);
-        result.push(similarity);
+        similarities.push(similarity);
     }
-    compute_average_of_vec(result)
+    compute_average_of_vec(similarities)
 }
 
 pub fn compute_cosine_similarity(histogram1: &[f64], histogram2: &[f64]) -> f64 {
