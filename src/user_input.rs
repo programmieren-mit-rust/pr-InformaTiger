@@ -35,7 +35,7 @@ pub fn input() -> bool{
 /// If "y" (yes) is selected, calls the `input` function and repeats the input.
 
 pub fn repeat_input() -> bool {
-    println!("Would you like to expand your search library? Please answer with 'yes' or 'no'");
+    println!("would you like to add another path?'yes' or 'no'");
     let mut user_input = String::new();
     io::stdin()
         .read_line(&mut user_input)
