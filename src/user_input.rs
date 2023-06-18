@@ -20,11 +20,11 @@ pub fn input() -> bool{
     io::stdin()
         .read_line(&mut input_searchlib)
         .expect("Error: wrong input. Please make sure to provide the correct file path of either the image folder or the image itself from which you wish to search for similar images.");
-    // Den eingegen Path extrahieren
+    // extract the path
     let input_lib = input_searchlib.trim().to_string();
 
 
-    //Input in nen Suchindex schreiben
+    // Analyse pictures and write them as SearchIndex into the datastore
     analyse_pictures(&input_lib);
 
     repeat_input()
