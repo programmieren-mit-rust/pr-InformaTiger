@@ -50,7 +50,7 @@ pub fn repeat_input() -> bool {
             true
         }
         _ => {
-            println!("Skipping the input.");
+            println!("Ok. No further expansion of the library.");
             false
         }
     }
