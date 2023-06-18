@@ -39,7 +39,7 @@ pub fn repeat_input() -> bool {
     let mut user_input = String::new();
     io::stdin()
         .read_line(&mut user_input)
-        .expect("Error. Please answer with either 'yes' or 'no' to indicate whether you would like to expand your search library.");
+        .expect("Error while determining whether to continue.");
 
     let final_answer = user_input
         .trim()
