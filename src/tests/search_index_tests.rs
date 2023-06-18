@@ -1,9 +1,8 @@
-use crate::picture::Picture;
 use crate::search_index::{
     analyse_pictures, generate_suchindex, generate_suchindex_to_file, read_data_from_datastore,
     write_data_to_file, SearchIndex,
 };
-use crate::{get_datastore_path, get_histogram, read_picture, set_datastore_filepath, PictureU8};
+use crate::{get_datastore_path, set_datastore_filepath};
 
 const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 const PICTURE_FOLDERPATH: &str = "src/tests/files/pictures_for_testing";

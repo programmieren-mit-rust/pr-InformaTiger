@@ -364,16 +364,6 @@ pub fn get_average_brightness_of_two_pictures(path1: &str, path2: &str) -> f32{
 ///
 /// The cosine similarity between the two search indexes as a percentage, ranging from 0.0 to 100.0.
 ///
-/// # Examples
-///
-/// ```
-/// # use imsearch::get_cosinus_similarity;
-/// let search_index1 = create_search_index();
-/// let search_index2 = create_search_index();
-/// let similarity = get_cosinus_similarity(search_index1, search_index2);
-/// println!("Cosine similarity: {}%", similarity);
-/// ```
-///
 /// # Panics
 ///
 /// This function will panic if there are errors during the calculation of the cosine similarity.
@@ -440,22 +430,6 @@ pub fn get_top_five_similar_pictures(path: &str) -> Result<Vec<SimilarityInforma
 ///
 /// A `Result` containing a vector of `SimilarityInformation` structs representing the similar pictures, if successful.
 /// If an error occurs during the process, an `Err` variant containing a boxed dynamic error is returned.
-///
-/// # Examples
-///
-/// ```
-/// # use imsearch::get_all_similar_pictures;
-/// let path = "path/to/picture.jpg";
-/// match get_all_similar_pictures(path) {
-///     Ok(similar_pictures) => {
-///         for similarity_info in similar_pictures {
-///             println!("Similar picture: {}", similarity_info.picture_path);
-///             println!("Similarity score: {}", similarity_info.similarity_score);
-///         }
-///     }
-///     Err(err) => println!("Error: {}", err),
-/// }
-/// ```
 ///
 /// # Errors
 ///

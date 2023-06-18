@@ -433,12 +433,14 @@ pub fn determine_avg_brightness(pic_u8: &dyn Picture) -> f32 {
     pic_f32.average_brightness(&grayray)
 }
 pub fn search_index_path_exists(path: &str) -> Result<bool, Box<dyn Error>> {
-    let stored_data: Vec<SearchIndex> = read_data_from_datastore()?;
 
-    // Check if the search_index_element is present in the stored_data
-    let found = stored_data
-        .iter()
-        .any(|stored_element| *stored_element.filepath == path.to_string());
+    let item = generate_suchindex(path.to_string());
 
-    Ok(found)
+    if search_index_exists(&item)?{return Ok(true)}
+    // // Check if the search_index_element is present in the stored_data
+    // let found = stored_data
+    //     .iter()
+    //     .any(|stored_element| *stored_element.filepath == path.to_string());
+
+    Ok(false)
 }
