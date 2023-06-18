@@ -1,6 +1,6 @@
 use crate::with_threads::{
-    get_histogram_with_threads, convert_data_to_f32, convert_data_to_f32_with_threads,
-    convert_data_to_u8, convert_data_to_u8_with_threads, take_every_nth_value,
+    convert_data_to_f32, convert_data_to_f32_with_threads, convert_data_to_u8,
+    convert_data_to_u8_with_threads, get_histogram_with_threads, take_every_nth_value,
 };
 use crate::PictureU8;
 
