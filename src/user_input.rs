@@ -39,7 +39,7 @@ pub fn repeat_input() -> bool {
     let mut user_input = String::new();
     io::stdin()
         .read_line(&mut user_input)
-        .expect("Apologies for the error. Please answer with either 'yes' or 'no' to indicate whether you would like to expand your search library.");
+        .expect("Error. Please answer with either 'yes' or 'no' to indicate whether you would like to expand your search library.");
 
     let final_answer = user_input
         .trim()
@@ -64,9 +64,8 @@ pub fn repeat_input() -> bool {
 ///
 /// ```
 /// use imsearch::user_input::input_search_image;
-/// let final_picture = input_search_image();
+/// let path_to_picture_as_string = input_search_image();
 /// ```
-
 pub fn input_search_image() -> String {
     println!("To perform a similar image search, please provide the path to the image for which you want to find similar images:");
 
@@ -77,6 +76,6 @@ pub fn input_search_image() -> String {
 
     user_input_picture.trim().to_string()
 
-    // Input übergebn an Suchinex
-    //TODO()! hier nach ähnlichen Bildern suchen
+    // give input to the function which comares the picture with the database
+    //todo()! insert function which searches for similar pictures
 }
