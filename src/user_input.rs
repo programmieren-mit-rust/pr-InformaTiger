@@ -46,15 +46,12 @@ pub fn repeat_input() -> bool {
         .to_lowercase();
 
     match final_answer {
-        f if f.contains("no") => {
-            println!("Understood. Skipping the input.");
-            false
-        }
         f if f.contains("yes") => {
             true
         }
         _ => {
-            true
+            println!("Skipping the input.");
+            false
         }
     }
 }
