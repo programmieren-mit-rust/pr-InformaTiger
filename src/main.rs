@@ -13,18 +13,18 @@ fn main() {
     //Input User: SearchImage
     let picture_path = input_search_image();
 
-
-    let similar_five_pictures = get_top_five_similar_pictures(picture_path.as_str()).unwrap();
+    let similar_five_pictures = get_top_five_similar_pictures(picture_path.clone().as_str()).unwrap();
     print_calculated_similar_pictures(similar_five_pictures);
 
     println!("Information on the picture you provided:");
+
     //Aufruf +Ausgabe Averagebrightness
-    let average_brightness = get_average_brightness_of_picture(PICTURE_FILEPATH_BIRD);
+    let average_brightness = get_average_brightness_of_picture(&picture_path);
     println!("Averagebrightness: {average_brightness}");
 
     println!("__________________________");
 
-    let pic_u8: PictureU8 = read_picture(PICTURE_FILEPATH_BIRD);
+    let pic_u8: PictureU8 = read_picture(&picture_path);
     println!("PictureU8: {pic_u8}");
     let histograms = get_histogram(&pic_u8);
     print_all_diagrams(histograms);
