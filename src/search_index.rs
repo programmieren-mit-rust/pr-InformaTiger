@@ -160,16 +160,15 @@ impl IntoIterator for SearchIndex {
 /// }
 /// ```
 pub fn write_data_to_file<T>(data: T) -> Result<(), Box<dyn Error>>
-where
-    T: IntoIterator<Item = SearchIndex>,
+    where
+        T: IntoIterator<Item = SearchIndex>,
 {
     let datastore_filepath = get_datastore_path()?;
 
     let mut datastore_data: Vec<SearchIndex> = read_data_from_datastore()?;
 
-    for item in data {
         datastore_data.push(item);
-    }
+
 
     let data_str = serde_json::to_string_pretty(&datastore_data)?;
     fs::write(datastore_filepath, data_str)?;

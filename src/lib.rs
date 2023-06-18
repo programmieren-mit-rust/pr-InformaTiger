@@ -9,7 +9,9 @@ pub mod histogram;
 pub mod picture;
 pub mod search_index;
 mod tests;
+pub mod user_input;
 pub mod with_threads;
+
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 use std::env;
@@ -25,6 +27,7 @@ pub use {
 };
 use crate::cosinus_similarity::determine_similarity_of_search_index_histograms;
 use crate::picture::{AverageBrightness, PictureF32};
+use crate::user_input::{input};
 
 /// Reads an image file and returns the image data as a `PictureU8` struct.
 ///
@@ -238,6 +241,15 @@ pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
         Err(_) => {
             //eprintln!("datastore_filepath was not set. Using default filepath. Error: {}", err);
             Ok(DEFAULT_DATASTORE_FILEPATH.to_string())
+        }
+    }
+}
+
+pub fn get_pictures_from_user(){
+    //Input User: SearchPool
+    loop {
+        if !input() {
+            break;
         }
     }
 }
