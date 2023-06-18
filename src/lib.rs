@@ -295,7 +295,7 @@ pub fn print_calculated_similar_pictures(pictures: Vec<SimilarityInformation>) {
 ///
 /// ```
 /// # use imsearch::get_average_brightness_of_picture;
-/// let path = "path/to/picture.jpg";
+/// let path = "src/tests/files/pictures_for_testing/flower_purple_1.png";
 /// let average_brightness = get_average_brightness_of_picture(path);
 /// println!("Average brightness: {}", average_brightness);
 /// ```
@@ -331,8 +331,8 @@ pub fn get_average_brightness_of_picture(path: &str) -> f32{
 ///
 /// ```
 /// # use imsearch::get_average_brightness_of_two_pictures;
-/// let path1 = "path/to/picture1.jpg";
-/// let path2 = "path/to/picture2.jpg";
+/// let path1 = "src/tests/files/pictures_for_testing/flower_purple_1.png";
+/// let path2 = "src/tests/files/pictures_for_testing/flower_purple_1.png";
 /// let brightness_difference = get_average_brightness_of_two_pictures(path1, path2);
 /// println!("Brightness difference: {}%", brightness_difference);
 /// ```
@@ -388,21 +388,6 @@ pub fn get_cosinus_similarity(search_index1: SearchIndex, search_index2: SearchI
 /// A `Result` containing a vector of `SimilarityInformation` structs representing the top five similar pictures, if successful.
 /// If an error occurs during the process, an `Err` variant containing a boxed dynamic error is returned.
 ///
-/// # Examples
-///
-/// ```
-/// # use imsearch::get_top_five_similar_pictures;
-/// let path = "path/to/picture.jpg";
-/// match get_top_five_similar_pictures(path) {
-///     Ok(similar_pictures) => {
-///         for similarity_info in similar_pictures {
-///             println!("Similar picture: {}", similarity_info.picture_path);
-///             println!("Similarity score: {}", similarity_info.similarity_score);
-///         }
-///     }
-///     Err(err) => println!("Error: {}", err),
-/// }
-/// ```
 ///
 /// # Errors
 ///
@@ -461,7 +446,7 @@ pub fn get_all_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>
 ///
 /// ```
 /// # use imsearch::get_search_index;
-/// let filepath = "path/to/file.txt";
+/// let filepath = "src/tests/files/pictures_for_testing/flower_purple_1.png";
 /// let search_index = get_search_index(filepath);
 /// // Use the search index for further operations
 /// ```

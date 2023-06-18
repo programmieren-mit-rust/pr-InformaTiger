@@ -170,5 +170,146 @@
         ]
       }
     ]
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 0.3730396,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "",
+    "filename": "",
+    "average_brightness": 0.0,
+    "histogram": []
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 0.3730396,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
+  },
+  {
+    "filepath": "",
+    "filename": "",
+    "average_brightness": 0.0,
+    "histogram": []
+  },
+  {
+    "filepath": "src/tests/files/pictures_for_testing/bird.png",
+    "filename": "bird",
+    "average_brightness": 0.3730396,
+    "histogram": [
+      {
+        "bins": [
+          194506,
+          965746,
+          137158,
+          117213,
+          73377
+        ]
+      },
+      {
+        "bins": [
+          92964,
+          942925,
+          264111,
+          127887,
+          60113
+        ]
+      },
+      {
+        "bins": [
+          255263,
+          932676,
+          138444,
+          117699,
+          43918
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1488000
+        ]
+      }
+    ]
   }
 ]

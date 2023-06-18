@@ -1,5 +1,6 @@
 use crate::search_index::SearchIndex;
 
+// Determines the similarity of two histograms. The histograms are extracted from a SearchIndex.
 pub fn determine_similarity_of_search_index_histograms(
     search_index1: SearchIndex,
     search_index2: SearchIndex,
@@ -10,6 +11,7 @@ pub fn determine_similarity_of_search_index_histograms(
     compare_vec_of_histograms(normalized_histograms1, normalized_histograms2)
 }
 
+// Normalized histograms are compared. Via
 pub fn compare_vec_of_histograms(normalized_histogram1: Vec<Vec<f64>>, normalized_histogram2: Vec<Vec<f64>>) -> f64 {
     if normalized_histogram1.len() != normalized_histogram2.len() {
         println!("Input vectors have different lengths");
