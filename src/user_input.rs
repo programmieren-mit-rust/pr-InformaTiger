@@ -1,7 +1,7 @@
 /// This module provides functions for user input and picture analysis.
 ///
 use std::io;
-use crate::suchindex::analyse_pictures;
+use crate::search_index::analyse_pictures;
 
 /// Prompts the user to enter the file path of a directory containing images or a single image file from which to search for images.
 /// Performs an analysis of the entered images.
@@ -25,7 +25,8 @@ pub fn input() -> bool{
 
 
     // Analyse pictures and write them as SearchIndex into the datastore
-    analyse_pictures(&input_lib);
+    //TODO()!
+    analyse_pictures(&input_lib).unwrap();
 
     repeat_input()
 
