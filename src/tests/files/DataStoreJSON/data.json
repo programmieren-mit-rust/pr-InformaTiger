@@ -176,5 +176,48 @@
         ]
       }
     ]
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/flower_pink.png",
+    "filename": "flower_pink",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          542014,
+          501312,
+          182558,
+          85575,
+          28005
+        ]
+      },
+      {
+        "bins": [
+          942354,
+          365520,
+          28745,
+          2838,
+          7
+        ]
+      },
+      {
+        "bins": [
+          893914,
+          396241,
+          36969,
+          11490,
+          850
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1339464
+        ]
+      }
+    ]
   }
 ]
