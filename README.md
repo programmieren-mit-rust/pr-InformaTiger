@@ -5,6 +5,7 @@ This Image Search Library is a useful and customizable image search library deve
 Key Features:
 - Perform image searches based on PNG images.
 - Retrieve the most similar images from a pool of pre-indexed PNG images.
+- Print histograms of pictures
 
 ## Usage:
 
