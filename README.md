@@ -3,30 +3,46 @@
 This Image Search Library is a useful and customizable image search library developed in Rust. Its primary objective is to facilitate efficient image searches based on a provided input image. With this library, you can easily retrieve the most similar images from a pre-indexed pool or one of your own.
 
 Key Features:
-- Perform image searches based on PNG images using Rust.
+- Perform image searches based on PNG images.
 - Retrieve the most similar images from a pool of pre-indexed PNG images.
-- Customize and expand the image pool according to your specific requirements and preferences.
-- Benefit from efficient algorithms for accurate and fast image retrieval.
 
 ## Usage:
 
 ```rust
 fn main() {
-    
+
+    // Asking the user to add elements to the picture library.
+    // Later you can compare pictures to the library which was provided.
     get_pictures_from_user();
 
-    //Input User: SearchImage
+    // Asking the user for a path to a picture.
+    // This picture will later be compared with the library.
+    // It is not written to the library itself!!
     let picture_path = input_search_image();
 
+    // Some additional features, which can be used.
+    println!("Information on the picture you provided:");
+
+    // Determine the average brightness of a picture.
+    let average_brightness = get_average_brightness_of_picture(&picture_path);
+    println!("Averagebrightness: {}", average_brightness);
+
+    //read a picture in the U8 picture-format
     let pic_u8: PictureU8 = read_picture(&picture_path);
     println!("PictureU8: {}", pic_u8);
 
+    // Calculate color histograms for a picture.
     let histograms = get_histogram(&pic_u8);
+    // Histograms can also be printed to the console.
     print_all_diagrams(histograms);
-        
-    // Provide a path to a picture to get the similarity scores
-    let similar_five_pictures = get_top_five_similar_pictures("path/to/picture.png").unwrap();
+
+    // Main usage of the library.
+    // Compare a picture to the pictureLibrary (also user-generated).
+    // It returns the 5 most similar pictures.
+    let similar_five_pictures = get_top_five_similar_pictures(picture_path.clone().as_str()).unwrap();
+    //The most similar pictures can be printed to the console.
     print_calculated_similar_pictures(similar_five_pictures);
+
 }
 ```
 
