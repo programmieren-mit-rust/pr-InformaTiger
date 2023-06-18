@@ -35,7 +35,7 @@ The library provides the following central types:
 Users of the library can use the pre-implemented features provided by the library or implement their own and use them with the search index.
 Usage
 
-To use the library, follow these steps:
+### To use the library, follow these steps:
 
     Import the library into your project.
     Create an instance of the SearchIndex class.
@@ -46,7 +46,7 @@ To use the library, follow these steps:
 
 
 
-## How to use the library:
+### How to use the library:
 
     "Please provide the file path of either the image folder or the specific image you want to use as a reference:"
     /"Enter your path here"/
@@ -55,10 +55,8 @@ To use the library, follow these steps:
     (when you have entered no this will appear:)
     "To perform a similar image search, please provide the path to the image for which you want to find similar images:"
     /"Enter the path of the picture you want to search"/
+
  
-
-
-## In detail Usage 
 
 ### Create a search index
     search_index = SearchIndex()
