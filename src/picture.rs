@@ -33,12 +33,12 @@ impl Picture for PictureU8 {
         }
     }
     fn to_picture_f32(&self) -> PictureF32 {
-        let new_data;
+        let new_data: Vec<f32>;
         if USE_THREADS_FOR_CONVERSION {
             new_data = convert_data_to_f32_with_threads(&self.data);
         } else {
             new_data = convert_data_to_f32(&self.data);
-        }
+        };
 
         PictureF32 {
             lines: self.lines,
@@ -72,7 +72,7 @@ pub struct PictureF32 {
 
 impl Picture for PictureF32 {
     fn to_picture_u8(&self) -> PictureU8 {
-        let new_data;
+        let new_data: Vec<u8>;
         if USE_THREADS_FOR_CONVERSION {
             new_data = convert_data_to_u8_with_threads(&self.data);
         } else {
@@ -111,31 +111,72 @@ impl Display for PictureF32 {
     }
 }
 
+/// Trait for calculating the average brightness of an image.
+
 pub trait AverageBrightness {
-    // Trait der Helligkeit
+    /// Calculates the gray intensity value for a single pixel given the red, green, and blue color values.
+    ///
+    /// # Arguments
+    ///
+    /// * `red_colour_val` - Red color value of the pixel.
+    /// * `green_colour_val` - Green color value of the pixel.
+    /// * `blue_colour_val` - Blue color value of the pixel.
+    ///
+    /// # Returns
+    ///
+    /// The gray intensity value for the pixel as a `f32`.
     fn gray_intensity_single_val(
         &self,
         red_colour_val: f32,
         green_colour_val: f32,
         blue_colour_val: f32,
-    ) -> f32; //Berechnet die einzelne Werte der Grauintensität
-    fn gray_intensity_array(&self) -> Vec<f32>; //Werte für r,g,b werden übergeben und die aus in gray_intensity_single_val berechneten Werte werden in grayray(Array) geschrieben.
-    fn average_brightness(&self, grayray: &Vec<f32>) -> f32; //Grayray-Werte werden Addiert und durch Anzahl pixel (arraylänge) geteilt --> Wert der Mitlleren Helligkeit.
+    ) -> f32;
+    /// Calculates the gray intensity values for all pixels in the image and returns them as an array.
+    /// Summing up the grayscale values and dividing them by the number of pixels (length of the array) to calculate the average brightness value.
+    /// # Returns
+    ///
+    /// An array containing the gray intensity values for all pixels in the image.
+    fn gray_intensity_array(&self) -> Vec<f32>;
+    /// Calculates the average brightness of the image based on the provided gray intensity values.
+    ///
+    /// # Arguments
+    ///
+    /// * `grayray` - The gray intensity values for all pixels in the image.
+    ///
+    /// # Returns
+    ///
+    /// The average brightness of the image.
+    fn average_brightness(&self, grayray: &Vec<f32>) -> f32;
 }
 
+///the implement block is implemented for everything that implements Picture.
 impl<T: Picture> AverageBrightness for T {
+    /// Calculates the gray intensity value for a single pixel based on the provided RGB color values.
+    /// The formula used to calculate the gray intensity is specified in the task description.
+    ///
+    /// # Arguments
+    ///
+    /// * `red_colour_val` - The red color value of the pixel (between 0.0 and 1.0).
+    /// * `green_colour_val` - The green color value of the pixel (between 0.0 and 1.0).
+    /// * `blue_colour_val` - The blue color value of the pixel (between 0.0 and 1.0).
+    ///
+    /// # Returns
+    ///
+    /// The calculated gray intensity value for the pixel (between 0.0 and 1.0).
     fn gray_intensity_single_val(
         &self,
         red_colour_val: f32,
         green_colour_val: f32,
         blue_colour_val: f32,
     ) -> f32 {
-        let singel_pixel_gray =
-            (0.3 * red_colour_val) + (0.59 * green_colour_val) + (0.11 * blue_colour_val); //Berechnung der Werte mit der Formel aus der Aufgabenstellung
-
-        return singel_pixel_gray;
+        (0.3 * red_colour_val) + (0.59 * green_colour_val) + (0.11 * blue_colour_val)
     }
-
+    /// Calculates the gray intensity values for all pixels in the image and returns them as an array.
+    ///this function only uses the first tree channels (R,G,B) and skips channels bigger than 3
+    ///
+    /// # Returns
+    ///
+    /// An array containing the gray intensity values for all pixels in the image.
     fn gray_intensity_array(&self) -> Vec<f32> {
         let pic_f32 = &self.to_picture_f32();
 
@@ -143,31 +184,37 @@ impl<T: Picture> AverageBrightness for T {
         let mut count_colour: usize = 0;
 
         if pic_f32.color_channel_count >= 3 {
-            //Colour_count muss 3 oder 4 sein, also größer als 2.
             while count_colour < pic_f32.data.len() {
-                let r = pic_f32.data[count_colour]; //  Wert1 -> Rot
-                let g = pic_f32.data[count_colour + 1]; // Wert2 -> Grün
-                let b = pic_f32.data[count_colour + 2]; // Wert3 -> Blau
+                let r = pic_f32.data[count_colour];
+                let g = pic_f32.data[count_colour + 1];
+                let b = pic_f32.data[count_colour + 2];
 
                 grayray.push(pic_f32.gray_intensity_single_val(r, g, b));
                 count_colour += pic_f32.color_channel_count;
             }
         }
-
-        return grayray;
+        grayray
     }
 
+    /// Calculates the average brightness of the image based on the provided gray intensity values.
+    ///
+    /// # Arguments
+    ///
+    /// * `grayray` - The gray intensity values for all pixels in the image.
+    ///
+    /// # Returns
+    ///
+    /// The average brightness of the image
     fn average_brightness(&self, grayray: &Vec<f32>) -> f32 {
-        let mut sum_grey = 0f32; //Wert für die Summe aller Grauwerte(f32)
+        let mut sum_grey: f32 = 0.0;
         let pixels = grayray.len() as f32;
         let mut count: usize = 0;
 
-        //Geht durch die Grauwerte der Pixel durch und summiert dies.
         while count < pixels as usize {
             sum_grey = sum_grey + grayray[count];
             count += 1;
         }
-        //Berechnung des Durchschnitts
+
         let averagebrightness = sum_grey / pixels;
         return averagebrightness;
     }

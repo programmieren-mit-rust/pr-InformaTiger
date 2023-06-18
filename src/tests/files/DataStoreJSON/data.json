@@ -133,5 +133,48 @@
     "filename": "",
     "average_brightness": 0.0,
     "histogram": []
+  },
+  {
+    "filepath": "src/Bilder Programmentwurf-20230521/ball_flower.png",
+    "filename": "ball_flower",
+    "average_brightness": 6.9,
+    "histogram": [
+      {
+        "bins": [
+          553352,
+          539030,
+          288890,
+          127429,
+          6335
+        ]
+      },
+      {
+        "bins": [
+          397636,
+          622148,
+          382109,
+          109639,
+          3504
+        ]
+      },
+      {
+        "bins": [
+          548215,
+          487746,
+          232685,
+          120195,
+          126195
+        ]
+      },
+      {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          1515036
+        ]
+      }
+    ]
   }
 ]
