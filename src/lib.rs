@@ -240,7 +240,9 @@ pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
 }
 pub fn get_pictures_from_user(){
     //Input User: SearchPool
-    while input(){
-
+    loop {
+        if !input() {
+            break;
+        }
     }
 }
