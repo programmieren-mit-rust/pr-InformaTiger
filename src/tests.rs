@@ -19,9 +19,6 @@ mod suchindex_tests;
 mod with_threads_tests;
 
 #[cfg(test)]
-mod test_2a;
-
-#[cfg(test)]
 mod lib_tests;
 
 #[cfg(test)]
