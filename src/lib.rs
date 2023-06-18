@@ -9,9 +9,8 @@ pub mod histogram;
 pub mod picture;
 pub mod search_index;
 mod tests;
-pub mod with_threads;
 pub mod user_input;
-
+pub mod with_threads;
 
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 use std::env;
@@ -19,15 +18,15 @@ use std::error::Error;
 use std::fs::File;
 
 use crate::compare_pictures::{calculate_similarities, SimilarityInformation};
+use crate::cosinus_similarity::determine_similarity_of_search_index_histograms;
+use crate::picture::{AverageBrightness, PictureF32};
 use crate::search_index::{generate_suchindex, generate_suchindex_to_file, SearchIndex};
+use crate::user_input::input;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::Histogram,
     crate::picture::{Picture, PictureU8},
 };
-use crate::cosinus_similarity::determine_similarity_of_search_index_histograms;
-use crate::picture::{AverageBrightness, PictureF32};
-use crate::user_input::{input};
 
 /// Reads an image file and returns the image data as a `PictureU8` struct.
 ///
@@ -245,7 +244,7 @@ pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
     }
 }
 
-pub fn get_pictures_from_user(){
+pub fn get_pictures_from_user() {
     //Input User: SearchPool
     loop {
         if !input() {
@@ -310,7 +309,7 @@ pub fn print_calculated_similar_pictures(pictures: Vec<SimilarityInformation>) {
 /// It also assumes that the file can be successfully read and converted to a floating-point representation.
 /// It does not perform any input validation, so ensure that the path is valid and accessible.
 ///
-pub fn get_average_brightness_of_picture(path: &str) -> f32{
+pub fn get_average_brightness_of_picture(path: &str) -> f32 {
     let pic_f32: PictureF32 = read_picture(path).to_picture_f32();
     let gray_intensity_array = pic_f32.gray_intensity_array();
     pic_f32.average_brightness(&gray_intensity_array)
@@ -347,7 +346,7 @@ pub fn get_average_brightness_of_picture(path: &str) -> f32{
 /// It also assumes that the files can be successfully read and their average brightness can be calculated using the `get_average_brightness_of_picture` function.
 /// It does not perform any input validation, so ensure that the paths are valid and the files are accessible.
 ///
-pub fn get_average_brightness_of_two_pictures(path1: &str, path2: &str) -> f32{
+pub fn get_average_brightness_of_two_pictures(path1: &str, path2: &str) -> f32 {
     let avg_brightness_picture1 = get_average_brightness_of_picture(path1);
     let avg_brightness_picture2 = get_average_brightness_of_picture(path2);
     (1.0 - (avg_brightness_picture1 - avg_brightness_picture2).abs()) * 100.0
@@ -400,7 +399,9 @@ pub fn get_cosinus_similarity(search_index1: SearchIndex, search_index2: SearchI
 /// It does not perform any input validation, so ensure that the path is valid and accessible.
 /// The function relies on the underlying implementation of `get_all_similar_pictures` to handle the safety and correctness of the similarity retrieval process.
 ///
-pub fn get_top_five_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>>{
+pub fn get_top_five_similar_pictures(
+    path: &str,
+) -> Result<Vec<SimilarityInformation>, Box<dyn Error>> {
     let similar_pictures = get_all_similar_pictures(path)?;
     Ok(similar_pictures.iter().take(5).cloned().collect())
 }
@@ -427,7 +428,7 @@ pub fn get_top_five_similar_pictures(path: &str) -> Result<Vec<SimilarityInforma
 /// It does not perform any input validation, so ensure that the path is valid and accessible.
 /// The function relies on the underlying implementation of `calculate_similarities` to handle the safety and correctness of the similarity calculation process.
 ///
-pub fn get_all_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>>{
+pub fn get_all_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>, Box<dyn Error>> {
     let similar_pictures = calculate_similarities(path)?;
     Ok(similar_pictures)
 }
@@ -457,6 +458,6 @@ pub fn get_all_similar_pictures(path: &str) -> Result<Vec<SimilarityInformation>
 /// It does not perform any input validation, so ensure that the filepath is valid and accessible.
 /// The function relies on the underlying implementation of `generate_suchindex` to handle the safety and correctness of the search index generation process.
 ///
-pub fn get_search_index(filepath: &str) -> SearchIndex{
+pub fn get_search_index(filepath: &str) -> SearchIndex {
     generate_suchindex(filepath.to_string())
 }

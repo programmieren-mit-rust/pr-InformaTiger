@@ -1,7 +1,7 @@
+use crate::search_index::analyse_pictures;
 /// This module provides functions for user input and picture analysis.
 ///
 use std::io;
-use crate::search_index::analyse_pictures;
 
 /// Prompts the user to enter the file path of a directory containing images or a single image file from which to search for images.
 /// Performs an analysis of the entered images.
@@ -14,7 +14,7 @@ use crate::search_index::analyse_pictures;
 /// let file_path = input();
 /// println!("Entered file path: {}", file_path);
 /// ```
-pub fn input() -> bool{
+pub fn input() -> bool {
     println!("Please provide the file path of either the image folder or the specific image you want to use as a reference:");
     let mut input_searchlib = String::new();
     io::stdin()
@@ -23,13 +23,11 @@ pub fn input() -> bool{
     // extract the path
     let input_lib = input_searchlib.trim().to_string();
 
-
     // Analyse pictures and write them as SearchIndex into the datastore
     //TODO()!
     analyse_pictures(&input_lib).unwrap();
 
     repeat_input()
-
 }
 
 /// Prompts the user to extend their search library or not.
@@ -42,14 +40,10 @@ pub fn repeat_input() -> bool {
         .read_line(&mut user_input)
         .expect("Error while determining whether to continue.");
 
-    let final_answer = user_input
-        .trim()
-        .to_lowercase();
+    let final_answer = user_input.trim().to_lowercase();
 
     match final_answer {
-        f if f.contains("yes") => {
-            true
-        }
+        f if f.contains("yes") => true,
         _ => {
             println!("Ok. No further expansion of the library.");
             false

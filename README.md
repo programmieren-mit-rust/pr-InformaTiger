@@ -1,8 +1,55 @@
-# Programmentwurf
+# Image Search Library for PNGs (Rust)
 
-Die Beschreibung der Aufgabenstellung ist unter [Programmentwurf.md](https://github.com/programmieren-mit-rust/programmentwurf/blob/main/Programmentwurf.md) zu finden. Diese `Readme.md` ist durch etwas Sinnvolles zu ersetzen.
+This Image Search Library is a useful and customizable image search library developed in Rust. Its primary objective is to facilitate efficient image searches based on a provided input image. With this library, you can easily retrieve the most similar images from a pre-indexed pool or one of your own.
 
-# Using different data types for `data` 
+Key Features:
+- Perform image searches based on PNG images.
+- Retrieve the most similar images from a pool of pre-indexed PNG images.
+- Print histograms of pictures
+
+## Usage:
+
+```rust
+fn main() {
+
+    // Asking the user to add elements to the picture library.
+    // Later you can compare pictures to the library which was provided.
+    get_pictures_from_user();
+
+    // Asking the user for a path to a picture.
+    // This picture will later be compared with the library.
+    // It is not written to the library itself!!
+    let picture_path = input_search_image();
+
+    // Some additional features, which can be used.
+    println!("Information on the picture you provided:");
+
+    // Determine the average brightness of a picture.
+    let average_brightness = get_average_brightness_of_picture(&picture_path);
+    println!("Averagebrightness: {}", average_brightness);
+
+    //read a picture in the U8 picture-format
+    let pic_u8: PictureU8 = read_picture(&picture_path);
+    println!("PictureU8: {}", pic_u8);
+
+    // Calculate color histograms for a picture.
+    let histograms = get_histogram(&pic_u8);
+    // Histograms can also be printed to the console.
+    print_all_diagrams(histograms);
+
+    // Main usage of the library.
+    // Compare a picture to the pictureLibrary (also user-generated).
+    // It returns the 5 most similar pictures.
+    let similar_five_pictures = get_top_five_similar_pictures(picture_path.clone().as_str()).unwrap();
+    //The most similar pictures can be printed to the console.
+    print_calculated_similar_pictures(similar_five_pictures);
+
+}
+```
+
+For detailed instructions on installation, usage examples, and customization options, please refer to the documentation provided within the library.
+
+## Using different data types for `data`
 The functionalities of this crate are not (yet) generic.
 You can, however, use your own `PictureX##` structs that use types for `data` other than `u8` or `f32` by implementing the `Picture` trait.
 
@@ -81,3 +128,6 @@ fn main() {
     print_all_diagrams(get_histogram(&pic_u32));
 }
 ```
+
+# License
+See [License file](LICENSE-MIT).
