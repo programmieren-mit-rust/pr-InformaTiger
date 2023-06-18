@@ -10,18 +10,17 @@ mod tests;
 pub mod user_input;
 pub mod with_threads;
 
-
 const DEFAULT_DATASTORE_FILEPATH: &str = "src/tests/files/DataStoreJSON/data.json";
 use std::env;
 use std::error::Error;
 use std::fs::File;
 
+use crate::user_input::input;
 pub use {
     crate::escape::{blue_escape, green_escape, red_escape},
     crate::histogram::Histogram,
     crate::picture::{Picture, PictureU8},
 };
-use crate::user_input::{input};
 
 /// Reads an image file and returns the image data as a `PictureU8` struct.
 ///
@@ -238,7 +237,7 @@ pub fn get_datastore_path() -> Result<String, Box<dyn Error>> {
         }
     }
 }
-pub fn get_pictures_from_user(){
+pub fn get_pictures_from_user() {
     //Input User: SearchPool
     loop {
         if !input() {

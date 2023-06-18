@@ -1,10 +1,11 @@
-use imsearch::{get_histogram, print_all_diagrams, read_picture, PictureU8, get_pictures_from_user};
-use imsearch::user_input::{input_search_image};
+use imsearch::user_input::input_search_image;
+use imsearch::{
+    get_histogram, get_pictures_from_user, print_all_diagrams, read_picture, PictureU8,
+};
 
 const PICTURE_FILEPATH: &str = "src/tests/files/pictures_for_testing/bird.png";
 
 fn main() {
-
     get_pictures_from_user();
 
     //Input User: SearchImage
@@ -15,9 +16,4 @@ fn main() {
 
     let histograms = get_histogram(&pic_u8);
     print_all_diagrams(histograms);
-
-
-
 }
-
-
